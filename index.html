@@ -599,6 +599,7 @@
             color: var(--gray-600);
             margin-top: 0.2rem;
             display: inline-block;
+            cursor: pointer;
         }
         .prompt-card .p-copy:hover {
             color: var(--navy);
@@ -832,7 +833,7 @@
                 <small>/ AI Guide</small>
             </div>
             <div class="header-actions">
-                <button class="pdf-btn" onclick="window.print()" aria-label="Sayfayı PDF olarak kaydet">📄 PDF</button>
+                <button class="pdf-btn" onclick="saveAsPdf()" aria-label="Sayfayı PDF olarak kaydet">📄 PDF</button>
                 <div class="lang-toggle" role="group" aria-label="Dil seçimi">
                     <button class="lang-btn active" data-lang="tr" aria-label="Türkçe">TR</button>
                     <button class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
@@ -905,6 +906,17 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- ––– YENİ: Constraint İpucu Kutusu ––– -->
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:1rem;padding:1.2rem;margin-top:1rem;">
+                <p style="font-weight:700;color:#16a34a;font-size:0.85rem;margin-bottom:0.4rem;">
+                    💡 <span data-i18n="constraint-title">Altın Kural: Floskeln Yasağı</span>
+                </p>
+                <p style="font-size:0.82rem;color:#334155;" data-i18n="constraint-text">
+                    Resmi mektup yazdırırken sonuna mutlaka ekleyin: <strong>'Schreibe sachlich, direkt und ohne Floskeln'</strong> — AI gerçek bir Alman memuru gibi net yazar.
+                </p>
+            </div>
+
         </section>
 
         <!-- ––––– SECTION 3: Resmi Yazışmalarda AI ––––– -->
@@ -938,6 +950,18 @@
                     <span class="ex-tag" data-i18n="s3-tag-summary">Özet / Zusammenfassung</span>
                 </div>
             </div>
+
+            <!-- ––– YENİ: Widerspruch Modülü ––– -->
+            <div style="margin-top:1.5rem;">
+                <div class="prompt-card">
+                    <div class="p-number" data-i18n="wid-num">Widerspruch Modülü</div>
+                    <div class="p-title" data-i18n="wid-title">⚖️ Resmi İtiraz Üretici</div>
+                    <div class="p-text" data-i18n="wid-prompt">Sen Almanya’da idari hukuk konusunda uzman bir danışmansın. [Kurum Adı]’dan gelen ret kararına karşı resmi bir Widerspruch yaz. Mutlaka şu kalıbı kullan: ‘Hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [Tarih] (Aktenzeichen: [Dosya No]) ein.’ Gerekçe: [İtiraz Gerekçeleriniz]. Schreibe sachlich, direkt und ohne Floskeln.</div>
+                    <span class="p-copy" onclick="copyPrompt(this)" data-i18n="wid-copy">📋 Kopyala</span>
+                    <span class="copy-feedback">✓ Kopyalandı!</span>
+                </div>
+            </div>
+
         </section>
 
         <!-- ––––– SECTION 4: Çeviri & Özet ––––– -->
@@ -1022,7 +1046,7 @@
                 </div>
             </div>
 
-            <!-- ––– GERÇEK VAKA BLOĞU (eklendi) ––– -->
+            <!-- ––– GERÇEK VAKA BLOĞU ––– -->
             <div class="real-case-box">
                 <div class="case-title">
                     ⚠️ <span data-i18n="case-title">Gerçek Vaka: Halüsinasyon Böyle Görünür</span>
@@ -1235,11 +1259,9 @@
     <script>
         (function() {
 
-            // ———— i18n DATA (case-title, case-text, case-moral, case-note EKLENDİ) ————
+            // ———— i18n DATA ————
             var i18n = {
                 tr: {
-                    // ... (önceki tüm anahtarlar) ...
-                    // Sadece yeni eklenenleri gösteriyorum, eksiksiz çalışması için hepsi burada.
                     "s1-title": "Yapay Zeka Nedir?",
                     "s1-sub": "Basitçe anlatımla, günlük iş hayatında yapay zekayı nasıl kullanacağınızı öğrenin.",
                     "s1-c1-title": "Tanım",
@@ -1326,14 +1348,19 @@
                     "faq-a3": "Resmi terimleri ve hitap şekillerini doğru kullanmaya özen gösterin. AI çevirileri genellikle iyidir, ancak hukuki veya teknik metinlerde mutlaka bir uzman tarafından kontrol edilmelidir.",
                     "faq-q4": "AI kullanırken veri gizliliğini nasıl korurum?",
                     "faq-a4": "Asla gerçek kişisel veriler (isim, adres, telefon, kimlik numarası) paylaşmayın. Hassas bilgileri anonimleştirin ve mümkünse kurumsal AI araçlarını tercih edin.",
-                    // — YENİ EKLENENLER —
                     "case-title": "Gerçek Vaka: Halüsinasyon Böyle Görünür",
                     "case-text": "Bu rehberin hazırlık sürecinde popüler bir AI aracına pacdi.eu dosyası gösterildi. Dosyayı gerçekten okumak yerine \"PACDI\" kelimesini tıp literatüründen ezberledi ve dakikalarca \"hastane taburcu ve klinik bakım otomasyonu\" anlattı. Uyarılınca bu sefer hiç ilgisi olmayan \"Pusula Akademik Kariyer\" diye bambaşka bir senaryo uydurdu. Ta ki gerçek ekran görüntüsü önüne konulana kadar.",
                     "case-moral": "Ne öğrendik? AI devasa bir güçtür — ama kör güvenildiğinde en profesyonel insanı bile yanlış uçağa bindirir, gözünüzü hiç bilmediğiniz yerlerde açabilir. Bu yüzden bu rehber var: AI'yi doğru yönetmek, neyi bilip neyi uydurduğunu anlamak için.",
-                    "case-note": "💡 Not: İlgili AI aracı hatayı kabul etti — bu da onun güçlü yanı. Ders: Her zaman doğrulayın."
+                    "case-note": "💡 Not: İlgili AI aracı hatayı kabul etti — bu da onun güçlü yanı. Ders: Her zaman doğrulayın.",
+                    // YENİ EKLENENLER (TR)
+                    "wid-num": "Widerspruch Modülü",
+                    "wid-title": "⚖️ Resmi İtiraz Üretici",
+                    "wid-copy": "📋 Kopyala",
+                    "wid-prompt": "Sen Almanya’da idari hukuk konusunda uzman bir danışmansın. [Kurum Adı]’dan gelen ret kararına karşı resmi bir Widerspruch yaz. Mutlaka şu kalıbı kullan: ‘Hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [Tarih] (Aktenzeichen: [Dosya No]) ein.’ Gerekçe: [İtiraz Gerekçeleriniz]. Schreibe sachlich, direkt und ohne Floskeln.",
+                    "constraint-title": "Altın Kural: Floskeln Yasağı",
+                    "constraint-text": "Resmi mektup yazdırırken sonuna mutlaka ekleyin: 'Schreibe sachlich, direkt und ohne Floskeln' — AI gerçek bir Alman memuru gibi net yazar."
                 },
                 de: {
-                    // ... (tüm mevcut DE anahtarları) ...
                     "s1-title": "Was ist Künstliche Intelligenz?",
                     "s1-sub": "Einfach erklärt – wie Sie KI im Büroalltag einsetzen.",
                     "s1-c1-title": "Definition",
@@ -1420,14 +1447,19 @@
                     "faq-a3": "Achten Sie darauf, offizielle Begriffe und Anredeformen korrekt zu verwenden. KI-Übersetzungen sind meist gut, aber bei juristischen oder technischen Texten sollten sie unbedingt von einem Experten geprüft werden.",
                     "faq-q4": "Wie schütze ich meine Daten bei der Nutzung von KI?",
                     "faq-a4": "Geben Sie niemals echte persönliche Daten (Name, Adresse, Telefonnummer, Ausweisnummer) preis. Anonymisieren Sie sensible Informationen und nutzen Sie wenn möglich unternehmenseigene KI-Tools.",
-                    // — YENİ EKLENENLER (DE) —
                     "case-title": "Echter Fall: So sieht eine Halluzination aus",
                     "case-text": "Während der Vorbereitung dieses Leitfadens wurde einem bekannten KI-Tool die Datei pacdi.eu gezeigt. Statt sie wirklich zu lesen, griff es auf medizinische Fachliteratur zurück und erklärte minutenlang Krankenhaus-Entlassungsautomatisierung. Nach einem Hinweis erfand es eine völlig andere Geschichte. Erst nach einem echten Screenshot hörte es auf.",
                     "case-moral": "Was haben wir gelernt? KI ist eine enorme Kraft – aber blind vertraut kann sie Sie in den falschen Flieger setzen. Deshalb gibt es diesen Leitfaden.",
-                    "case-note": "Das betreffende KI-Tool hat den Fehler eingestanden – das ist seine Stärke. Lektion: Immer verifizieren."
+                    "case-note": "Das betreffende KI-Tool hat den Fehler eingestanden – das ist seine Stärke. Lektion: Immer verifizieren.",
+                    // YENİ EKLENENLER (DE)
+                    "wid-num": "Widerspruch Modülü",
+                    "wid-title": "⚖️ Offizieller Widerspruch-Generator",
+                    "wid-copy": "📋 Kopieren",
+                    "wid-prompt": "Sie sind ein Experte für deutsches Verwaltungsrecht. Schreiben Sie einen formellen Widerspruch gegen den Bescheid von [Behörde]. Verwenden Sie unbedingt: 'Hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [Datum] (Aktenzeichen: [Az.]) ein.' Begründung: [Ihre Gründe]. Schreibe sachlich, direkt und ohne Floskeln.",
+                    "constraint-title": "Goldene Regel: Keine Floskeln",
+                    "constraint-text": "Fügen Sie am Ende Ihrer offiziellen Briefe immer hinzu: 'Schreibe sachlich, direkt und ohne Floskeln' — die KI schreibt dann klar wie ein echter deutscher Beamter."
                 },
                 en: {
-                    // ... (tüm mevcut EN anahtarları) ...
                     "s1-title": "What is Artificial Intelligence?",
                     "s1-sub": "A simple explanation of how to use AI in your daily office work.",
                     "s1-c1-title": "Definition",
@@ -1514,11 +1546,17 @@
                     "faq-a3": "Make sure to use official terminology and salutations correctly. AI translations are generally good, but for legal or technical texts, they must be checked by an expert.",
                     "faq-q4": "How do I protect my data when using AI?",
                     "faq-a4": "Never share real personal data (name, address, phone number, ID). Anonymize sensitive information and use enterprise AI tools if possible.",
-                    // — YENİ EKLENENLER (EN) —
                     "case-title": "Real Case: This Is What a Hallucination Looks Like",
                     "case-text": "During the preparation of this guide, a popular AI tool was shown the pacdi.eu file. Instead of actually reading it, it memorized the word \"PACDI\" from medical literature and explained \"hospital discharge and clinical care automation\" for minutes. After being warned, it invented a completely different scenario: \"Compass Academic Career\". Only after a real screenshot was placed in front of it did it stop.",
                     "case-moral": "What did we learn? AI is a massive force – but if you trust it blindly, it can put even the most professional person on the wrong plane, opening your eyes in places you've never known. That's why this guide exists: to manage AI correctly, to understand what it knows and what it invents.",
-                    "case-note": "The AI tool in question admitted the error – that's its strength. Lesson: Always verify."
+                    "case-note": "The AI tool in question admitted the error – that's its strength. Lesson: Always verify.",
+                    // YENİ EKLENENLER (EN)
+                    "wid-num": "Widerspruch Module",
+                    "wid-title": "⚖️ Official Objection Generator",
+                    "wid-copy": "📋 Copy",
+                    "wid-prompt": "You are an expert in German administrative law. Write a formal Widerspruch against the decision from [Authority]. Must include: 'Hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [Date] (Aktenzeichen: [File No.]) ein.' Reasons: [Your reasons]. Write objectively, directly and without phrases.",
+                    "constraint-title": "Golden Rule: No Filler Phrases",
+                    "constraint-text": "When generating official letters, always add at the end: 'Schreibe sachlich, direkt und ohne Floskeln' — the AI will write clearly like a real German official."
                 }
             };
 
@@ -1587,7 +1625,7 @@
                             feedback.classList.add('show');
                             setTimeout(function() { feedback.classList.remove('show'); }, 2000);
                         }
-                    }).catch(function() {
+                    })['catch'](function() {
                         fallbackCopy(text, card);
                     });
                 } else {
@@ -1650,6 +1688,12 @@
 
             // ———— init: default language = tr ————
             applyLanguage('tr');
+
+            // ———— PDF save function (ES5) ————
+            window.saveAsPdf = function() {
+                document.title = 'PACDI_Yapay_Zeka_Rehberi';
+                window.print();
+            };
 
         })();
     </script>
