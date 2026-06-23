@@ -1,1 +1,1287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yapay Zeka Rehberi / KI-Leitfaden / AI Guide</title>
+    <style>
+        /* ––– Reset & Base ––– */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 0 0 2rem 0;
+        }
+        :root {
+            --navy: #0B1E35;
+            --gold: #F0D080;
+            --gold-dark: #C9A84C;
+            --gold-dim: rgba(240, 208, 128, 0.15);
+            --gold-border: rgba(240, 208, 128, 0.3);
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --amber-border: #fcd34d;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --white: #ffffff;
+            --shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
+            --radius: 1.2rem;
+        }
 
+        /* ––– Typography ––– */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--navy);
+        }
+        h1 {
+            font-size: 1.7rem;
+            letter-spacing: -0.3px;
+        }
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        h2 .icon {
+            font-size: 1.6rem;
+        }
+        h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+        p {
+            color: var(--gray-700);
+        }
+        a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        /* ––– Layout ––– */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ––– Header ––– */
+        .site-header {
+            background: var(--navy);
+            padding: 1.2rem 1rem;
+            border-bottom: 3px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+        }
+        .site-title {
+            color: var(--white);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+        .site-title span {
+            color: var(--gold);
+        }
+        .site-title small {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.08em;
+            margin-top: 0.05rem;
+        }
+        .lang-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            padding: 0.15rem;
+            gap: 0.1rem;
+            flex-shrink: 0;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: system-ui;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        .lang-btn:hover:not(.active) {
+            color: var(--white);
+        }
+
+        /* ––– Sections ––– */
+        .section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+        .section-alt {
+            background: var(--gray-50);
+        }
+        .section-sub {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ––– Cards ––– */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .card-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            border-color: var(--gold-dark);
+            box-shadow: var(--shadow);
+        }
+        .card .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .card h3 {
+            color: var(--navy);
+        }
+        .card p {
+            font-size: 0.88rem;
+            color: var(--gray-600);
+        }
+
+        /* ––– Prompt Examples ––– */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 599px) {
+            .prompt-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .prompt-box {
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            border-left: 5px solid;
+        }
+        .prompt-box.good {
+            background: #f0fdf4;
+            border-color: #22c55e;
+        }
+        .prompt-box.bad {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+        .prompt-box .label {
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .prompt-box.good .label {
+            color: #16a34a;
+        }
+        .prompt-box.bad .label {
+            color: #dc2626;
+        }
+        .prompt-box pre {
+            font-family: system-ui, monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 0.5rem 0.7rem;
+            border-radius: 0.5rem;
+            margin-top: 0.3rem;
+            color: var(--gray-800);
+        }
+        .do-dont-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 599px) {
+            .do-dont-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .do-box,
+        .dont-box {
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
+        }
+        .do-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+        .dont-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+        .do-box h4,
+        .dont-box h4 {
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        .do-box h4 {
+            color: #16a34a;
+        }
+        .dont-box h4 {
+            color: #dc2626;
+        }
+        .do-box ul,
+        .dont-box ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.82rem;
+            color: var(--gray-700);
+        }
+        .do-box ul li::before {
+            content: "✓ ";
+            color: #16a34a;
+            font-weight: 700;
+        }
+        .dont-box ul li::before {
+            content: "✗ ";
+            color: #dc2626;
+            font-weight: 700;
+        }
+        .do-box ul li,
+        .dont-box ul li {
+            padding: 0.2rem 0;
+        }
+
+        /* ––– Examples ––– */
+        .example-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+        .example-item {
+            background: var(--white);
+            border-radius: 0.8rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--gray-200);
+            transition: border-color 0.2s;
+        }
+        .example-item:hover {
+            border-color: var(--gold-dark);
+        }
+        .example-item .ex-title {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+        .example-item .ex-desc {
+            font-size: 0.82rem;
+            color: var(--gray-600);
+            margin-top: 0.15rem;
+        }
+        .example-item .ex-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--gold-dim);
+            color: var(--gold-dark);
+            padding: 0.1rem 0.6rem;
+            border-radius: 1rem;
+            margin-top: 0.3rem;
+            border: 1px solid var(--gold-border);
+        }
+
+        /* ––– Comparison Table ––– */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+        .comp-table th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .comp-table td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .comp-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comp-table .tool-icon {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+        .comp-table .use-case {
+            font-size: 0.78rem;
+            color: var(--gray-600);
+        }
+        @media (max-width: 500px) {
+            .comp-table th,
+            .comp-table td {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.78rem;
+            }
+        }
+
+        /* ––– Warning Boxes ––– */
+        .warning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 599px) {
+            .warning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .warning-box {
+            background: var(--amber-bg);
+            border-left: 6px solid var(--amber);
+            border-radius: 0.8rem;
+            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
+            border: 1px solid var(--amber-border);
+        }
+        .warning-box .warn-icon {
+            font-size: 1.3rem;
+            margin-right: 0.4rem;
+        }
+        .warning-box h4 {
+            color: #92400e;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .warning-box p {
+            font-size: 0.82rem;
+            color: #78350f;
+            margin-top: 0.3rem;
+        }
+
+        /* ––– Prompts Section ––– */
+        .prompt-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .prompt-tab {
+            background: var(--gray-100);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: system-ui;
+            color: var(--gray-600);
+        }
+        .prompt-tab.active {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .prompt-tab:hover:not(.active) {
+            background: var(--gray-200);
+        }
+        .prompt-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+            margin-bottom: 0.8rem;
+        }
+        .prompt-card .p-number {
+            font-weight: 700;
+            color: var(--gold-dark);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .prompt-card .p-title {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.95rem;
+            margin: 0.1rem 0 0.3rem 0;
+        }
+        .prompt-card .p-text {
+            background: var(--gray-50);
+            padding: 0.7rem 1rem;
+            border-radius: 0.6rem;
+            font-family: system-ui, monospace;
+            font-size: 0.82rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border: 1px solid var(--gray-200);
+            color: var(--gray-800);
+            margin-top: 0.3rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .prompt-card .p-text:hover {
+            background: var(--gray-100);
+        }
+        .prompt-card .p-copy {
+            font-size: 0.7rem;
+            color: var(--gray-600);
+            margin-top: 0.2rem;
+            display: inline-block;
+        }
+        .prompt-card .p-copy:hover {
+            color: var(--navy);
+        }
+        .prompt-lang-group {
+            display: none;
+        }
+        .prompt-lang-group.active {
+            display: block;
+        }
+
+        /* ––– Footer ––– */
+        .site-footer {
+            background: var(--navy);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 1.8rem 1rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            border-top: 2px solid var(--gold);
+        }
+        .site-footer a {
+            color: var(--gold);
+            font-weight: 500;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ––– Utilities ––– */
+        .mt-1 {
+            margin-top: 1rem;
+        }
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .gold-link {
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+        .badge-gold {
+            display: inline-block;
+            background: var(--gold-dim);
+            color: var(--gold-dark);
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.15rem 0.7rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gold-border);
+        }
+
+        /* ––– Responsive fine-tune ––– */
+        @media (max-width: 480px) {
+            .site-title {
+                font-size: 1rem;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+            .lang-toggle {
+                align-self: flex-start;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+        }
+        @media (min-width: 640px) {
+            .header-inner {
+                flex-wrap: nowrap;
+            }
+            .site-title small {
+                display: inline;
+                margin-left: 0.3rem;
+                font-size: 0.55rem;
+            }
+        }
+
+        /* ––– Copy feedback ––– */
+        .copy-feedback {
+            font-size: 0.7rem;
+            color: #16a34a;
+            margin-left: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .copy-feedback.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ––––– HEADER ––––– -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="site-title">
+                🤖 Yapay Zeka Rehberi
+                <span>/ KI-Leitfaden</span>
+                <small>/ AI Guide</small>
+            </div>
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="tr">TR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ––––– SECTION 1: Yapay Zeka Nedir? ––––– -->
+        <section class="section" id="section1">
+            <h2><span class="icon">🧠</span> <span data-i18n="s1-title">Yapay Zeka Nedir?</span></h2>
+            <p class="section-sub" data-i18n="s1-sub">Basitçe anlatımla, günlük iş hayatında yapay zekayı nasıl kullanacağınızı öğrenin.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <span class="icon">🤔</span>
+                    <h3 data-i18n="s1-c1-title">Tanım</h3>
+                    <p data-i18n="s1-c1-desc">Yapay zeka, makinelerin insan benzeri düşünme, öğrenme ve karar verme yeteneğidir. Verilerden desenleri tanır ve yeni içerik üretir.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">⚙️</span>
+                    <h3 data-i18n="s1-c2-title">Nasıl Çalışır?</h3>
+                    <p data-i18n="s1-c2-desc">Büyük veri kümeleriyle eğitilen modeller, istatistiksel kalıpları öğrenir. Siz bir soru sorduğunuzda, en olası yanıtı üretir.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">💼</span>
+                    <h3 data-i18n="s1-c3-title">Neden Kullanmalı?</h3>
+                    <p data-i18n="s1-c3-desc">Yazışmaları hızlandırır, fikir üretir, çeviri yapar, özet çıkarır ve rutin işleri otomatikleştirir — ofis çalışanları için güçlü bir yardımcı.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ––––– SECTION 2: Prompt Nasıl Yazılır? ––––– -->
+        <section class="section section-alt" id="section2">
+            <h2><span class="icon">✍️</span> <span data-i18n="s2-title">Prompt Nasıl Yazılır?</span></h2>
+            <p class="section-sub" data-i18n="s2-sub">İyi bir prompt, doğru yanıtın anahtarıdır. İşte karşılaştırmalı örnekler.</p>
+
+            <div class="prompt-grid">
+                <div class="prompt-box good">
+                    <span class="label" data-i18n="s2-good">✅ İyi Prompt</span>
+                    <p style="font-size:0.8rem;color:var(--gray-700);" data-i18n="s2-good-desc">Açık, bağlamlı ve spesifik.</p>
+                    <pre data-i18n="s2-good-ex">"Almanya'da bir memur olarak çalışıyorum. Senatsverwaltung'a resmi bir e-posta yazmam gerekiyor. Konu: 'Terminvereinbarung für Projektbesprechung'. Resmi, kibar ve kısa bir metin yaz."</pre>
+                </div>
+                <div class="prompt-box bad">
+                    <span class="label" data-i18n="s2-bad">❌ Kötü Prompt</span>
+                    <p style="font-size:0.8rem;color:var(--gray-700);" data-i18n="s2-bad-desc">Belirsiz, genel ve bağlamsız.</p>
+                    <pre data-i18n="s2-bad-ex">"Bana bir e-posta yaz."</pre>
+                </div>
+            </div>
+
+            <div class="do-dont-grid">
+                <div class="do-box">
+                    <h4 data-i18n="s2-do-title">✅ Yapılacaklar</h4>
+                    <ul>
+                        <li data-i18n="s2-do-1">Rol ve bağlamı belirtin (kimsiniz, kime yazıyorsunuz)</li>
+                        <li data-i18n="s2-do-2">Açık ve net talimat verin</li>
+                        <li data-i18n="s2-do-3">Örnek veya format isteyin</li>
+                        <li data-i18n="s2-do-4">Birden fazla turda geliştirin</li>
+                    </ul>
+                </div>
+                <div class="dont-box">
+                    <h4 data-i18n="s2-dont-title">❌ Kaçının</h4>
+                    <ul>
+                        <li data-i18n="s2-dont-1">Belirsiz ve genel sorular sormayın</li>
+                        <li data-i18n="s2-dont-2">Kişisel verileri paylaşmayın</li>
+                        <li data-i18n="s2-dont-3">Çıktıyı doğrulamadan kullanmayın</li>
+                        <li data-i18n="s2-dont-4">Tek seferde mükemmel beklemeyin</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ––––– SECTION 3: Resmi Yazışmalarda AI ––––– -->
+        <section class="section" id="section3">
+            <h2><span class="icon">📨</span> <span data-i18n="s3-title">Resmi Yazışmalarda AI</span></h2>
+            <p class="section-sub" data-i18n="s3-sub">Almanya'da resmi kurumlarla yapılan yazışmalarda AI nasıl kullanılır? Pratik örnekler.</p>
+            <div class="example-list">
+                <div class="example-item">
+                    <div class="ex-title" data-i18n="s3-ex1-title">🏛️ Senatsverwaltung — Termin Anfrage</div>
+                    <div class="ex-desc" data-i18n="s3-ex1-desc">Resmi, kibar ve kısa bir e-posta ile randevu talebi oluşturun.</div>
+                    <span class="ex-tag" data-i18n="s3-tag-letter">Brief / Mektup</span>
+                </div>
+                <div class="example-item">
+                    <div class="ex-title" data-i18n="s3-ex2-title">📋 Jobcenter — Antrag auf Weiterbewilligung</div>
+                    <div class="ex-desc" data-i18n="s3-ex2-desc">Yeniden onay başvurusu için gerekli belgeleri ve açıklamaları hazırlayın.</div>
+                    <span class="ex-tag" data-i18n="s3-tag-form">Formular / Form</span>
+                </div>
+                <div class="example-item">
+                    <div class="ex-title" data-i18n="s3-ex3-title">🏢 IHK — Beschwerde / Anfrage</div>
+                    <div class="ex-desc" data-i18n="s3-ex3-desc">Sanayi ve Ticaret Odası'na resmi şikayet veya bilgi talebi yazın.</div>
+                    <span class="ex-tag" data-i18n="s3-tag-official">Offiziell / Resmi</span>
+                </div>
+                <div class="example-item">
+                    <div class="ex-title" data-i18n="s3-ex4-title">⚖️ Widerspruch — Einspruch gegen Bescheid</div>
+                    <div class="ex-desc" data-i18n="s3-ex4-desc">Bir idari karara itiraz metni oluşturun — gerekçeli ve yasal dayanaklı.</div>
+                    <span class="ex-tag" data-i18n="s3-tag-legal">Recht / Hukuk</span>
+                </div>
+                <div class="example-item">
+                    <div class="ex-title" data-i18n="s3-ex5-title">📝 Meeting Notes — Zusammenfassung</div>
+                    <div class="ex-desc" data-i18n="s3-ex5-desc">Toplantı notlarını özetleyin, kararları ve aksiyonları vurgulayın.</div>
+                    <span class="ex-tag" data-i18n="s3-tag-summary">Özet / Zusammenfassung</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ––––– SECTION 4: Çeviri & Özet ––––– -->
+        <section class="section section-alt" id="section4">
+            <h2><span class="icon">🌐</span> <span data-i18n="s4-title">Çeviri &amp; Özet</span></h2>
+            <p class="section-sub" data-i18n="s4-sub">Resmi Almanca belgeleri Türkçeye çevirme ve uzun metinleri özetleme ipuçları.</p>
+            <div class="card-grid card-grid-2">
+                <div class="card">
+                    <span class="icon">🔁</span>
+                    <h3 data-i18n="s4-c1-title">Resmi Çeviri</h3>
+                    <p data-i18n="s4-c1-desc">Almanca resmi yazışmaları Türkçeye çevirirken resmiyet derecesini koruyun. "Sehr geehrte Damen und Herren" → "Sayın Yetkililer" gibi.</p>
+                    <p style="font-size:0.75rem;color:var(--gray-600);margin-top:0.3rem;" data-i18n="s4-c1-tip">💡 İpucu: Bağlamı ve hitap şeklini prompt'ta belirtin.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">📄</span>
+                    <h3 data-i18n="s4-c2-title">Belge Özetleme</h3>
+                    <p data-i18n="s4-c2-desc">Uzun raporları, yönetmelikleri veya mahkeme kararlarını özetlerken ana başlıkları, tarihleri ve kararları vurgulayın.</p>
+                    <p style="font-size:0.75rem;color:var(--gray-600);margin-top:0.3rem;" data-i18n="s4-c2-tip">💡 İpucu: "Özetle" yerine "ana noktaları, tarihleri ve kararları listeleyerek özetle" deyin.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ––––– SECTION 5: Hangi Araç Ne İçin? ––––– -->
+        <section class="section" id="section5">
+            <h2><span class="icon">🛠️</span> <span data-i18n="s5-title">Hangi Araç Ne İçin?</span></h2>
+            <p class="section-sub" data-i18n="s5-sub">En popüler AI araçlarını karşılaştırın ve ihtiyacınıza uygun olanı seçin.</p>
+            <div class="table-wrap">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="s5-th-tool">Araç</th>
+                            <th data-i18n="s5-th-best">En İyi Olduğu Alan</th>
+                            <th data-i18n="s5-th-use">Kullanım Örneği</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="tool-icon">🧠</span> Claude</td>
+                            <td data-i18n="s5-claude-best">Uzun metin, analiz, kod</td>
+                            <td class="use-case" data-i18n="s5-claude-use">Resmi raporları özetleme, sözleşme analizi</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tool-icon">💬</span> ChatGPT</td>
+                            <td data-i18n="s5-chatgpt-best">Genel amaçlı, yaratıcı yazım</td>
+                            <td class="use-case" data-i18n="s5-chatgpt-use">E-posta taslağı, fikir üretimi, çeviri</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tool-icon">🔮</span> Gemini</td>
+                            <td data-i18n="s5-gemini-best">Çoklu mod, gerçek zamanlı</td>
+                            <td class="use-case" data-i18n="s5-gemini-use">Görsel + metin içeren görevler, araştırma</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tool-icon">⚡</span> DeepSeek</td>
+                            <td data-i18n="s5-deepseek-best">Mantık, matematik, kodlama</td>
+                            <td class="use-case" data-i18n="s5-deepseek-use">Karmaşık problem çözme, teknik dokümantasyon</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ––––– SECTION 6: Dikkat Et! ––––– -->
+        <section class="section section-alt" id="section6">
+            <h2><span class="icon">⚠️</span> <span data-i18n="s6-title">Dikkat Et!</span></h2>
+            <p class="section-sub" data-i18n="s6-sub">AI kullanırken göz önünde bulundurmanız gereken kritik noktalar.</p>
+            <div class="warning-grid">
+                <div class="warning-box">
+                    <h4><span class="warn-icon">🔒</span> <span data-i18n="s6-w1-title">Kişisel Veri Yok</span></h4>
+                    <p data-i18n="s6-w1-desc">Asla gerçek ad, soyad, adres, telefon numarası veya kimlik bilgileri paylaşmayın. Anonimleştirin.</p>
+                </div>
+                <div class="warning-box">
+                    <h4><span class="warn-icon">✅</span> <span data-i18n="s6-w2-title">Her Zaman Doğrula</span></h4>
+                    <p data-i18n="s6-w2-desc">AI yanlış bilgi üretebilir ("halüsinasyon"). Resmi yazışmalarda her çıktıyı mutlaka kontrol edin.</p>
+                </div>
+                <div class="warning-box">
+                    <h4><span class="warn-icon">©️</span> <span data-i18n="s6-w3-title">Telif Hakkı</span></h4>
+                    <p data-i18n="s6-w3-desc">AI tarafından üretilen metinlerin telif hakkı size ait değildir. Ticari kullanımda dikkatli olun.</p>
+                </div>
+                <div class="warning-box">
+                    <h4><span class="warn-icon">📋</span> <span data-i18n="s6-w4-title">DSGVO / KVKK</span></h4>
+                    <p data-i18n="s6-w4-desc">Veri koruma yasalarına uyun. Hassas verileri AI araçlarına yüklemeyin. Kurum içi politikaları kontrol edin.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ––––– SECTION 7: İlk 5 Promptun ––––– -->
+        <section class="section" id="section7">
+            <h2><span class="icon">📋</span> <span data-i18n="s7-title">İlk 5 Promptun</span></h2>
+            <p class="section-sub" data-i18n="s7-sub">Hemen kopyalayıp kullanabileceğiniz başlangıç promptları. Dili seçin ve kullanmaya başlayın.</p>
+
+            <div class="prompt-tabs">
+                <button class="prompt-tab active" data-prompt-lang="tr">🇹🇷 TR</button>
+                <button class="prompt-tab" data-prompt-lang="de">🇩🇪 DE</button>
+                <button class="prompt-tab" data-prompt-lang="en">🇬🇧 EN</button>
+            </div>
+
+            <!-- TR -->
+            <div class="prompt-lang-group active" data-prompt-group="tr">
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 1</div>
+                    <div class="p-title">📧 Resmi E-posta Taslağı</div>
+                    <div class="p-text" data-copy="tr-1">"Almanya'da bir kamu kurumunda çalışıyorum. [Kurum adı]'na resmi bir e-posta yazmam gerekiyor. Konu: [konu]. Resmi, kibar ve kısa bir metin yaz. Hitap: 'Sehr geehrte Damen und Herren' ile başla."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopyala</span>
+                    <span class="copy-feedback">✓ Kopyalandı!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 2</div>
+                    <div class="p-title">📄 Belge Özeti</div>
+                    <div class="p-text" data-copy="tr-2">"Aşağıdaki metni özetle. Ana başlıkları, tarihleri, kararları ve aksiyon maddelerini listeleyerek çıkar. Resmi dil kullan."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopyala</span>
+                    <span class="copy-feedback">✓ Kopyalandı!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 3</div>
+                    <div class="p-title">🌐 Resmi Çeviri (DE → TR)</div>
+                    <div class="p-text" data-copy="tr-3">"Aşağıdaki Almanca resmi metni Türkçeye çevir. Resmiyet derecesini koru. Hitap şekillerini Türkçe karşılıklarıyla eşleştir."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopyala</span>
+                    <span class="copy-feedback">✓ Kopyalandı!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 4</div>
+                    <div class="p-title">⚖️ Widerspruch / İtiraz Metni</div>
+                    <div class="p-text" data-copy="tr-4">"Bir idari karara itiraz dilekçesi yazmam gerekiyor. Karar tarihi: [tarih], dosya numarası: [numara]. İtiraz gerekçelerimi şunlar: [gerekçeler]. Resmi ve yasal dayanaklı bir metin oluştur."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopyala</span>
+                    <span class="copy-feedback">✓ Kopyalandı!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 5</div>
+                    <div class="p-title">📝 Toplantı Notu Özeti</div>
+                    <div class="p-text" data-copy="tr-5">"Aşağıdaki toplantı notlarını özetle. Katılımcılar, ana konular, alınan kararlar ve sonraki adımları net bir şekilde listeleyerek çıkar."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopyala</span>
+                    <span class="copy-feedback">✓ Kopyalandı!</span>
+                </div>
+            </div>
+
+            <!-- DE -->
+            <div class="prompt-lang-group" data-prompt-group="de">
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 1</div>
+                    <div class="p-title">📧 Offizieller E-Mail-Entwurf</div>
+                    <div class="p-text" data-copy="de-1">"Ich arbeite bei einer öffentlichen Einrichtung in Deutschland. Schreib mir einen offiziellen E-Mail-Entwurf an [Behörde]. Betreff: [Betreff]. Formell, höflich und prägnant. Begrüßung: 'Sehr geehrte Damen und Herren'."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopieren</span>
+                    <span class="copy-feedback">✓ Kopiert!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 2</div>
+                    <div class="p-title">📄 Dokument zusammenfassen</div>
+                    <div class="p-text" data-copy="de-2">"Fass den folgenden Text zusammen. Extrahiere die Hauptpunkte, Daten, Entscheidungen und Maßnahmen in einer klaren Liste."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopieren</span>
+                    <span class="copy-feedback">✓ Kopiert!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 3</div>
+                    <div class="p-title">🌐 Offizielle Übersetzung (TR → DE)</div>
+                    <div class="p-text" data-copy="de-3">"Übersetze den folgenden türkischen offiziellen Text ins Deutsche. Bewahre den formellen Ton. Passe die Anredeformen entsprechend an."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopieren</span>
+                    <span class="copy-feedback">✓ Kopiert!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 4</div>
+                    <div class="p-title">⚖️ Widerspruch verfassen</div>
+                    <div class="p-text" data-copy="de-4">"Ich muss einen Widerspruch gegen einen Verwaltungsbescheid einlegen. Datum des Bescheids: [Datum], Aktenzeichen: [Aktenzeichen]. Meine Widerspruchsgründe sind: [Gründe]. Verfasse einen formellen und rechtlich fundierten Text."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopieren</span>
+                    <span class="copy-feedback">✓ Kopiert!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 5</div>
+                    <div class="p-title">📝 Besprechungsnotiz zusammenfassen</div>
+                    <div class="p-text" data-copy="de-5">"Fass die folgenden Besprechungsnotizen zusammen. Liste Teilnehmer, Hauptthemen, getroffene Entscheidungen und nächste Schritte klar auf."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Kopieren</span>
+                    <span class="copy-feedback">✓ Kopiert!</span>
+                </div>
+            </div>
+
+            <!-- EN -->
+            <div class="prompt-lang-group" data-prompt-group="en">
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 1</div>
+                    <div class="p-title">📧 Official Email Draft</div>
+                    <div class="p-text" data-copy="en-1">"I work at a public institution in Germany. Write an official email to [authority]. Subject: [subject]. Formal, polite and concise. Start with 'Sehr geehrte Damen und Herren'."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Copy</span>
+                    <span class="copy-feedback">✓ Copied!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 2</div>
+                    <div class="p-title">📄 Document Summary</div>
+                    <div class="p-text" data-copy="en-2">"Summarize the following text. Extract the main points, dates, decisions and action items in a clear list."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Copy</span>
+                    <span class="copy-feedback">✓ Copied!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 3</div>
+                    <div class="p-title">🌐 Official Translation (TR → EN)</div>
+                    <div class="p-text" data-copy="en-3">"Translate the following Turkish official text into English. Keep the formal tone. Match the salutations appropriately."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Copy</span>
+                    <span class="copy-feedback">✓ Copied!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 4</div>
+                    <div class="p-title">⚖️ Objection Letter (Widerspruch)</div>
+                    <div class="p-text" data-copy="en-4">"I need to file an objection against an administrative decision. Date of decision: [date], file number: [number]. My reasons are: [reasons]. Write a formal and legally sound text."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Copy</span>
+                    <span class="copy-feedback">✓ Copied!</span>
+                </div>
+                <div class="prompt-card">
+                    <div class="p-number">Prompt 5</div>
+                    <div class="p-title">📝 Meeting Notes Summary</div>
+                    <div class="p-text" data-copy="en-5">"Summarize the following meeting notes. List participants, main topics, decisions made and next steps clearly."</div>
+                    <span class="p-copy" onclick="copyPrompt(this)">📋 Copy</span>
+                    <span class="copy-feedback">✓ Copied!</span>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ––––– FOOTER ––––– -->
+    <footer class="site-footer">
+        <div class="container">
+            Designed by <a href="https://pacdi.eu" target="_blank" rel="noopener">PACDI Digital Studio</a> — pacdi.eu
+        </div>
+    </footer>
+
+    <!-- ––––– JAVASCRIPT ––––– -->
+    <script>
+        (function() {
+
+            // ———— i18n DATA ————
+            const i18n = {
+                tr: {
+                    // Section 1
+                    "s1-title": "Yapay Zeka Nedir?",
+                    "s1-sub": "Basitçe anlatımla, günlük iş hayatında yapay zekayı nasıl kullanacağınızı öğrenin.",
+                    "s1-c1-title": "Tanım",
+                    "s1-c1-desc": "Yapay zeka, makinelerin insan benzeri düşünme, öğrenme ve karar verme yeteneğidir. Verilerden desenleri tanır ve yeni içerik üretir.",
+                    "s1-c2-title": "Nasıl Çalışır?",
+                    "s1-c2-desc": "Büyük veri kümeleriyle eğitilen modeller, istatistiksel kalıpları öğrenir. Siz bir soru sorduğunuzda, en olası yanıtı üretir.",
+                    "s1-c3-title": "Neden Kullanmalı?",
+                    "s1-c3-desc": "Yazışmaları hızlandırır, fikir üretir, çeviri yapar, özet çıkarır ve rutin işleri otomatikleştirir — ofis çalışanları için güçlü bir yardımcı.",
+                    // Section 2
+                    "s2-title": "Prompt Nasıl Yazılır?",
+                    "s2-sub": "İyi bir prompt, doğru yanıtın anahtarıdır. İşte karşılaştırmalı örnekler.",
+                    "s2-good": "✅ İyi Prompt",
+                    "s2-good-desc": "Açık, bağlamlı ve spesifik.",
+                    "s2-good-ex": "\"Almanya'da bir memur olarak çalışıyorum. Senatsverwaltung'a resmi bir e-posta yazmam gerekiyor. Konu: 'Terminvereinbarung für Projektbesprechung'. Resmi, kibar ve kısa bir metin yaz.\"",
+                    "s2-bad": "❌ Kötü Prompt",
+                    "s2-bad-desc": "Belirsiz, genel ve bağlamsız.",
+                    "s2-bad-ex": "\"Bana bir e-posta yaz.\"",
+                    "s2-do-title": "✅ Yapılacaklar",
+                    "s2-do-1": "Rol ve bağlamı belirtin (kimsiniz, kime yazıyorsunuz)",
+                    "s2-do-2": "Açık ve net talimat verin",
+                    "s2-do-3": "Örnek veya format isteyin",
+                    "s2-do-4": "Birden fazla turda geliştirin",
+                    "s2-dont-title": "❌ Kaçının",
+                    "s2-dont-1": "Belirsiz ve genel sorular sormayın",
+                    "s2-dont-2": "Kişisel verileri paylaşmayın",
+                    "s2-dont-3": "Çıktıyı doğrulamadan kullanmayın",
+                    "s2-dont-4": "Tek seferde mükemmel beklemeyin",
+                    // Section 3
+                    "s3-title": "Resmi Yazışmalarda AI",
+                    "s3-sub": "Almanya'da resmi kurumlarla yapılan yazışmalarda AI nasıl kullanılır? Pratik örnekler.",
+                    "s3-ex1-title": "🏛️ Senatsverwaltung — Termin Anfrage",
+                    "s3-ex1-desc": "Resmi, kibar ve kısa bir e-posta ile randevu talebi oluşturun.",
+                    "s3-ex2-title": "📋 Jobcenter — Antrag auf Weiterbewilligung",
+                    "s3-ex2-desc": "Yeniden onay başvurusu için gerekli belgeleri ve açıklamaları hazırlayın.",
+                    "s3-ex3-title": "🏢 IHK — Beschwerde / Anfrage",
+                    "s3-ex3-desc": "Sanayi ve Ticaret Odası'na resmi şikayet veya bilgi talebi yazın.",
+                    "s3-ex4-title": "⚖️ Widerspruch — Einspruch gegen Bescheid",
+                    "s3-ex4-desc": "Bir idari karara itiraz metni oluşturun — gerekçeli ve yasal dayanaklı.",
+                    "s3-ex5-title": "📝 Meeting Notes — Zusammenfassung",
+                    "s3-ex5-desc": "Toplantı notlarını özetleyin, kararları ve aksiyonları vurgulayın.",
+                    "s3-tag-letter": "Brief / Mektup",
+                    "s3-tag-form": "Formular / Form",
+                    "s3-tag-official": "Offiziell / Resmi",
+                    "s3-tag-legal": "Recht / Hukuk",
+                    "s3-tag-summary": "Özet / Zusammenfassung",
+                    // Section 4
+                    "s4-title": "Çeviri & Özet",
+                    "s4-sub": "Resmi Almanca belgeleri Türkçeye çevirme ve uzun metinleri özetleme ipuçları.",
+                    "s4-c1-title": "Resmi Çeviri",
+                    "s4-c1-desc": "Almanca resmi yazışmaları Türkçeye çevirirken resmiyet derecesini koruyun. \"Sehr geehrte Damen und Herren\" → \"Sayın Yetkililer\" gibi.",
+                    "s4-c1-tip": "💡 İpucu: Bağlamı ve hitap şeklini prompt'ta belirtin.",
+                    "s4-c2-title": "Belge Özetleme",
+                    "s4-c2-desc": "Uzun raporları, yönetmelikleri veya mahkeme kararlarını özetlerken ana başlıkları, tarihleri ve kararları vurgulayın.",
+                    "s4-c2-tip": "💡 İpucu: \"Özetle\" yerine \"ana noktaları, tarihleri ve kararları listeleyerek özetle\" deyin.",
+                    // Section 5
+                    "s5-title": "Hangi Araç Ne İçin?",
+                    "s5-sub": "En popüler AI araçlarını karşılaştırın ve ihtiyacınıza uygun olanı seçin.",
+                    "s5-th-tool": "Araç",
+                    "s5-th-best": "En İyi Olduğu Alan",
+                    "s5-th-use": "Kullanım Örneği",
+                    "s5-claude-best": "Uzun metin, analiz, kod",
+                    "s5-claude-use": "Resmi raporları özetleme, sözleşme analizi",
+                    "s5-chatgpt-best": "Genel amaçlı, yaratıcı yazım",
+                    "s5-chatgpt-use": "E-posta taslağı, fikir üretimi, çeviri",
+                    "s5-gemini-best": "Çoklu mod, gerçek zamanlı",
+                    "s5-gemini-use": "Görsel + metin içeren görevler, araştırma",
+                    "s5-deepseek-best": "Mantık, matematik, kodlama",
+                    "s5-deepseek-use": "Karmaşık problem çözme, teknik dokümantasyon",
+                    // Section 6
+                    "s6-title": "Dikkat Et!",
+                    "s6-sub": "AI kullanırken göz önünde bulundurmanız gereken kritik noktalar.",
+                    "s6-w1-title": "Kişisel Veri Yok",
+                    "s6-w1-desc": "Asla gerçek ad, soyad, adres, telefon numarası veya kimlik bilgileri paylaşmayın. Anonimleştirin.",
+                    "s6-w2-title": "Her Zaman Doğrula",
+                    "s6-w2-desc": "AI yanlış bilgi üretebilir (\"halüsinasyon\"). Resmi yazışmalarda her çıktıyı mutlaka kontrol edin.",
+                    "s6-w3-title": "Telif Hakkı",
+                    "s6-w3-desc": "AI tarafından üretilen metinlerin telif hakkı size ait değildir. Ticari kullanımda dikkatli olun.",
+                    "s6-w4-title": "DSGVO / KVKK",
+                    "s6-w4-desc": "Veri koruma yasalarına uyun. Hassas verileri AI araçlarına yüklemeyin. Kurum içi politikaları kontrol edin.",
+                    // Section 7
+                    "s7-title": "İlk 5 Promptun",
+                    "s7-sub": "Hemen kopyalayıp kullanabileceğiniz başlangıç promptları. Dili seçin ve kullanmaya başlayın.",
+                },
+                de: {
+                    "s1-title": "Was ist Künstliche Intelligenz?",
+                    "s1-sub": "Einfach erklärt – wie Sie KI im Büroalltag einsetzen.",
+                    "s1-c1-title": "Definition",
+                    "s1-c1-desc": "KI ist die Fähigkeit von Maschinen, menschenähnlich zu denken, zu lernen und Entscheidungen zu treffen. Sie erkennt Muster in Daten und generiert neue Inhalte.",
+                    "s1-c2-title": "Wie funktioniert es?",
+                    "s1-c2-desc": "Modelle werden mit großen Datenmengen trainiert und lernen statistische Muster. Auf eine Frage hin erzeugen sie die wahrscheinlichste Antwort.",
+                    "s1-c3-title": "Warum nutzen?",
+                    "s1-c3-desc": "Beschleunigt Korrespondenz, generiert Ideen, übersetzt, fasst zusammen und automatisiert Routineaufgaben – ein starker Helfer für Büroangestellte.",
+                    "s2-title": "Wie schreibt man einen Prompt?",
+                    "s2-sub": "Ein guter Prompt ist der Schlüssel zur richtigen Antwort. Hier sind Beispiele im Vergleich.",
+                    "s2-good": "✅ Guter Prompt",
+                    "s2-good-desc": "Klar, kontextbezogen und spezifisch.",
+                    "s2-good-ex": "\"Ich arbeite als Beamter in Deutschland. Ich muss eine offizielle E-Mail an die Senatsverwaltung schreiben. Betreff: 'Terminvereinbarung für Projektbesprechung'. Schreib einen formellen, höflichen und prägnanten Text.\"",
+                    "s2-bad": "❌ Schlechter Prompt",
+                    "s2-bad-desc": "Vage, allgemein und kontextlos.",
+                    "s2-bad-ex": "\"Schreib mir eine E-Mail.\"",
+                    "s2-do-title": "✅ Dos",
+                    "s2-do-1": "Rolle und Kontext angeben (wer Sie sind, an wen Sie schreiben)",
+                    "s2-do-2": "Klare und präzise Anweisungen geben",
+                    "s2-do-3": "Beispiele oder Format anfordern",
+                    "s2-do-4": "In mehreren Runden verbessern",
+                    "s2-dont-title": "❌ Don'ts",
+                    "s2-dont-1": "Keine vagen oder allgemeinen Fragen stellen",
+                    "s2-dont-2": "Keine persönlichen Daten preisgeben",
+                    "s2-dont-3": "Ausgabe nicht ungeprüft übernehmen",
+                    "s2-dont-4": "Nicht auf einen perfekten Durchgang hoffen",
+                    "s3-title": "KI in der offiziellen Korrespondenz",
+                    "s3-sub": "Wie KI bei der Kommunikation mit Behörden in Deutschland hilft – praktische Beispiele.",
+                    "s3-ex1-title": "🏛️ Senatsverwaltung — Termin Anfrage",
+                    "s3-ex1-desc": "Erstellen Sie eine formelle, höfliche und kurze E-Mail zur Terminanfrage.",
+                    "s3-ex2-title": "📋 Jobcenter — Antrag auf Weiterbewilligung",
+                    "s3-ex2-desc": "Bereiten Sie die erforderlichen Unterlagen und Erläuterungen für den Weiterbewilligungsantrag vor.",
+                    "s3-ex3-title": "🏢 IHK — Beschwerde / Anfrage",
+                    "s3-ex3-desc": "Verfassen Sie eine offizielle Beschwerde oder Informationsanfrage an die IHK.",
+                    "s3-ex4-title": "⚖️ Widerspruch — Einspruch gegen Bescheid",
+                    "s3-ex4-desc": "Erstellen Sie einen Widerspruch gegen einen Verwaltungsakt – begründet und rechtlich fundiert.",
+                    "s3-ex5-title": "📝 Meeting Notes — Zusammenfassung",
+                    "s3-ex5-desc": "Fassen Sie Besprechungsnotizen zusammen und heben Sie Entscheidungen und Aktionen hervor.",
+                    "s3-tag-letter": "Brief / Mektup",
+                    "s3-tag-form": "Formular / Form",
+                    "s3-tag-official": "Offiziell / Resmi",
+                    "s3-tag-legal": "Recht / Hukuk",
+                    "s3-tag-summary": "Özet / Zusammenfassung",
+                    "s4-title": "Übersetzung & Zusammenfassung",
+                    "s4-sub": "Tipps zur Übersetzung offizieller deutscher Dokumente ins Türkische und zur Zusammenfassung langer Texte.",
+                    "s4-c1-title": "Offizielle Übersetzung",
+                    "s4-c1-desc": "Behalten Sie bei der Übersetzung offizieller deutscher Schreiben ins Türkische den Formalitätsgrad bei. Z.B. \"Sehr geehrte Damen und Herren\" → \"Sayın Yetkililer\".",
+                    "s4-c1-tip": "💡 Tipp: Geben Sie im Prompt den Kontext und die Anredeform an.",
+                    "s4-c2-title": "Dokumente zusammenfassen",
+                    "s4-c2-desc": "Heben Sie bei langen Berichten, Verordnungen oder Gerichtsentscheidungen die Hauptpunkte, Daten und Entscheidungen hervor.",
+                    "s4-c2-tip": "💡 Tipp: Sagen Sie nicht nur \"fasse zusammen\", sondern \"liste die Hauptpunkte, Daten und Entscheidungen auf\".",
+                    "s5-title": "Welches Tool wofür?",
+                    "s5-sub": "Vergleichen Sie die beliebtesten KI-Tools und wählen Sie das passende für Ihre Bedürfnisse.",
+                    "s5-th-tool": "Tool",
+                    "s5-th-best": "Stärke",
+                    "s5-th-use": "Anwendungsbeispiel",
+                    "s5-claude-best": "Lange Texte, Analyse, Code",
+                    "s5-claude-use": "Zusammenfassung offizieller Berichte, Vertragsanalyse",
+                    "s5-chatgpt-best": "Allzweck, kreatives Schreiben",
+                    "s5-chatgpt-use": "E-Mail-Entwürfe, Ideenfindung, Übersetzung",
+                    "s5-gemini-best": "Multimodal, Echtzeit",
+                    "s5-gemini-use": "Aufgaben mit Bild+Text, Recherche",
+                    "s5-deepseek-best": "Logik, Mathematik, Codierung",
+                    "s5-deepseek-use": "Komplexe Problemlösung, technische Dokumentation",
+                    "s6-title": "Achtung!",
+                    "s6-sub": "Kritische Punkte, die Sie bei der Nutzung von KI beachten sollten.",
+                    "s6-w1-title": "Keine personenbezogenen Daten",
+                    "s6-w1-desc": "Geben Sie niemals echte Namen, Adressen, Telefonnummern oder Ausweisdaten preis. Anonymisieren Sie.",
+                    "s6-w2-title": "Immer verifizieren",
+                    "s6-w2-desc": "KI kann falsche Informationen erzeugen (\"Halluzinationen\"). Prüfen Sie jede Ausgabe bei offiziellen Schreiben.",
+                    "s6-w3-title": "Urheberrecht",
+                    "s6-w3-desc": "Von KI generierte Texte sind nicht Ihr geistiges Eigentum. Seien Sie vorsichtig bei kommerzieller Nutzung.",
+                    "s6-w4-title": "DSGVO / KVKK",
+                    "s6-w4-desc": "Halten Sie die Datenschutzgesetze ein. Laden Sie keine sensiblen Daten in KI-Tools. Prüfen Sie interne Richtlinien.",
+                    "s7-title": "Die ersten 5 Prompts",
+                    "s7-sub": "Startprompts zum sofortigen Kopieren und Verwenden. Wählen Sie Ihre Sprache und legen Sie los.",
+                },
+                en: {
+                    "s1-title": "What is Artificial Intelligence?",
+                    "s1-sub": "A simple explanation of how to use AI in your daily office work.",
+                    "s1-c1-title": "Definition",
+                    "s1-c1-desc": "AI is the ability of machines to think, learn and make decisions like humans. It recognizes patterns in data and generates new content.",
+                    "s1-c2-title": "How does it work?",
+                    "s1-c2-desc": "Models are trained on large datasets and learn statistical patterns. When you ask a question, they generate the most likely answer.",
+                    "s1-c3-title": "Why use it?",
+                    "s1-c3-desc": "Speeds up correspondence, generates ideas, translates, summarizes and automates routine tasks — a powerful assistant for office workers.",
+                    "s2-title": "How to write a Prompt?",
+                    "s2-sub": "A good prompt is the key to the right answer. Here are comparative examples.",
+                    "s2-good": "✅ Good Prompt",
+                    "s2-good-desc": "Clear, contextual and specific.",
+                    "s2-good-ex": "\"I work as a civil servant in Germany. I need to write an official email to the Senatsverwaltung. Subject: 'Terminvereinbarung für Projektbesprechung'. Write a formal, polite and concise text.\"",
+                    "s2-bad": "❌ Bad Prompt",
+                    "s2-bad-desc": "Vague, general and contextless.",
+                    "s2-bad-ex": "\"Write me an email.\"",
+                    "s2-do-title": "✅ Do's",
+                    "s2-do-1": "Specify role and context (who you are, who you're writing to)",
+                    "s2-do-2": "Give clear and precise instructions",
+                    "s2-do-3": "Ask for examples or format",
+                    "s2-do-4": "Refine over multiple rounds",
+                    "s2-dont-title": "❌ Don'ts",
+                    "s2-dont-1": "Don't ask vague or general questions",
+                    "s2-dont-2": "Don't share personal data",
+                    "s2-dont-3": "Don't use output without verification",
+                    "s2-dont-4": "Don't expect perfection on the first try",
+                    "s3-title": "AI in Official Correspondence",
+                    "s3-sub": "How to use AI for communication with German authorities — practical examples.",
+                    "s3-ex1-title": "🏛️ Senatsverwaltung — Termin Anfrage",
+                    "s3-ex1-desc": "Create a formal, polite and short email for appointment requests.",
+                    "s3-ex2-title": "📋 Jobcenter — Antrag auf Weiterbewilligung",
+                    "s3-ex2-desc": "Prepare the required documents and explanations for a renewal application.",
+                    "s3-ex3-title": "🏢 IHK — Beschwerde / Anfrage",
+                    "s3-ex3-desc": "Write an official complaint or inquiry to the Chamber of Industry and Commerce.",
+                    "s3-ex4-title": "⚖️ Widerspruch — Einspruch gegen Bescheid",
+                    "s3-ex4-desc": "Draft an objection to an administrative decision — reasoned and legally sound.",
+                    "s3-ex5-title": "📝 Meeting Notes — Zusammenfassung",
+                    "s3-ex5-desc": "Summarize meeting notes, highlighting decisions and action items.",
+                    "s3-tag-letter": "Brief / Mektup",
+                    "s3-tag-form": "Formular / Form",
+                    "s3-tag-official": "Offiziell / Resmi",
+                    "s3-tag-legal": "Recht / Hukuk",
+                    "s3-tag-summary": "Özet / Zusammenfassung",
+                    "s4-title": "Translation & Summary",
+                    "s4-sub": "Tips for translating official German documents into Turkish and summarizing long texts.",
+                    "s4-c1-title": "Official Translation",
+                    "s4-c1-desc": "When translating official German correspondence into Turkish, maintain the level of formality. E.g. 'Sehr geehrte Damen und Herren' → 'Sayın Yetkililer'.",
+                    "s4-c1-tip": "💡 Tip: Specify context and salutation in your prompt.",
+                    "s4-c2-title": "Document Summarization",
+                    "s4-c2-desc": "When summarizing long reports, regulations or court decisions, highlight the main headings, dates and decisions.",
+                    "s4-c2-tip": "💡 Tip: Instead of just 'summarize', say 'list the main points, dates and decisions'.",
+                    "s5-title": "Which Tool for What?",
+                    "s5-sub": "Compare the most popular AI tools and choose the right one for your needs.",
+                    "s5-th-tool": "Tool",
+                    "s5-th-best": "Best for",
+                    "s5-th-use": "Use Case",
+                    "s5-claude-best": "Long text, analysis, code",
+                    "s5-claude-use": "Summarizing official reports, contract analysis",
+                    "s5-chatgpt-best": "General purpose, creative writing",
+                    "s5-chatgpt-use": "Email drafts, idea generation, translation",
+                    "s5-gemini-best": "Multimodal, real-time",
+                    "s5-gemini-use": "Tasks with image+text, research",
+                    "s5-deepseek-best": "Logic, math, coding",
+                    "s5-deepseek-use": "Complex problem solving, technical documentation",
+                    "s6-title": "Watch Out!",
+                    "s6-sub": "Critical points to consider when using AI.",
+                    "s6-w1-title": "No Personal Data",
+                    "s6-w1-desc": "Never share real names, addresses, phone numbers or ID information. Anonymize.",
+                    "s6-w2-title": "Always Verify",
+                    "s6-w2-desc": "AI can produce incorrect information ('hallucinations'). Always check every output for official correspondence.",
+                    "s6-w3-title": "Copyright",
+                    "s6-w3-desc": "Texts generated by AI are not your intellectual property. Be careful with commercial use.",
+                    "s6-w4-title": "DSGVO / KVKK",
+                    "s6-w4-desc": "Comply with data protection laws. Don't upload sensitive data to AI tools. Check internal policies.",
+                    "s7-title": "First 5 Prompts",
+                    "s7-sub": "Ready-to-copy starter prompts. Select your language and get started.",
+                }
+            };
+
+            // ———— DOM refs ————
+            const langBtns = document.querySelectorAll('.lang-btn');
+            const promptTabs = document.querySelectorAll('.prompt-tab');
+            const promptGroups = document.querySelectorAll('.prompt-lang-group');
+            const i18nElements = document.querySelectorAll('[data-i18n]');
+
+            // ———— apply language ————
+            function applyLanguage(lang) {
+                // update i18n text
+                const t = i18n[lang];
+                if (!t) return;
+                i18nElements.forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (t[key] !== undefined) {
+                        el.textContent = t[key];
+                    }
+                });
+
+                // update button states
+                langBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+                });
+
+                // update prompt groups to match language (if tab not active, switch to it)
+                const activeTab = document.querySelector('.prompt-tab.active');
+                const currentLang = activeTab ? activeTab.getAttribute('data-prompt-lang') : 'tr';
+                // if the active tab language doesn't match, switch
+                if (currentLang !== lang) {
+                    // find tab for this lang
+                    const targetTab = document.querySelector(`.prompt-tab[data-prompt-lang="${lang}"]`);
+                    if (targetTab) {
+                        setPromptTab(targetTab);
+                    }
+                }
+
+                document.documentElement.lang = lang;
+            }
+
+            // ———— prompt tab switching ————
+            function setPromptTab(tab) {
+                const lang = tab.getAttribute('data-prompt-lang');
+                promptTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                promptGroups.forEach(g => g.classList.remove('active'));
+                const targetGroup = document.querySelector(`.prompt-lang-group[data-prompt-group="${lang}"]`);
+                if (targetGroup) targetGroup.classList.add('active');
+            }
+
+            // ———— copy prompt ————
+            function copyPrompt(el) {
+                const card = el.closest('.prompt-card');
+                const textEl = card.querySelector('.p-text');
+                const text = textEl.getAttribute('data-copy') || textEl.textContent.trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    const feedback = card.querySelector('.copy-feedback');
+                    if (feedback) {
+                        feedback.classList.add('show');
+                        setTimeout(() => feedback.classList.remove('show'), 2000);
+                    }
+                }).catch(() => {
+                    // fallback
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    const feedback = card.querySelector('.copy-feedback');
+                    if (feedback) {
+                        feedback.classList.add('show');
+                        setTimeout(() => feedback.classList.remove('show'), 2000);
+                    }
+                });
+            }
+
+            // ———— event listeners ————
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    applyLanguage(lang);
+                });
+            });
+
+            promptTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    setPromptTab(this);
+                });
+            });
+
+            // Expose copy function globally
+            window.copyPrompt = copyPrompt;
+
+            // ———— init: default language = tr ————
+            applyLanguage('tr');
+
+        })();
+    </script>
+
+</body>
+</html>
