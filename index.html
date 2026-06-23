@@ -7,18 +7,11 @@
 ║  FSEK Tescil No: 2026/18897                                   ║
 ║  Tüm Hakları Saklıdır / Alle Rechte vorbehalten               ║
 ║                                                               ║
-║  Bu yazılım mimarisi, içerdiği çok dilli i18n motoru,        ║
-║  prompt şablonları ve modüler UX bileşenleri PACDI            ║
-║  Yazılım Kütüphanesi FSEK tescili kapsamında yasal            ║
-║  koruma altındadır.                                           ║
+║  Bu yazılım mimarisi PACDI Yazılım Kütüphanesi FSEK           ║
+║  tescili kapsamında yasal koruma altındadır.                  ║
+║  İzinsiz kopyalama yasal yaptırıma tabidir.                   ║
 ║                                                               ║
-║  İzinsiz kopyalama, dağıtım veya ticari kullanım             ║
-║  yasal yaptırıma tabidir.                                     ║
-║                                                               ║
-║  Unauthorized copying, distribution or commercial use        ║
-║  is subject to legal action.                                  ║
-║                                                               ║
-║  pacdi.eu · pacdi.de · info@pacdi.eu                         ║
+║  pacdi.eu · info@pacdi.eu                                     ║
 ╚═══════════════════════════════════════════════════════════════╝
 -->
 <html lang="tr">
@@ -40,6 +33,15 @@
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8426936740213369" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E6ML8EDW0H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-E6ML8EDW0H');
+    </script>
 
     <!-- Schema.org HowTo -->
     <script type="application/ld+json">
@@ -1101,16 +1103,16 @@
 
         <!-- ––– HIZLI NAVİGASYON (STICKY) ––– -->
         <div class="card nav-sticky" id="quickNav" style="margin-bottom: 1.5rem; background: var(--bg-alt); border-color: var(--border-color);">
-            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">📍 Hızlı Navigasyon</h4>
+            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">📍 <span data-i18n="nav-baslik">Hızlı Navigasyon</span></h4>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                <a href="#section1" class="nav-link" data-target="section1" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🧠 Nedir?</a>
-                <a href="#section2" class="nav-link" data-target="section2" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">✍️ Prompt Kuralları</a>
-                <a href="#section3" class="nav-link" data-target="section3" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📨 Kurumsal Şablonlar</a>
-                <a href="#section4" class="nav-link" data-target="section4" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🌐 Çeviri & Özet</a>
-                <a href="#section5" class="nav-link" data-target="section5" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🛠️ Araçlar</a>
-                <a href="#section6" class="nav-link" data-target="section6" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">⚠️ Kritik Uyarılar</a>
-                <a href="#section7" class="nav-link" data-target="section7" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📋 İlk 5 Prompt</a>
-                <a href="#faq" class="nav-link" data-target="faq" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">❓ SSS</a>
+                <a href="#section1" class="nav-link" data-target="section1" data-i18n="nav-nedir" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🧠 Nedir?</a>
+                <a href="#section2" class="nav-link" data-target="section2" data-i18n="nav-prompt" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">✍️ Prompt Kuralları</a>
+                <a href="#section3" class="nav-link" data-target="section3" data-i18n="nav-kurumsal" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📨 Kurumsal Şablonlar</a>
+                <a href="#section4" class="nav-link" data-target="section4" data-i18n="nav-ceviri" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🌐 Çeviri & Özet</a>
+                <a href="#section5" class="nav-link" data-target="section5" data-i18n="nav-araclar" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🛠️ Araçlar</a>
+                <a href="#section6" class="nav-link" data-target="section6" data-i18n="nav-uyarilar" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">⚠️ Kritik Uyarılar</a>
+                <a href="#section7" class="nav-link" data-target="section7" data-i18n="nav-promptlar" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📋 İlk 5 Prompt</a>
+                <a href="#faq" class="nav-link" data-target="faq" data-i18n="nav-sss" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">❓ SSS</a>
             </div>
         </div>
 
@@ -1685,7 +1687,17 @@
                     "wid-copy": "📋 Kopyala",
                     "wid-prompt": "Sen Almanya’da idari hukuk konusunda uzman bir danışmansın. [Kurum Adı]’dan gelen ret kararına karşı resmi bir Widerspruch yaz. Mutlaka şu kalıbı kullan: ‘Hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [Tarih] (Aktenzeichen: [Dosya No]) ein.’ Gerekçe: [İtiraz Gerekçeleriniz]. Schreibe sachlich, direkt und ohne Floskeln.",
                     "constraint-title": "Altın Kural: Floskeln Yasağı",
-                    "constraint-text": "Resmi mektup yazdırırken sonuna mutlaka ekleyin: 'Schreibe sachlich, direkt und ohne Floskeln' — AI gerçek bir Alman memuru gibi net yazar."
+                    "constraint-text": "Resmi mektup yazdırırken sonuna mutlaka ekleyin: 'Schreibe sachlich, direkt und ohne Floskeln' — AI gerçek bir Alman memuru gibi net yazar.",
+                    // NAVİGASYON (TR)
+                    "nav-baslik": "Hızlı Navigasyon",
+                    "nav-nedir": "🧠 Nedir?",
+                    "nav-prompt": "✍️ Prompt Kuralları",
+                    "nav-kurumsal": "📨 Kurumsal Şablonlar",
+                    "nav-ceviri": "🌐 Çeviri & Özet",
+                    "nav-araclar": "🛠️ Araçlar",
+                    "nav-uyarilar": "⚠️ Kritik Uyarılar",
+                    "nav-promptlar": "📋 İlk 5 Prompt",
+                    "nav-sss": "❓ SSS"
                 },
                 de: {
                     "s1-title": "Was ist Künstliche Intelligenz?",
@@ -1783,7 +1795,17 @@
                     "wid-copy": "📋 Kopieren",
                     "wid-prompt": "Sie sind ein Experte für deutsches Verwaltungsrecht. Schreiben Sie einen formellen Widerspruch gegen den Bescheid von [Behörde]. Verwenden Sie unbedingt: 'Hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [Datum] (Aktenzeichen: [Az.]) ein.' Begründung: [Ihre Gründe]. Schreibe sachlich, direkt und ohne Floskeln.",
                     "constraint-title": "Goldene Regel: Keine Floskeln",
-                    "constraint-text": "Fügen Sie am Ende Ihrer offiziellen Briefe immer hinzu: 'Schreibe sachlich, direkt und ohne Floskeln' — die KI schreibt dann klar wie ein echter deutscher Beamter."
+                    "constraint-text": "Fügen Sie am Ende Ihrer offiziellen Briefe immer hinzu: 'Schreibe sachlich, direkt und ohne Floskeln' — die KI schreibt dann klar wie ein echter deutscher Beamter.",
+                    // NAVİGASYON (DE)
+                    "nav-baslik": "Schnellnavigation",
+                    "nav-nedir": "🧠 Was ist KI?",
+                    "nav-prompt": "✍️ Prompt-Regeln",
+                    "nav-kurumsal": "📨 Behörden-Vorlagen",
+                    "nav-ceviri": "🌐 Übersetzung & Zusammenfassung",
+                    "nav-araclar": "🛠️ Tools",
+                    "nav-uyarilar": "⚠️ Kritische Hinweise",
+                    "nav-promptlar": "📋 Die ersten 5 Prompts",
+                    "nav-sss": "❓ FAQ"
                 },
                 en: {
                     "s1-title": "What is Artificial Intelligence?",
@@ -1881,7 +1903,17 @@
                     "wid-copy": "📋 Copy",
                     "wid-prompt": "You are an expert in German administrative law. Write a formal Widerspruch against the decision from [Authority]. Must include: 'Hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [Date] (Aktenzeichen: [File No.]) ein.' Reasons: [Your reasons]. Write objectively, directly and without phrases.",
                     "constraint-title": "Golden Rule: No Filler Phrases",
-                    "constraint-text": "When generating official letters, always add at the end: 'Schreibe sachlich, direkt und ohne Floskeln' — the AI will write clearly like a real German official."
+                    "constraint-text": "When generating official letters, always add at the end: 'Schreibe sachlich, direkt und ohne Floskeln' — the AI will write clearly like a real German official.",
+                    // NAVİGASYON (EN)
+                    "nav-baslik": "Quick Navigation",
+                    "nav-nedir": "🧠 What is AI?",
+                    "nav-prompt": "✍️ Prompt Rules",
+                    "nav-kurumsal": "📨 Official Templates",
+                    "nav-ceviri": "🌐 Translation & Summary",
+                    "nav-araclar": "🛠️ Tools",
+                    "nav-uyarilar": "⚠️ Critical Warnings",
+                    "nav-promptlar": "📋 First 5 Prompts",
+                    "nav-sss": "❓ FAQ"
                 }
             };
 
@@ -1907,7 +1939,6 @@
                 setTheme(current === 'dark' ? 'light' : 'dark');
             }
 
-            // Tema yükleme
             var savedTheme = localStorage.getItem('pacdi-theme');
             if (savedTheme) {
                 setTheme(savedTheme);
@@ -1921,7 +1952,7 @@
                 themeToggle.addEventListener('click', toggleTheme);
             }
 
-            // ———— Dil işlemleri (localStorage desteği) ————
+            // ———— Dil işlemleri ————
             function applyLanguage(lang) {
                 var t = i18n[lang];
                 if (!t) return;
@@ -1949,7 +1980,6 @@
                 localStorage.setItem('pacdi-lang', lang);
             }
 
-            // Dil yükleme
             var savedLang = localStorage.getItem('pacdi-lang');
             if (savedLang && i18n[savedLang]) {
                 applyLanguage(savedLang);
@@ -1957,7 +1987,6 @@
                 applyLanguage('tr');
             }
 
-            // Dil butonları
             for (var k = 0; k < langBtns.length; k++) {
                 langBtns[k].addEventListener('click', function(e) {
                     applyLanguage(this.getAttribute('data-lang'));
@@ -2107,7 +2136,7 @@
                 window.print();
             };
 
-            // ———— Arama Filtresi (debounce + vurgulama) ————
+            // ———— Arama Filtresi ————
             var searchInput = document.getElementById('ai-search');
             var searchTimeout;
 
@@ -2151,7 +2180,6 @@
                     searchTimeout = setTimeout(function() {
                         clearHighlights();
 
-                        // Filtreleme
                         var cards = document.querySelectorAll('.prompt-card, .example-item, .card');
                         for (var i = 0; i < cards.length; i++) {
                             var card = cards[i];
@@ -2160,7 +2188,6 @@
                             var text = card.textContent.toLowerCase();
                             if (text.indexOf(query) > -1) {
                                 card.style.display = '';
-                                // Vurgulama (sadece prompt-card ve example-item içinde)
                                 if (query.length > 1) {
                                     var targetNodes = card.querySelectorAll('.p-text, .ex-title, .ex-desc, .card p, .card h3');
                                     targetNodes.forEach(function(el) {
