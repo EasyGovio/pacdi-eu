@@ -4,12 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yapay Zeka Rehberi / KI-Leitfaden / AI Guide</title>
+    <meta name="description" content="Pratik AI rehberi – resmi yazışmalar, prompt ipuçları, araç karşılaştırması ve daha fazlası. İş hayatında yapay zekayı etkili kullanın." />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://pacdi.eu/" />
 
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Yapay Zeka Rehberi / KI-Leitfaden / AI Guide" />
+    <meta property="og:description" content="Pratik AI rehberi – resmi yazışmalar, prompt ipuçları, araç karşılaştırması ve daha fazlası." />
+    <meta property="og:url" content="https://pacdi.eu/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8426936740213369" crossorigin="anonymous"></script>
+
+    <!-- Schema.org HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Yapay Zeka Kullanım Rehberi",
+      "description": "Yapay zekayı iş hayatında nasıl kullanacağınızı adım adım öğrenin.",
+      "step": [
+        { "@type": "HowToStep", "name": "Yapay Zeka Nedir?", "text": "Temel tanım, çalışma prensibi ve kullanım avantajları." },
+        { "@type": "HowToStep", "name": "Prompt Nasıl Yazılır?", "text": "İyi ve kötü prompt örnekleri, yapılacaklar ve kaçınılması gerekenler." },
+        { "@type": "HowToStep", "name": "Resmi Yazışmalarda AI", "text": "Senatsverwaltung, Jobcenter, IHK, Widerspruch ve toplantı notları için pratik örnekler." },
+        { "@type": "HowToStep", "name": "Çeviri ve Özet", "text": "Resmi Almanca-Türkçe çeviri ve belge özetleme ipuçları." },
+        { "@type": "HowToStep", "name": "Hangi Araç Ne İçin?", "text": "Claude, ChatGPT, Gemini ve DeepSeek karşılaştırması." }
+      ]
+    }
+    </script>
 
     <style>
         /* ––– Reset & Base ––– */
@@ -88,6 +113,19 @@
             padding: 0 1rem;
         }
 
+        /* ––– Progress Bar ––– */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #F6B45F;
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 8px rgba(246, 180, 95, 0.4);
+        }
+
         /* ––– Header ––– */
         .site-header {
             background: var(--navy);
@@ -122,6 +160,29 @@
             color: rgba(255, 255, 255, 0.5);
             letter-spacing: 0.08em;
             margin-top: 0.05rem;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .pdf-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.7rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: system-ui;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .pdf-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
         }
         .lang-toggle {
             display: flex;
@@ -516,6 +577,81 @@
             display: block;
         }
 
+        /* ––– FAQ ––– */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+        .faq-item {
+            background: var(--white);
+            border-radius: 0.8rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--gray-200);
+            transition: border-color 0.2s;
+        }
+        .faq-item:hover {
+            border-color: var(--gold-dark);
+        }
+        .faq-item .faq-q {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item .faq-q .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .faq-item .faq-a {
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            margin-top: 0.5rem;
+            display: none;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+        .faq-item .faq-a.open {
+            display: block;
+        }
+
+        /* ––– CTA Banner ––– */
+        .cta-banner {
+            background: var(--navy);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid var(--gold-border);
+        }
+        .cta-banner h3 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+        .cta-banner .cta-btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+            padding: 0.6rem 2rem;
+            border-radius: 2rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .cta-banner .cta-btn:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+
         /* ––– Footer ––– */
         .site-footer {
             background: var(--navy);
@@ -563,6 +699,42 @@
             border: 1px solid var(--gold-border);
         }
 
+        /* ––– Print Styles ––– */
+        @media print {
+            #progress-bar,
+            .pdf-btn,
+            .lang-toggle,
+            .site-header .header-actions .pdf-btn,
+            .site-header .lang-toggle {
+                display: none !important;
+            }
+            .site-header {
+                position: static !important;
+                border-bottom: 2px solid #F6B45F;
+            }
+            body {
+                background: #fff;
+                color: #000;
+                padding: 0;
+            }
+            .card,
+            .example-item,
+            .faq-item,
+            .cta-banner {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                background: #fff !important;
+            }
+            .site-footer {
+                background: #eee !important;
+                color: #333 !important;
+                border-top: 1px solid #ccc !important;
+            }
+            .site-footer a {
+                color: #0B1E35 !important;
+            }
+        }
+
         /* ––– Responsive fine-tune ––– */
         @media (max-width: 480px) {
             .site-title {
@@ -572,6 +744,9 @@
                 flex-direction: column;
                 align-items: stretch;
                 gap: 0.5rem;
+            }
+            .header-actions {
+                justify-content: space-between;
             }
             .lang-toggle {
                 align-self: flex-start;
@@ -609,6 +784,9 @@
 </head>
 <body>
 
+    <!-- ––– PROGRESS BAR ––– -->
+    <div id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
     <!-- ––––– HEADER ––––– -->
     <header class="site-header">
         <div class="header-inner">
@@ -617,10 +795,13 @@
                 <span>/ KI-Leitfaden</span>
                 <small>/ AI Guide</small>
             </div>
-            <div class="lang-toggle">
-                <button class="lang-btn active" data-lang="tr">TR</button>
-                <button class="lang-btn" data-lang="de">DE</button>
-                <button class="lang-btn" data-lang="en">EN</button>
+            <div class="header-actions">
+                <button class="pdf-btn" onclick="window.print()" aria-label="Sayfayı PDF olarak kaydet">📄 PDF</button>
+                <div class="lang-toggle" role="group" aria-label="Dil seçimi">
+                    <button class="lang-btn active" data-lang="tr" aria-label="Türkçe">TR</button>
+                    <button class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+                    <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+                </div>
             </div>
         </div>
     </header>
@@ -811,14 +992,14 @@
             <h2><span class="icon">📋</span> <span data-i18n="s7-title">İlk 5 Promptun</span></h2>
             <p class="section-sub" data-i18n="s7-sub">Hemen kopyalayıp kullanabileceğiniz başlangıç promptları. Dili seçin ve kullanmaya başlayın.</p>
 
-            <div class="prompt-tabs">
-                <button class="prompt-tab active" data-prompt-lang="tr">🇹🇷 TR</button>
-                <button class="prompt-tab" data-prompt-lang="de">🇩🇪 DE</button>
-                <button class="prompt-tab" data-prompt-lang="en">🇬🇧 EN</button>
+            <div class="prompt-tabs" role="tablist">
+                <button class="prompt-tab active" data-prompt-lang="tr" role="tab" aria-selected="true">🇹🇷 TR</button>
+                <button class="prompt-tab" data-prompt-lang="de" role="tab" aria-selected="false">🇩🇪 DE</button>
+                <button class="prompt-tab" data-prompt-lang="en" role="tab" aria-selected="false">🇬🇧 EN</button>
             </div>
 
             <!-- TR -->
-            <div class="prompt-lang-group active" data-prompt-group="tr">
+            <div class="prompt-lang-group active" data-prompt-group="tr" role="tabpanel">
                 <div class="prompt-card">
                     <div class="p-number">Prompt 1</div>
                     <div class="p-title">📧 Resmi E-posta Taslağı</div>
@@ -857,7 +1038,7 @@
             </div>
 
             <!-- DE -->
-            <div class="prompt-lang-group" data-prompt-group="de">
+            <div class="prompt-lang-group" data-prompt-group="de" role="tabpanel">
                 <div class="prompt-card">
                     <div class="p-number">Prompt 1</div>
                     <div class="p-title">📧 Offizieller E-Mail-Entwurf</div>
@@ -896,7 +1077,7 @@
             </div>
 
             <!-- EN -->
-            <div class="prompt-lang-group" data-prompt-group="en">
+            <div class="prompt-lang-group" data-prompt-group="en" role="tabpanel">
                 <div class="prompt-card">
                     <div class="p-number">Prompt 1</div>
                     <div class="p-title">📧 Official Email Draft</div>
@@ -936,6 +1117,49 @@
 
         </section>
 
+        <!-- ––––– SECTION 8: SSS / FAQ ––––– -->
+        <section class="section section-alt" id="faq">
+            <h2><span class="icon">❓</span> <span data-i18n="faq-title">Sık Sorulan Sorular</span></h2>
+            <p class="section-sub" data-i18n="faq-sub">Yapay zeka ile ilgili en çok merak edilenleri yanıtlıyoruz.</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span data-i18n="faq-q1">AI ile oluşturduğum metni doğrudan mahkemeye sunabilir miyim?</span>
+                        <span class="toggle-icon">▾</span>
+                    </div>
+                    <div class="faq-a" data-i18n="faq-a1">Hayır. AI tarafından üretilen metinler sadece bir taslaktır. Resmi yazışmalarda ve mahkeme belgelerinde mutlaka bir uzman tarafından kontrol edilmeli ve gerekirse düzeltilmelidir.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span data-i18n="faq-q2">Hangi AI aracı ücretsiz?</span>
+                        <span class="toggle-icon">▾</span>
+                    </div>
+                    <div class="faq-a" data-i18n="faq-a2">DeepSeek ve Gemini, ücretsiz sürümleriyle günlük kullanım için idealdir. ChatGPT ve Claude da ücretsiz katmanlar sunar, ancak sınırlı özelliklerle.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span data-i18n="faq-q3">AI ile çeviri yaparken nelere dikkat etmeliyim?</span>
+                        <span class="toggle-icon">▾</span>
+                    </div>
+                    <div class="faq-a" data-i18n="faq-a3">Resmi terimleri ve hitap şekillerini doğru kullanmaya özen gösterin. AI çevirileri genellikle iyidir, ancak hukuki veya teknik metinlerde mutlaka bir uzman tarafından kontrol edilmelidir.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span data-i18n="faq-q4">AI kullanırken veri gizliliğini nasıl korurum?</span>
+                        <span class="toggle-icon">▾</span>
+                    </div>
+                    <div class="faq-a" data-i18n="faq-a4">Asla gerçek kişisel veriler (isim, adres, telefon, kimlik numarası) paylaşmayın. Hassas bilgileri anonimleştirin ve mümkünse kurumsal AI araçlarını tercih edin.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ––––– CTA BANNER ––––– -->
+        <div class="cta-banner">
+            <h3>🚀 Daha fazla yardım mı istiyorsunuz?</h3>
+            <p>PACDI Digital Studio olarak size özel AI çözümleri sunuyoruz. İş akışlarınızı optimize etmek için bizimle iletişime geçin.</p>
+            <a href="https://pacdi.eu/kontakt" class="cta-btn" target="_blank" rel="noopener">📩 PACDI ile iletişime geç</a>
+        </div>
+
     </main>
 
     <!-- ––––– FOOTER ––––– -->
@@ -952,9 +1176,8 @@
         (function() {
 
             // ———— i18n DATA ————
-            const i18n = {
+            var i18n = {
                 tr: {
-                    // Section 1
                     "s1-title": "Yapay Zeka Nedir?",
                     "s1-sub": "Basitçe anlatımla, günlük iş hayatında yapay zekayı nasıl kullanacağınızı öğrenin.",
                     "s1-c1-title": "Tanım",
@@ -963,7 +1186,6 @@
                     "s1-c2-desc": "Büyük veri kümeleriyle eğitilen modeller, istatistiksel kalıpları öğrenir. Siz bir soru sorduğunuzda, en olası yanıtı üretir.",
                     "s1-c3-title": "Neden Kullanmalı?",
                     "s1-c3-desc": "Yazışmaları hızlandırır, fikir üretir, çeviri yapar, özet çıkarır ve rutin işleri otomatikleştirir — ofis çalışanları için güçlü bir yardımcı.",
-                    // Section 2
                     "s2-title": "Prompt Nasıl Yazılır?",
                     "s2-sub": "İyi bir prompt, doğru yanıtın anahtarıdır. İşte karşılaştırmalı örnekler.",
                     "s2-good": "✅ İyi Prompt",
@@ -982,7 +1204,6 @@
                     "s2-dont-2": "Kişisel verileri paylaşmayın",
                     "s2-dont-3": "Çıktıyı doğrulamadan kullanmayın",
                     "s2-dont-4": "Tek seferde mükemmel beklemeyin",
-                    // Section 3
                     "s3-title": "Resmi Yazışmalarda AI",
                     "s3-sub": "Almanya'da resmi kurumlarla yapılan yazışmalarda AI nasıl kullanılır? Pratik örnekler.",
                     "s3-ex1-title": "🏛️ Senatsverwaltung — Termin Anfrage",
@@ -1000,7 +1221,6 @@
                     "s3-tag-official": "Offiziell / Resmi",
                     "s3-tag-legal": "Recht / Hukuk",
                     "s3-tag-summary": "Özet / Zusammenfassung",
-                    // Section 4
                     "s4-title": "Çeviri & Özet",
                     "s4-sub": "Resmi Almanca belgeleri Türkçeye çevirme ve uzun metinleri özetleme ipuçları.",
                     "s4-c1-title": "Resmi Çeviri",
@@ -1009,7 +1229,6 @@
                     "s4-c2-title": "Belge Özetleme",
                     "s4-c2-desc": "Uzun raporları, yönetmelikleri veya mahkeme kararlarını özetlerken ana başlıkları, tarihleri ve kararları vurgulayın.",
                     "s4-c2-tip": "💡 İpucu: \"Özetle\" yerine \"ana noktaları, tarihleri ve kararları listeleyerek özetle\" deyin.",
-                    // Section 5
                     "s5-title": "Hangi Araç Ne İçin?",
                     "s5-sub": "En popüler AI araçlarını karşılaştırın ve ihtiyacınıza uygun olanı seçin.",
                     "s5-th-tool": "Araç",
@@ -1023,7 +1242,6 @@
                     "s5-gemini-use": "Görsel + metin içeren görevler, araştırma",
                     "s5-deepseek-best": "Mantık, matematik, kodlama",
                     "s5-deepseek-use": "Karmaşık problem çözme, teknik dokümantasyon",
-                    // Section 6
                     "s6-title": "Dikkat Et!",
                     "s6-sub": "AI kullanırken göz önünde bulundurmanız gereken kritik noktalar.",
                     "s6-w1-title": "Kişisel Veri Yok",
@@ -1034,9 +1252,18 @@
                     "s6-w3-desc": "AI tarafından üretilen metinlerin telif hakkı size ait değildir. Ticari kullanımda dikkatli olun.",
                     "s6-w4-title": "DSGVO / KVKK",
                     "s6-w4-desc": "Veri koruma yasalarına uyun. Hassas verileri AI araçlarına yüklemeyin. Kurum içi politikaları kontrol edin.",
-                    // Section 7
                     "s7-title": "İlk 5 Promptun",
                     "s7-sub": "Hemen kopyalayıp kullanabileceğiniz başlangıç promptları. Dili seçin ve kullanmaya başlayın.",
+                    "faq-title": "Sık Sorulan Sorular",
+                    "faq-sub": "Yapay zeka ile ilgili en çok merak edilenleri yanıtlıyoruz.",
+                    "faq-q1": "AI ile oluşturduğum metni doğrudan mahkemeye sunabilir miyim?",
+                    "faq-a1": "Hayır. AI tarafından üretilen metinler sadece bir taslaktır. Resmi yazışmalarda ve mahkeme belgelerinde mutlaka bir uzman tarafından kontrol edilmeli ve gerekirse düzeltilmelidir.",
+                    "faq-q2": "Hangi AI aracı ücretsiz?",
+                    "faq-a2": "DeepSeek ve Gemini, ücretsiz sürümleriyle günlük kullanım için idealdir. ChatGPT ve Claude da ücretsiz katmanlar sunar, ancak sınırlı özelliklerle.",
+                    "faq-q3": "AI ile çeviri yaparken nelere dikkat etmeliyim?",
+                    "faq-a3": "Resmi terimleri ve hitap şekillerini doğru kullanmaya özen gösterin. AI çevirileri genellikle iyidir, ancak hukuki veya teknik metinlerde mutlaka bir uzman tarafından kontrol edilmelidir.",
+                    "faq-q4": "AI kullanırken veri gizliliğini nasıl korurum?",
+                    "faq-a4": "Asla gerçek kişisel veriler (isim, adres, telefon, kimlik numarası) paylaşmayın. Hassas bilgileri anonimleştirin ve mümkünse kurumsal AI araçlarını tercih edin."
                 },
                 de: {
                     "s1-title": "Was ist Künstliche Intelligenz?",
@@ -1115,6 +1342,16 @@
                     "s6-w4-desc": "Halten Sie die Datenschutzgesetze ein. Laden Sie keine sensiblen Daten in KI-Tools. Prüfen Sie interne Richtlinien.",
                     "s7-title": "Die ersten 5 Prompts",
                     "s7-sub": "Startprompts zum sofortigen Kopieren und Verwenden. Wählen Sie Ihre Sprache und legen Sie los.",
+                    "faq-title": "Häufig gestellte Fragen",
+                    "faq-sub": "Wir beantworten die am häufigsten gestellten Fragen zu KI.",
+                    "faq-q1": "Kann ich den von mir mit KI erstellten Text direkt bei Gericht einreichen?",
+                    "faq-a1": "Nein. Von KI generierte Texte sind nur ein Entwurf. Bei offiziellen Schreiben und Gerichtsdokumenten müssen diese von einem Experten geprüft und gegebenenfalls korrigiert werden.",
+                    "faq-q2": "Welches KI-Tool ist kostenlos?",
+                    "faq-a2": "DeepSeek und Gemini sind mit ihren kostenlosen Versionen ideal für den täglichen Gebrauch. ChatGPT und Claude bieten ebenfalls kostenlose Stufen, aber mit eingeschränkten Funktionen.",
+                    "faq-q3": "Worauf sollte ich bei der KI-Übersetzung achten?",
+                    "faq-a3": "Achten Sie darauf, offizielle Begriffe und Anredeformen korrekt zu verwenden. KI-Übersetzungen sind meist gut, aber bei juristischen oder technischen Texten sollten sie unbedingt von einem Experten geprüft werden.",
+                    "faq-q4": "Wie schütze ich meine Daten bei der Nutzung von KI?",
+                    "faq-a4": "Geben Sie niemals echte persönliche Daten (Name, Adresse, Telefonnummer, Ausweisnummer) preis. Anonymisieren Sie sensible Informationen und nutzen Sie wenn möglich unternehmenseigene KI-Tools."
                 },
                 en: {
                     "s1-title": "What is Artificial Intelligence?",
@@ -1193,100 +1430,144 @@
                     "s6-w4-desc": "Comply with data protection laws. Don't upload sensitive data to AI tools. Check internal policies.",
                     "s7-title": "First 5 Prompts",
                     "s7-sub": "Ready-to-copy starter prompts. Select your language and get started.",
+                    "faq-title": "Frequently Asked Questions",
+                    "faq-sub": "We answer the most frequently asked questions about AI.",
+                    "faq-q1": "Can I directly submit my AI-generated text to court?",
+                    "faq-a1": "No. AI-generated texts are only a draft. In official correspondence and court documents, they must be reviewed and corrected by an expert.",
+                    "faq-q2": "Which AI tool is free?",
+                    "faq-a2": "DeepSeek and Gemini are ideal for daily use with their free versions. ChatGPT and Claude also offer free tiers, but with limited features.",
+                    "faq-q3": "What should I pay attention to when translating with AI?",
+                    "faq-a3": "Make sure to use official terminology and salutations correctly. AI translations are generally good, but for legal or technical texts, they must be checked by an expert.",
+                    "faq-q4": "How do I protect my data when using AI?",
+                    "faq-a4": "Never share real personal data (name, address, phone number, ID). Anonymize sensitive information and use enterprise AI tools if possible."
                 }
             };
 
             // ———— DOM refs ————
-            const langBtns = document.querySelectorAll('.lang-btn');
-            const promptTabs = document.querySelectorAll('.prompt-tab');
-            const promptGroups = document.querySelectorAll('.prompt-lang-group');
-            const i18nElements = document.querySelectorAll('[data-i18n]');
+            var langBtns = document.querySelectorAll('.lang-btn');
+            var promptTabs = document.querySelectorAll('.prompt-tab');
+            var promptGroups = document.querySelectorAll('.prompt-lang-group');
+            var i18nElements = document.querySelectorAll('[data-i18n]');
 
             // ———— apply language ————
             function applyLanguage(lang) {
-                // update i18n text
-                const t = i18n[lang];
+                var t = i18n[lang];
                 if (!t) return;
-                i18nElements.forEach(el => {
-                    const key = el.getAttribute('data-i18n');
+                for (var i = 0; i < i18nElements.length; i++) {
+                    var el = i18nElements[i];
+                    var key = el.getAttribute('data-i18n');
                     if (t[key] !== undefined) {
                         el.textContent = t[key];
                     }
-                });
-
+                }
                 // update button states
-                langBtns.forEach(btn => {
-                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-                });
-
-                // update prompt groups to match language (if tab not active, switch to it)
-                const activeTab = document.querySelector('.prompt-tab.active');
-                const currentLang = activeTab ? activeTab.getAttribute('data-prompt-lang') : 'tr';
-                // if the active tab language doesn't match, switch
+                for (var j = 0; j < langBtns.length; j++) {
+                    var btn = langBtns[j];
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                }
+                // prompt tabs
+                var activeTab = document.querySelector('.prompt-tab.active');
+                var currentLang = activeTab ? activeTab.getAttribute('data-prompt-lang') : 'tr';
                 if (currentLang !== lang) {
-                    // find tab for this lang
-                    const targetTab = document.querySelector(`.prompt-tab[data-prompt-lang="${lang}"]`);
+                    var targetTab = document.querySelector('.prompt-tab[data-prompt-lang="' + lang + '"]');
                     if (targetTab) {
                         setPromptTab(targetTab);
                     }
                 }
-
                 document.documentElement.lang = lang;
             }
 
             // ———— prompt tab switching ————
             function setPromptTab(tab) {
-                const lang = tab.getAttribute('data-prompt-lang');
-                promptTabs.forEach(t => t.classList.remove('active'));
+                var lang = tab.getAttribute('data-prompt-lang');
+                for (var i = 0; i < promptTabs.length; i++) {
+                    promptTabs[i].classList.remove('active');
+                    promptTabs[i].setAttribute('aria-selected', 'false');
+                }
                 tab.classList.add('active');
-                promptGroups.forEach(g => g.classList.remove('active'));
-                const targetGroup = document.querySelector(`.prompt-lang-group[data-prompt-group="${lang}"]`);
+                tab.setAttribute('aria-selected', 'true');
+                for (var j = 0; j < promptGroups.length; j++) {
+                    promptGroups[j].classList.remove('active');
+                }
+                var targetGroup = document.querySelector('.prompt-lang-group[data-prompt-group="' + lang + '"]');
                 if (targetGroup) targetGroup.classList.add('active');
             }
 
             // ———— copy prompt ————
-            function copyPrompt(el) {
-                const card = el.closest('.prompt-card');
-                const textEl = card.querySelector('.p-text');
-                const text = textEl.getAttribute('data-copy') || textEl.textContent.trim();
-                navigator.clipboard.writeText(text).then(() => {
-                    const feedback = card.querySelector('.copy-feedback');
-                    if (feedback) {
-                        feedback.classList.add('show');
-                        setTimeout(() => feedback.classList.remove('show'), 2000);
-                    }
-                }).catch(() => {
-                    // fallback
-                    const textarea = document.createElement('textarea');
-                    textarea.value = text;
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textarea);
-                    const feedback = card.querySelector('.copy-feedback');
-                    if (feedback) {
-                        feedback.classList.add('show');
-                        setTimeout(() => feedback.classList.remove('show'), 2000);
-                    }
+            window.copyPrompt = function(el) {
+                var card = el.closest('.prompt-card');
+                var textEl = card.querySelector('.p-text');
+                var text = textEl.getAttribute('data-copy') || textEl.textContent.trim();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        var feedback = card.querySelector('.copy-feedback');
+                        if (feedback) {
+                            feedback.classList.add('show');
+                            setTimeout(function() { feedback.classList.remove('show'); }, 2000);
+                        }
+                    }).catch(function() {
+                        fallbackCopy(text, card);
+                    });
+                } else {
+                    fallbackCopy(text, card);
+                }
+            };
+
+            function fallbackCopy(text, card) {
+                var textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                var feedback = card.querySelector('.copy-feedback');
+                if (feedback) {
+                    feedback.classList.add('show');
+                    setTimeout(function() { feedback.classList.remove('show'); }, 2000);
+                }
+            }
+
+            // ———— FAQ toggle ————
+            window.toggleFaq = function(el) {
+                var answer = el.parentElement.querySelector('.faq-a');
+                var icon = el.querySelector('.toggle-icon');
+                if (answer) {
+                    answer.classList.toggle('open');
+                    icon.textContent = answer.classList.contains('open') ? '▴' : '▾';
+                }
+            };
+
+            // ———— Progress bar ————
+            function updateProgress() {
+                var scrollTop = window.scrollY;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                var bar = document.getElementById('progress-bar');
+                if (bar) {
+                    bar.style.width = progress + '%';
+                    bar.setAttribute('aria-valuenow', Math.round(progress));
+                }
+            }
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('resize', updateProgress);
+            updateProgress();
+
+            // ———— event listeners ————
+            for (var k = 0; k < langBtns.length; k++) {
+                langBtns[k].addEventListener('click', function(e) {
+                    var lang = this.getAttribute('data-lang');
+                    applyLanguage(lang);
                 });
             }
 
-            // ———— event listeners ————
-            langBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    applyLanguage(lang);
-                });
-            });
-
-            promptTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
+            for (var m = 0; m < promptTabs.length; m++) {
+                promptTabs[m].addEventListener('click', function(e) {
                     setPromptTab(this);
                 });
-            });
-
-            // Expose copy function globally
-            window.copyPrompt = copyPrompt;
+            }
 
             // ———— init: default language = tr ————
             applyLanguage('tr');
