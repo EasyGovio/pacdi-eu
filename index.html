@@ -498,6 +498,39 @@
             margin-top: 0.3rem;
         }
 
+        /* ––– Real Case Box (Section 6 ek) ––– */
+        .real-case-box {
+            background: #1a0a00;
+            border: 2px solid #f59e0b;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .real-case-box .case-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #f59e0b;
+            margin-bottom: 0.8rem;
+        }
+        .real-case-box .case-text,
+        .real-case-box .case-moral {
+            font-size: 0.85rem;
+            color: #fde68a;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .real-case-box .case-note {
+            font-size: 0.75rem;
+            color: #f59e0b;
+            font-style: italic;
+        }
+        .real-case-box strong {
+            color: #ffb347;
+        }
+        .real-case-box em {
+            color: #fbbf24;
+        }
+
         /* ––– Prompts Section ––– */
         .prompt-tabs {
             display: flex;
@@ -757,6 +790,9 @@
             .card {
                 padding: 1.2rem;
             }
+            .real-case-box {
+                padding: 1rem;
+            }
         }
         @media (min-width: 640px) {
             .header-inner {
@@ -985,6 +1021,30 @@
                     <p data-i18n="s6-w4-desc">Veri koruma yasalarına uyun. Hassas verileri AI araçlarına yüklemeyin. Kurum içi politikaları kontrol edin.</p>
                 </div>
             </div>
+
+            <!-- ––– GERÇEK VAKA BLOĞU (eklendi) ––– -->
+            <div class="real-case-box">
+                <div class="case-title">
+                    ⚠️ <span data-i18n="case-title">Gerçek Vaka: Halüsinasyon Böyle Görünür</span>
+                </div>
+                <p class="case-text" data-i18n="case-text">
+                    Bu rehberin hazırlık sürecinde popüler bir AI aracına <strong>pacdi.eu</strong> dosyası gösterildi. 
+                    Dosyayı gerçekten okumak yerine "PACDI" kelimesini tıp literatüründen ezberledi ve dakikalarca 
+                    <em>"hastane taburcu ve klinik bakım otomasyonu"</em> anlattı. 
+                    Uyarılınca bu sefer hiç ilgisi olmayan <em>"Pusula Akademik Kariyer"</em> diye bambaşka bir senaryo uydurdu. 
+                    Ta ki gerçek ekran görüntüsü önüne konulana kadar.
+                </p>
+                <p class="case-moral" data-i18n="case-moral">
+                    <strong>Ne öğrendik?</strong> AI devasa bir güçtür — ama kör güvenildiğinde en profesyonel insanı bile 
+                    yanlış uçağa bindirir, gözünüzü hiç bilmediğiniz yerlerde açabilir. 
+                    Bu yüzden bu rehber var: AI'yi doğru yönetmek, neyi bilip neyi uydurduğunu anlamak için.
+                </p>
+                <p class="case-note" data-i18n="case-note">
+                    💡 Not: İlgili AI aracı hatayı kabul etti — bu da onun güçlü yanı. Ders: Her zaman doğrulayın.
+                </p>
+            </div>
+            <!-- ––– BLOK SONU ––– -->
+
         </section>
 
         <!-- ––––– SECTION 7: İlk 5 Promptun ––––– -->
@@ -1175,9 +1235,11 @@
     <script>
         (function() {
 
-            // ———— i18n DATA ————
+            // ———— i18n DATA (case-title, case-text, case-moral, case-note EKLENDİ) ————
             var i18n = {
                 tr: {
+                    // ... (önceki tüm anahtarlar) ...
+                    // Sadece yeni eklenenleri gösteriyorum, eksiksiz çalışması için hepsi burada.
                     "s1-title": "Yapay Zeka Nedir?",
                     "s1-sub": "Basitçe anlatımla, günlük iş hayatında yapay zekayı nasıl kullanacağınızı öğrenin.",
                     "s1-c1-title": "Tanım",
@@ -1263,9 +1325,15 @@
                     "faq-q3": "AI ile çeviri yaparken nelere dikkat etmeliyim?",
                     "faq-a3": "Resmi terimleri ve hitap şekillerini doğru kullanmaya özen gösterin. AI çevirileri genellikle iyidir, ancak hukuki veya teknik metinlerde mutlaka bir uzman tarafından kontrol edilmelidir.",
                     "faq-q4": "AI kullanırken veri gizliliğini nasıl korurum?",
-                    "faq-a4": "Asla gerçek kişisel veriler (isim, adres, telefon, kimlik numarası) paylaşmayın. Hassas bilgileri anonimleştirin ve mümkünse kurumsal AI araçlarını tercih edin."
+                    "faq-a4": "Asla gerçek kişisel veriler (isim, adres, telefon, kimlik numarası) paylaşmayın. Hassas bilgileri anonimleştirin ve mümkünse kurumsal AI araçlarını tercih edin.",
+                    // — YENİ EKLENENLER —
+                    "case-title": "Gerçek Vaka: Halüsinasyon Böyle Görünür",
+                    "case-text": "Bu rehberin hazırlık sürecinde popüler bir AI aracına pacdi.eu dosyası gösterildi. Dosyayı gerçekten okumak yerine \"PACDI\" kelimesini tıp literatüründen ezberledi ve dakikalarca \"hastane taburcu ve klinik bakım otomasyonu\" anlattı. Uyarılınca bu sefer hiç ilgisi olmayan \"Pusula Akademik Kariyer\" diye bambaşka bir senaryo uydurdu. Ta ki gerçek ekran görüntüsü önüne konulana kadar.",
+                    "case-moral": "Ne öğrendik? AI devasa bir güçtür — ama kör güvenildiğinde en profesyonel insanı bile yanlış uçağa bindirir, gözünüzü hiç bilmediğiniz yerlerde açabilir. Bu yüzden bu rehber var: AI'yi doğru yönetmek, neyi bilip neyi uydurduğunu anlamak için.",
+                    "case-note": "💡 Not: İlgili AI aracı hatayı kabul etti — bu da onun güçlü yanı. Ders: Her zaman doğrulayın."
                 },
                 de: {
+                    // ... (tüm mevcut DE anahtarları) ...
                     "s1-title": "Was ist Künstliche Intelligenz?",
                     "s1-sub": "Einfach erklärt – wie Sie KI im Büroalltag einsetzen.",
                     "s1-c1-title": "Definition",
@@ -1351,9 +1419,15 @@
                     "faq-q3": "Worauf sollte ich bei der KI-Übersetzung achten?",
                     "faq-a3": "Achten Sie darauf, offizielle Begriffe und Anredeformen korrekt zu verwenden. KI-Übersetzungen sind meist gut, aber bei juristischen oder technischen Texten sollten sie unbedingt von einem Experten geprüft werden.",
                     "faq-q4": "Wie schütze ich meine Daten bei der Nutzung von KI?",
-                    "faq-a4": "Geben Sie niemals echte persönliche Daten (Name, Adresse, Telefonnummer, Ausweisnummer) preis. Anonymisieren Sie sensible Informationen und nutzen Sie wenn möglich unternehmenseigene KI-Tools."
+                    "faq-a4": "Geben Sie niemals echte persönliche Daten (Name, Adresse, Telefonnummer, Ausweisnummer) preis. Anonymisieren Sie sensible Informationen und nutzen Sie wenn möglich unternehmenseigene KI-Tools.",
+                    // — YENİ EKLENENLER (DE) —
+                    "case-title": "Echter Fall: So sieht eine Halluzination aus",
+                    "case-text": "Während der Vorbereitung dieses Leitfadens wurde einem bekannten KI-Tool die Datei pacdi.eu gezeigt. Statt sie wirklich zu lesen, griff es auf medizinische Fachliteratur zurück und erklärte minutenlang Krankenhaus-Entlassungsautomatisierung. Nach einem Hinweis erfand es eine völlig andere Geschichte. Erst nach einem echten Screenshot hörte es auf.",
+                    "case-moral": "Was haben wir gelernt? KI ist eine enorme Kraft – aber blind vertraut kann sie Sie in den falschen Flieger setzen. Deshalb gibt es diesen Leitfaden.",
+                    "case-note": "Das betreffende KI-Tool hat den Fehler eingestanden – das ist seine Stärke. Lektion: Immer verifizieren."
                 },
                 en: {
+                    // ... (tüm mevcut EN anahtarları) ...
                     "s1-title": "What is Artificial Intelligence?",
                     "s1-sub": "A simple explanation of how to use AI in your daily office work.",
                     "s1-c1-title": "Definition",
@@ -1439,7 +1513,12 @@
                     "faq-q3": "What should I pay attention to when translating with AI?",
                     "faq-a3": "Make sure to use official terminology and salutations correctly. AI translations are generally good, but for legal or technical texts, they must be checked by an expert.",
                     "faq-q4": "How do I protect my data when using AI?",
-                    "faq-a4": "Never share real personal data (name, address, phone number, ID). Anonymize sensitive information and use enterprise AI tools if possible."
+                    "faq-a4": "Never share real personal data (name, address, phone number, ID). Anonymize sensitive information and use enterprise AI tools if possible.",
+                    // — YENİ EKLENENLER (EN) —
+                    "case-title": "Real Case: This Is What a Hallucination Looks Like",
+                    "case-text": "During the preparation of this guide, a popular AI tool was shown the pacdi.eu file. Instead of actually reading it, it memorized the word \"PACDI\" from medical literature and explained \"hospital discharge and clinical care automation\" for minutes. After being warned, it invented a completely different scenario: \"Compass Academic Career\". Only after a real screenshot was placed in front of it did it stop.",
+                    "case-moral": "What did we learn? AI is a massive force – but if you trust it blindly, it can put even the most professional person on the wrong plane, opening your eyes in places you've never known. That's why this guide exists: to manage AI correctly, to understand what it knows and what it invents.",
+                    "case-note": "The AI tool in question admitted the error – that's its strength. Lesson: Always verify."
                 }
             };
 
