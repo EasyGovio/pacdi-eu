@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<!--
+╔═══════════════════════════════════════════════════════════════╗
+║         🛡️  PACDI FRAMEWORK — KORUNAN ESER                   ║
+║                                                               ║
+║  © 2026 PACDI Global Yazılım Ltd. Şti.                       ║
+║  FSEK Tescil No: 2026/18897                                   ║
+║  Tüm Hakları Saklıdır / Alle Rechte vorbehalten               ║
+║                                                               ║
+║  Bu yazılım mimarisi, içerdiği çok dilli i18n motoru,        ║
+║  prompt şablonları ve modüler UX bileşenleri PACDI            ║
+║  Yazılım Kütüphanesi FSEK tescili kapsamında yasal            ║
+║  koruma altındadır.                                           ║
+║                                                               ║
+║  İzinsiz kopyalama, dağıtım veya ticari kullanım             ║
+║  yasal yaptırıma tabidir.                                     ║
+║                                                               ║
+║  Unauthorized copying, distribution or commercial use        ║
+║  is subject to legal action.                                  ║
+║                                                               ║
+║  pacdi.eu · pacdi.de · info@pacdi.eu                         ║
+╚═══════════════════════════════════════════════════════════════╝
+-->
 <html lang="tr">
 <head>
     <meta charset="UTF-8" />
@@ -45,10 +67,11 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
+            background: var(--bg-body, #f8fafc);
+            color: var(--text-color, #1e293b);
             line-height: 1.6;
             padding: 0 0 2rem 0;
+            transition: background 0.3s, color 0.3s;
         }
         :root {
             --navy: #0B1E35;
@@ -69,6 +92,147 @@
             --white: #ffffff;
             --shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
             --radius: 1.2rem;
+
+            /* Tema değişkenleri */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-alt: #f1f5f9;
+            --bg-input: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --bg-alt: #1e293b;
+            --bg-input: #1e293b;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --card-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            --navy: #1e293b;
+            --gold: #F0D080;
+            --gold-dark: #C9A84C;
+            --gold-dim: rgba(240, 208, 128, 0.1);
+            --gold-border: rgba(240, 208, 128, 0.2);
+            --amber-bg: #2d1f00;
+            --amber-border: #92400e;
+            --gray-50: #0f172a;
+            --gray-100: #1e293b;
+            --gray-200: #334155;
+            --gray-300: #475569;
+            --gray-600: #94a3b8;
+            --gray-700: #cbd5e1;
+            --gray-800: #e2e8f0;
+            --white: #1e293b;
+        }
+
+        [data-theme="dark"] .site-header {
+            background: #0f172a;
+            border-bottom-color: var(--gold-border);
+        }
+        [data-theme="dark"] .card {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .card:hover {
+            border-color: var(--gold-dark);
+        }
+        [data-theme="dark"] .prompt-card .p-text {
+            background: #0f172a;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        [data-theme="dark"] .prompt-card {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .example-item {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .faq-item {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .do-box {
+            background: #0f2d1a;
+            border-color: #1a4a2a;
+        }
+        [data-theme="dark"] .dont-box {
+            background: #2d0f0f;
+            border-color: #4a1a1a;
+        }
+        [data-theme="dark"] .warning-box {
+            background: #2d1f00;
+            border-color: #92400e;
+        }
+        [data-theme="dark"] .warning-box h4 {
+            color: #fbbf24;
+        }
+        [data-theme="dark"] .warning-box p {
+            color: #fde68a;
+        }
+        [data-theme="dark"] .cta-banner {
+            background: #0f172a;
+            border-color: var(--gold-border);
+        }
+        [data-theme="dark"] .site-footer {
+            background: #0f172a;
+            border-top-color: var(--gold-border);
+        }
+        [data-theme="dark"] .real-case-box {
+            background: #1a0a00;
+            border-color: #f59e0b;
+        }
+        [data-theme="dark"] .prompt-box.good {
+            background: #0f2d1a;
+            border-color: #22c55e;
+        }
+        [data-theme="dark"] .prompt-box.bad {
+            background: #2d0f0f;
+            border-color: #ef4444;
+        }
+        [data-theme="dark"] .prompt-box pre {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        [data-theme="dark"] .lang-btn {
+            color: rgba(255,255,255,0.5);
+        }
+        [data-theme="dark"] .lang-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        [data-theme="dark"] .pdf-btn {
+            border-color: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+        [data-theme="dark"] .pdf-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        [data-theme="dark"] #ai-search {
+            background: var(--bg-input);
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .comp-table {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .comp-table th {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        [data-theme="dark"] .comp-table td {
+            border-bottom-color: var(--border-color);
+        }
+        [data-theme="dark"] .card[style*="background: var(--gray-100)"] {
+            background: var(--bg-alt) !important;
         }
 
         /* ––– Smooth Scroll ––– */
@@ -83,7 +247,7 @@
         h4 {
             font-weight: 700;
             line-height: 1.2;
-            color: var(--navy);
+            color: var(--text-color);
         }
         h1 {
             font-size: 1.7rem;
@@ -104,10 +268,10 @@
             margin-bottom: 0.3rem;
         }
         p {
-            color: var(--gray-700);
+            color: var(--text-muted);
         }
         a {
-            color: var(--navy);
+            color: var(--text-color);
             text-decoration: none;
         }
 
@@ -139,6 +303,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: background 0.3s;
         }
         .header-inner {
             max-width: 960px;
@@ -218,20 +383,35 @@
         .lang-btn:hover:not(.active) {
             color: var(--white);
         }
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1;
+        }
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
 
         /* ––– Sections ––– */
         .section {
             padding: 2.5rem 0;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--border-color);
         }
         .section:last-of-type {
             border-bottom: none;
         }
         .section-alt {
-            background: var(--gray-50);
+            background: var(--bg-alt);
         }
         .section-sub {
-            color: var(--gray-600);
+            color: var(--text-muted);
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
         }
@@ -251,15 +431,15 @@
             }
         }
         .card {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: var(--radius);
             padding: 1.5rem;
-            border: 1px solid var(--gray-200);
-            transition: border-color 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
         }
         .card:hover {
             border-color: var(--gold-dark);
-            box-shadow: var(--shadow);
+            box-shadow: var(--card-shadow);
         }
         .card .icon {
             font-size: 2.2rem;
@@ -267,11 +447,11 @@
             margin-bottom: 0.5rem;
         }
         .card h3 {
-            color: var(--navy);
+            color: var(--text-color);
         }
         .card p {
             font-size: 0.88rem;
-            color: var(--gray-600);
+            color: var(--text-muted);
         }
 
         /* ––– Prompt Examples ––– */
@@ -322,7 +502,7 @@
             padding: 0.5rem 0.7rem;
             border-radius: 0.5rem;
             margin-top: 0.3rem;
-            color: var(--gray-800);
+            color: var(--text-color);
         }
         .do-dont-grid {
             display: grid;
@@ -364,7 +544,7 @@
             list-style: none;
             padding: 0;
             font-size: 0.82rem;
-            color: var(--gray-700);
+            color: var(--text-muted);
         }
         .do-box ul li::before {
             content: "✓ ";
@@ -388,10 +568,10 @@
             gap: 0.8rem;
         }
         .example-item {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: 0.8rem;
             padding: 1rem 1.2rem;
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--border-color);
             transition: border-color 0.2s;
         }
         .example-item:hover {
@@ -399,12 +579,12 @@
         }
         .example-item .ex-title {
             font-weight: 600;
-            color: var(--navy);
+            color: var(--text-color);
             font-size: 0.9rem;
         }
         .example-item .ex-desc {
             font-size: 0.82rem;
-            color: var(--gray-600);
+            color: var(--text-muted);
             margin-top: 0.15rem;
         }
         .example-item .ex-tag {
@@ -430,10 +610,10 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--border-color);
         }
         .comp-table th {
             background: var(--navy);
@@ -445,8 +625,9 @@
         }
         .comp-table td {
             padding: 0.7rem 0.8rem;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--border-color);
             vertical-align: top;
+            color: var(--text-color);
         }
         .comp-table tr:last-child td {
             border-bottom: none;
@@ -457,7 +638,7 @@
         }
         .comp-table .use-case {
             font-size: 0.78rem;
-            color: var(--gray-600);
+            color: var(--text-muted);
         }
         @media (max-width: 500px) {
             .comp-table th,
@@ -503,7 +684,7 @@
             margin-top: 0.3rem;
         }
 
-        /* ––– Real Case Box (Section 6 ek) ––– */
+        /* ––– Real Case Box ––– */
         .real-case-box {
             background: #1a0a00;
             border: 2px solid #f59e0b;
@@ -553,7 +734,7 @@
             cursor: pointer;
             transition: all 0.2s;
             font-family: system-ui;
-            color: var(--gray-600);
+            color: var(--text-muted);
         }
         .prompt-tab.active {
             background: var(--navy);
@@ -563,10 +744,10 @@
             background: var(--gray-200);
         }
         .prompt-card {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: var(--radius);
             padding: 1.5rem;
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--border-color);
             margin-bottom: 0.8rem;
         }
         .prompt-card .p-number {
@@ -578,7 +759,7 @@
         }
         .prompt-card .p-title {
             font-weight: 600;
-            color: var(--navy);
+            color: var(--text-color);
             font-size: 0.95rem;
             margin: 0.1rem 0 0.3rem 0;
         }
@@ -590,8 +771,8 @@
             font-size: 0.82rem;
             white-space: pre-wrap;
             word-break: break-word;
-            border: 1px solid var(--gray-200);
-            color: var(--gray-800);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             margin-top: 0.3rem;
             cursor: pointer;
             transition: background 0.2s;
@@ -601,13 +782,13 @@
         }
         .prompt-card .p-copy {
             font-size: 0.7rem;
-            color: var(--gray-600);
+            color: var(--text-muted);
             margin-top: 0.2rem;
             display: inline-block;
             cursor: pointer;
         }
         .prompt-card .p-copy:hover {
-            color: var(--navy);
+            color: var(--text-color);
         }
         .prompt-lang-group {
             display: none;
@@ -624,10 +805,10 @@
             margin: 1rem 0;
         }
         .faq-item {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: 0.8rem;
             padding: 1rem 1.2rem;
-            border: 1px solid var(--gray-200);
+            border: 1px solid var(--border-color);
             transition: border-color 0.2s;
         }
         .faq-item:hover {
@@ -635,7 +816,7 @@
         }
         .faq-item .faq-q {
             font-weight: 700;
-            color: var(--navy);
+            color: var(--text-color);
             font-size: 0.9rem;
             cursor: pointer;
             display: flex;
@@ -648,11 +829,11 @@
         }
         .faq-item .faq-a {
             font-size: 0.85rem;
-            color: var(--gray-700);
+            color: var(--text-muted);
             margin-top: 0.5rem;
             display: none;
             padding-top: 0.5rem;
-            border-top: 1px solid var(--gray-200);
+            border-top: 1px solid var(--border-color);
         }
         .faq-item .faq-a.open {
             display: block;
@@ -712,19 +893,10 @@
         }
 
         /* ––– Utilities ––– */
-        .mt-1 {
-            margin-top: 1rem;
-        }
-        .mb-1 {
-            margin-bottom: 1rem;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .gold-link {
-            color: var(--gold-dark);
-            font-weight: 600;
-        }
+        .mt-1 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .text-center { text-align: center; }
+        .gold-link { color: var(--gold-dark); font-weight: 600; }
         .badge-gold {
             display: inline-block;
             background: var(--gold-dim);
@@ -740,15 +912,10 @@
 
         /* ––– Print Styles ––– */
         @media print {
-            #progress-bar,
-            .pdf-btn,
-            .lang-toggle,
-            .site-header .header-actions .pdf-btn,
-            .site-header .lang-toggle,
-            #back-to-top,
-            #ai-search,
-            .card[style*="background: var(--gray-100)"],
-            .text-center.mt-1.mb-1 {
+            #progress-bar, .pdf-btn, .lang-toggle, .site-header .header-actions .pdf-btn,
+            .site-header .lang-toggle, #back-to-top, #ai-search,
+            .card[style*="background: var(--gray-100)"], .text-center.mt-1.mb-1,
+            .theme-toggle {
                 display: none !important;
             }
             .site-header {
@@ -756,14 +923,11 @@
                 border-bottom: 2px solid #F6B45F;
             }
             body {
-                background: #fff;
-                color: #000;
+                background: #fff !important;
+                color: #000 !important;
                 padding: 0;
             }
-            .card,
-            .example-item,
-            .faq-item,
-            .cta-banner {
+            .card, .example-item, .faq-item, .cta-banner {
                 border: 1px solid #ccc !important;
                 box-shadow: none !important;
                 background: #fff !important;
@@ -776,38 +940,34 @@
             .site-footer a {
                 color: #0B1E35 !important;
             }
+            [data-theme="dark"] .card,
+            [data-theme="dark"] .example-item,
+            [data-theme="dark"] .faq-item {
+                background: #fff !important;
+                color: #000 !important;
+            }
+            [data-theme="dark"] .prompt-card .p-text {
+                background: #f8fafc !important;
+                color: #1e293b !important;
+            }
         }
 
         /* ––– Responsive fine-tune ––– */
         @media (max-width: 480px) {
-            .site-title {
-                font-size: 1rem;
-            }
+            .site-title { font-size: 1rem; }
             .header-inner {
                 flex-direction: column;
                 align-items: stretch;
                 gap: 0.5rem;
             }
-            .header-actions {
-                justify-content: space-between;
-            }
-            .lang-toggle {
-                align-self: flex-start;
-            }
-            h2 {
-                font-size: 1.2rem;
-            }
-            .card {
-                padding: 1.2rem;
-            }
-            .real-case-box {
-                padding: 1rem;
-            }
+            .header-actions { justify-content: space-between; }
+            .lang-toggle { align-self: flex-start; }
+            h2 { font-size: 1.2rem; }
+            .card { padding: 1.2rem; }
+            .real-case-box { padding: 1rem; }
         }
         @media (min-width: 640px) {
-            .header-inner {
-                flex-wrap: nowrap;
-            }
+            .header-inner { flex-wrap: nowrap; }
             .site-title small {
                 display: inline;
                 margin-left: 0.3rem;
@@ -823,9 +983,7 @@
             opacity: 0;
             transition: opacity 0.2s;
         }
-        .copy-feedback.show {
-            opacity: 1;
-        }
+        .copy-feedback.show { opacity: 1; }
 
         /* ––– Back to Top Button ––– */
         #back-to-top {
@@ -844,7 +1002,7 @@
             z-index: 99;
             justify-content: center;
             align-items: center;
-            box-shadow: var(--shadow);
+            box-shadow: var(--card-shadow);
             transition: background 0.2s, transform 0.2s;
         }
         #back-to-top:hover {
@@ -861,6 +1019,51 @@
                 font-size: 1rem;
             }
         }
+
+        /* ––– Sticky Navigation ––– */
+        .nav-sticky {
+            position: sticky;
+            top: 80px;
+            z-index: 50;
+            transition: box-shadow 0.2s;
+        }
+        .nav-sticky.scrolled {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        [data-theme="dark"] .nav-sticky.scrolled {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        /* ––– Scroll Spy active link ––– */
+        .nav-link-active {
+            background: var(--gold) !important;
+            color: var(--navy) !important;
+            border-color: var(--gold) !important;
+        }
+
+        /* ––– Arama vurgusu ––– */
+        mark {
+            background: #fde047;
+            color: #1e293b;
+            padding: 0 0.1rem;
+            border-radius: 2px;
+        }
+        [data-theme="dark"] mark {
+            background: #facc15;
+            color: #0f172a;
+        }
+
+        /* ––– Constraint kutusu dark override ––– */
+        [data-theme="dark"] div[style*="background:#f0fdf4"] {
+            background: #0f2d1a !important;
+            border-color: #1a4a2a !important;
+        }
+        [data-theme="dark"] div[style*="background:#f0fdf4"] p {
+            color: #bbf7d0 !important;
+        }
+        [data-theme="dark"] div[style*="background:#f0fdf4"] strong {
+            color: #4ade80 !important;
+        }
     </style>
 </head>
 <body>
@@ -869,7 +1072,7 @@
     <div id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
     <!-- ––––– HEADER ––––– -->
-    <header class="site-header">
+    <header class="site-header" id="site-header">
         <div class="header-inner">
             <div class="site-title">
                 🤖 Yapay Zeka Rehberi
@@ -877,6 +1080,7 @@
                 <small>/ AI Guide</small>
             </div>
             <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Koyu/Açık mod">🌗</button>
                 <button class="pdf-btn" onclick="saveAsPdf()" aria-label="Sayfayı PDF olarak kaydet">📄 PDF</button>
                 <div class="lang-toggle" role="group" aria-label="Dil seçimi">
                     <button class="lang-btn active" data-lang="tr" aria-label="Türkçe">TR</button>
@@ -892,21 +1096,21 @@
         <!-- ––– ARAMA ÇUBUĞU ––– -->
         <div class="card" style="margin: 1rem 0; padding: 1rem; border-color: var(--gold-dark);">
             <input type="text" id="ai-search" placeholder="🔍 Rehberde ara... (Örn: Widerspruch, Çeviri, Jobcenter)"
-                   style="width:100%; padding:0.6rem 1rem; border-radius:2rem; border:1px solid var(--gray-300); font-size:0.9rem; font-family:system-ui; outline:none; transition:border-color 0.2s;">
+                   style="width:100%; padding:0.6rem 1rem; border-radius:2rem; border:1px solid var(--border-color); font-size:0.9rem; font-family:system-ui; outline:none; transition:border-color 0.2s; background:var(--bg-input); color:var(--text-color);">
         </div>
 
-        <!-- ––– HIZLI NAVİGASYON ––– -->
-        <div class="card" style="margin-bottom: 1.5rem; background: var(--gray-100); border-color: var(--gray-200);">
-            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--gray-600); margin-bottom: 0.5rem; letter-spacing: 0.05em;">📍 Hızlı Navigasyon</h4>
+        <!-- ––– HIZLI NAVİGASYON (STICKY) ––– -->
+        <div class="card nav-sticky" id="quickNav" style="margin-bottom: 1.5rem; background: var(--bg-alt); border-color: var(--border-color);">
+            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">📍 Hızlı Navigasyon</h4>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                <a href="#section1" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">🧠 Nedir?</a>
-                <a href="#section2" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">✍️ Prompt Kuralları</a>
-                <a href="#section3" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">📨 Kurumsal Şablonlar</a>
-                <a href="#section4" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">🌐 Çeviri & Özet</a>
-                <a href="#section5" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">🛠️ Araçlar</a>
-                <a href="#section6" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">⚠️ Kritik Uyarılar</a>
-                <a href="#section7" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">📋 İlk 5 Prompt</a>
-                <a href="#faq" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">❓ SSS</a>
+                <a href="#section1" class="nav-link" data-target="section1" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🧠 Nedir?</a>
+                <a href="#section2" class="nav-link" data-target="section2" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">✍️ Prompt Kuralları</a>
+                <a href="#section3" class="nav-link" data-target="section3" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📨 Kurumsal Şablonlar</a>
+                <a href="#section4" class="nav-link" data-target="section4" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🌐 Çeviri & Özet</a>
+                <a href="#section5" class="nav-link" data-target="section5" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🛠️ Araçlar</a>
+                <a href="#section6" class="nav-link" data-target="section6" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">⚠️ Kritik Uyarılar</a>
+                <a href="#section7" class="nav-link" data-target="section7" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📋 İlk 5 Prompt</a>
+                <a href="#faq" class="nav-link" data-target="faq" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">❓ SSS</a>
             </div>
         </div>
 
@@ -941,12 +1145,12 @@
             <div class="prompt-grid">
                 <div class="prompt-box good">
                     <span class="label" data-i18n="s2-good">✅ İyi Prompt</span>
-                    <p style="font-size:0.8rem;color:var(--gray-700);" data-i18n="s2-good-desc">Açık, bağlamlı ve spesifik.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);" data-i18n="s2-good-desc">Açık, bağlamlı ve spesifik.</p>
                     <pre data-i18n="s2-good-ex">"Almanya'da bir memur olarak çalışıyorum. Senatsverwaltung'a resmi bir e-posta yazmam gerekiyor. Konu: 'Terminvereinbarung für Projektbesprechung'. Resmi, kibar ve kısa bir metin yaz."</pre>
                 </div>
                 <div class="prompt-box bad">
                     <span class="label" data-i18n="s2-bad">❌ Kötü Prompt</span>
-                    <p style="font-size:0.8rem;color:var(--gray-700);" data-i18n="s2-bad-desc">Belirsiz, genel ve bağlamsız.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);" data-i18n="s2-bad-desc">Belirsiz, genel ve bağlamsız.</p>
                     <pre data-i18n="s2-bad-ex">"Bana bir e-posta yaz."</pre>
                 </div>
             </div>
@@ -1038,13 +1242,13 @@
                     <span class="icon">🔁</span>
                     <h3 data-i18n="s4-c1-title">Resmi Çeviri</h3>
                     <p data-i18n="s4-c1-desc">Almanca resmi yazışmaları Türkçeye çevirirken resmiyet derecesini koruyun. "Sehr geehrte Damen und Herren" → "Sayın Yetkililer" gibi.</p>
-                    <p style="font-size:0.75rem;color:var(--gray-600);margin-top:0.3rem;" data-i18n="s4-c1-tip">💡 İpucu: Bağlamı ve hitap şeklini prompt'ta belirtin.</p>
+                    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.3rem;" data-i18n="s4-c1-tip">💡 İpucu: Bağlamı ve hitap şeklini prompt'ta belirtin.</p>
                 </div>
                 <div class="card">
                     <span class="icon">📄</span>
                     <h3 data-i18n="s4-c2-title">Belge Özetleme</h3>
                     <p data-i18n="s4-c2-desc">Uzun raporları, yönetmelikleri veya mahkeme kararlarını özetlerken ana başlıkları, tarihleri ve kararları vurgulayın.</p>
-                    <p style="font-size:0.75rem;color:var(--gray-600);margin-top:0.3rem;" data-i18n="s4-c2-tip">💡 İpucu: "Özetle" yerine "ana noktaları, tarihleri ve kararları listeleyerek özetle" deyin.</p>
+                    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.3rem;" data-i18n="s4-c2-tip">💡 İpucu: "Özetle" yerine "ana noktaları, tarihleri ve kararları listeleyerek özetle" deyin.</p>
                 </div>
             </div>
         </section>
@@ -1304,7 +1508,7 @@
 
         <!-- ––– SOSYAL MEDYA PAYLAŞIM BUTONLARI ––– -->
         <div class="text-center mt-1 mb-1">
-            <p style="font-size:0.85rem;color:var(--gray-600);margin-bottom:1rem;">
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">
                 🚀 Bu rehber iş arkadaşlarınızın da hayatını kolaylaştırsın:
             </p>
             <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;max-width:400px;margin:0 auto;">
@@ -1334,7 +1538,7 @@
                 </a>
 
                 <!-- Link Kopyala -->
-                <button onclick="copyLink(this)" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--gray-200);color:var(--gray-700);font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;border:1px solid var(--gray-300);cursor:pointer;min-width:140px;justify-content:center;font-family:system-ui;">
+                <button onclick="copyLink(this)" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--gray-100);color:var(--text-color);font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;border:1px solid var(--border-color);cursor:pointer;min-width:140px;justify-content:center;font-family:system-ui;transition:background 0.2s;">
                     🔗 <span id="copy-link-text">Link Kopyala</span>
                 </button>
 
@@ -1356,6 +1560,21 @@
             Designed by <a href="https://pacdi.eu" target="_blank" rel="noopener">PACDI Digital Studio</a> — pacdi.eu
             <br>
             <a href="/legal.html">Impressum &amp; Datenschutz</a>
+
+            <!-- ––– PACDI FRAMEWORK ROZETİ ––– -->
+            <div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid rgba(240,208,128,0.15);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.6rem;">
+                <span style="display:inline-flex;align-items:center;gap:0.3rem;background:rgba(240,208,128,0.1);color:var(--gold-dark);font-size:0.65rem;font-weight:700;padding:0.25rem 0.8rem;border-radius:2rem;border:1px solid var(--gold-border);text-transform:uppercase;letter-spacing:0.05em;">
+                    🛡️ FSEK Registered · Pacdi Framework
+                </span>
+                <span style="font-size:0.65rem;color:rgba(255,255,255,0.3);">
+                    © 2026 PACDI Global Yazılım Ltd. Şti. · Alle Rechte vorbehalten / Tüm Hakları Saklıdır
+                </span>
+            </div>
+            <div style="margin-top:0.4rem;font-size:0.6rem;color:rgba(255,255,255,0.2);">
+                Bu eser ve barındırdığı modüler yazılım mimarisi, PACDI Yazılım Kütüphanesi FSEK tescili kapsamında yasal koruma altındadır. Tescil No: 2026/18897
+            </div>
+            <!-- ––– ROZET SONU ––– -->
+
         </div>
     </footer>
 
@@ -1671,8 +1890,38 @@
             var promptTabs = document.querySelectorAll('.prompt-tab');
             var promptGroups = document.querySelectorAll('.prompt-lang-group');
             var i18nElements = document.querySelectorAll('[data-i18n]');
+            var themeToggle = document.getElementById('themeToggle');
+            var htmlEl = document.documentElement;
+            var navLinks = document.querySelectorAll('.nav-link');
+            var sections = document.querySelectorAll('.section, #faq');
 
-            // ———— apply language ————
+            // ———— Tema işlemleri ————
+            function setTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                localStorage.setItem('pacdi-theme', theme);
+                themeToggle.textContent = theme === 'dark' ? '☀️' : '🌗';
+            }
+
+            function toggleTheme() {
+                var current = htmlEl.getAttribute('data-theme') || 'light';
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            }
+
+            // Tema yükleme
+            var savedTheme = localStorage.getItem('pacdi-theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+
+            // ———— Dil işlemleri (localStorage desteği) ————
             function applyLanguage(lang) {
                 var t = i18n[lang];
                 if (!t) return;
@@ -1683,7 +1932,6 @@
                         el.textContent = t[key];
                     }
                 }
-                // update button states
                 for (var j = 0; j < langBtns.length; j++) {
                     var btn = langBtns[j];
                     btn.classList.remove('active');
@@ -1691,16 +1939,29 @@
                         btn.classList.add('active');
                     }
                 }
-                // prompt tabs
                 var activeTab = document.querySelector('.prompt-tab.active');
                 var currentLang = activeTab ? activeTab.getAttribute('data-prompt-lang') : 'tr';
                 if (currentLang !== lang) {
                     var targetTab = document.querySelector('.prompt-tab[data-prompt-lang="' + lang + '"]');
-                    if (targetTab) {
-                        setPromptTab(targetTab);
-                    }
+                    if (targetTab) setPromptTab(targetTab);
                 }
                 document.documentElement.lang = lang;
+                localStorage.setItem('pacdi-lang', lang);
+            }
+
+            // Dil yükleme
+            var savedLang = localStorage.getItem('pacdi-lang');
+            if (savedLang && i18n[savedLang]) {
+                applyLanguage(savedLang);
+            } else {
+                applyLanguage('tr');
+            }
+
+            // Dil butonları
+            for (var k = 0; k < langBtns.length; k++) {
+                langBtns[k].addEventListener('click', function(e) {
+                    applyLanguage(this.getAttribute('data-lang'));
+                });
             }
 
             // ———— prompt tab switching ————
@@ -1717,6 +1978,12 @@
                 }
                 var targetGroup = document.querySelector('.prompt-lang-group[data-prompt-group="' + lang + '"]');
                 if (targetGroup) targetGroup.classList.add('active');
+            }
+
+            for (var m = 0; m < promptTabs.length; m++) {
+                promptTabs[m].addEventListener('click', function(e) {
+                    setPromptTab(this);
+                });
             }
 
             // ———— copy prompt ————
@@ -1775,69 +2042,136 @@
                 }
             }
 
-            // ———— Back to Top butonu görünürlüğü ————
+            // ———— Back to Top ————
             function toggleBackToTop() {
                 var btt = document.getElementById('back-to-top');
                 if (btt) {
-                    if (window.scrollY > 500) {
-                        btt.style.display = 'flex';
+                    btt.style.display = window.scrollY > 500 ? 'flex' : 'none';
+                }
+            }
+
+            // ———— Sticky Nav shadow ————
+            var nav = document.getElementById('quickNav');
+            function toggleNavShadow() {
+                if (nav) {
+                    var offset = nav.getBoundingClientRect().top;
+                    if (offset <= 80) {
+                        nav.classList.add('scrolled');
                     } else {
-                        btt.style.display = 'none';
+                        nav.classList.remove('scrolled');
                     }
                 }
             }
 
+            // ———— Scroll Spy ————
+            function updateScrollSpy() {
+                var current = '';
+                var scrollPos = window.scrollY + 150;
+
+                sections.forEach(function(section) {
+                    var top = section.offsetTop;
+                    var height = section.offsetHeight;
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        current = section.id;
+                    }
+                });
+
+                navLinks.forEach(function(link) {
+                    link.classList.remove('nav-link-active');
+                    if (link.getAttribute('data-target') === current) {
+                        link.classList.add('nav-link-active');
+                    }
+                });
+            }
+
             // ———— scroll listener ————
+            var scrollTimeout;
             window.addEventListener('scroll', function() {
                 updateProgress();
                 toggleBackToTop();
+                toggleNavShadow();
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(function() {
+                        updateScrollSpy();
+                        scrollTimeout = null;
+                    }, 100);
+                }
             });
             window.addEventListener('resize', updateProgress);
             updateProgress();
+            updateScrollSpy();
 
-            // ———— event listeners for language ————
-            for (var k = 0; k < langBtns.length; k++) {
-                langBtns[k].addEventListener('click', function(e) {
-                    var lang = this.getAttribute('data-lang');
-                    applyLanguage(lang);
-                });
-            }
-
-            for (var m = 0; m < promptTabs.length; m++) {
-                promptTabs[m].addEventListener('click', function(e) {
-                    setPromptTab(this);
-                });
-            }
-
-            // ———— init: default language = tr ————
-            applyLanguage('tr');
-
-            // ———— PDF save function (ES5) ————
+            // ———— PDF save ————
             window.saveAsPdf = function() {
                 document.title = 'PACDI_Yapay_Zeka_Rehberi';
                 window.print();
             };
 
-            // ———— Arama Filtresi (Navigasyon kartını gizlemeyi engeller) ————
+            // ———— Arama Filtresi (debounce + vurgulama) ————
             var searchInput = document.getElementById('ai-search');
+            var searchTimeout;
+
+            function clearHighlights() {
+                var marks = document.querySelectorAll('mark');
+                marks.forEach(function(m) {
+                    var parent = m.parentNode;
+                    parent.replaceChild(document.createTextNode(m.textContent), m);
+                    parent.normalize();
+                });
+            }
+
+            function highlightText(node, query) {
+                if (node.nodeType === 3) {
+                    var text = node.textContent;
+                    var index = text.toLowerCase().indexOf(query);
+                    if (index > -1) {
+                        var span = document.createElement('span');
+                        var before = document.createTextNode(text.substring(0, index));
+                        var mark = document.createElement('mark');
+                        mark.textContent = text.substring(index, index + query.length);
+                        var after = document.createTextNode(text.substring(index + query.length));
+                        span.appendChild(before);
+                        span.appendChild(mark);
+                        span.appendChild(after);
+                        node.parentNode.replaceChild(span, node);
+                        return true;
+                    }
+                } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                    for (var i = 0; i < node.childNodes.length; i++) {
+                        if (highlightText(node.childNodes[i], query)) return true;
+                    }
+                }
+                return false;
+            }
+
             if (searchInput) {
                 searchInput.addEventListener('input', function(e) {
                     var query = e.target.value.toLowerCase().trim();
-                    var cards = document.querySelectorAll('.prompt-card, .example-item, .card');
-                    // Arama çubuğunun kendisini ve navigasyon kartını gizlememek için
-                    for (var i = 0; i < cards.length; i++) {
-                        var card = cards[i];
-                        // Arama çubuğu kartını atla
-                        if (card.contains(searchInput)) continue;
-                        // Hızlı navigasyon kartını atla (içinde h4 ve "Navigasyon" metni olan)
-                        if (card.querySelector('h4') && card.textContent.indexOf('Navigasyon') > -1) continue;
-                        var text = card.textContent.toLowerCase();
-                        if (text.indexOf(query) > -1) {
-                            card.style.display = '';
-                        } else {
-                            card.style.display = 'none';
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(function() {
+                        clearHighlights();
+
+                        // Filtreleme
+                        var cards = document.querySelectorAll('.prompt-card, .example-item, .card');
+                        for (var i = 0; i < cards.length; i++) {
+                            var card = cards[i];
+                            if (card.contains(searchInput)) continue;
+                            if (card.querySelector('h4') && card.textContent.indexOf('Navigasyon') > -1) continue;
+                            var text = card.textContent.toLowerCase();
+                            if (text.indexOf(query) > -1) {
+                                card.style.display = '';
+                                // Vurgulama (sadece prompt-card ve example-item içinde)
+                                if (query.length > 1) {
+                                    var targetNodes = card.querySelectorAll('.p-text, .ex-title, .ex-desc, .card p, .card h3');
+                                    targetNodes.forEach(function(el) {
+                                        highlightText(el, query);
+                                    });
+                                }
+                            } else {
+                                card.style.display = 'none';
+                            }
                         }
-                    }
+                    }, 300);
                 });
             }
 
