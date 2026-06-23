@@ -1269,11 +1269,36 @@
     </a>
 
     <!-- Link Kopyala -->
-    <button onclick="copyLink(this)"
-       style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--navy);color:var(--gold);font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;border:1px solid var(--gold-border);cursor:pointer;min-width:140px;justify-content:center;font-family:system-ui;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-      <span id="copy-link-text">Link Kopyala</span>
-    </button>
+    function copyLink(btn) {
+  var text = document.getElementById('copy-link-text');
+  var url = 'https://pacdi.eu';
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function() {
+      showSuccess(text);
+    })['catch'](function() {
+      fallbackCopyUrl(url, text);
+    });
+  } else {
+    fallbackCopyUrl(url, text);
+  }
+}
+
+function showSuccess(textEl) {
+  textEl.textContent = '✓ Kopyalandı!';
+  setTimeout(function() { textEl.textContent = 'Link Kopyala'; }, 2000);
+}
+
+function fallbackCopyUrl(url, textEl) {
+  var textarea = document.createElement('textarea');
+  textarea.value = url;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  showSuccess(textEl);
+}
+
 
   </div>
 </div>
