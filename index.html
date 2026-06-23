@@ -739,7 +739,8 @@
             .pdf-btn,
             .lang-toggle,
             .site-header .header-actions .pdf-btn,
-            .site-header .lang-toggle {
+            .site-header .lang-toggle,
+            #back-to-top {
                 display: none !important;
             }
             .site-header {
@@ -817,6 +818,41 @@
         .copy-feedback.show {
             opacity: 1;
         }
+
+        /* ––– Back to Top Button ––– */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--gold);
+            border: 1px solid var(--gold-border);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            z-index: 99;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        #back-to-top:hover {
+            background: var(--gold-dark);
+            color: var(--navy);
+            transform: scale(1.05);
+        }
+        @media (max-width: 480px) {
+            #back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 2.2rem;
+                height: 2.2rem;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -844,6 +880,27 @@
     </header>
 
     <main class="container">
+
+        <!-- ––– ARAMA ÇUBUĞU ––– -->
+        <div class="card" style="margin: 1rem 0; padding: 1rem; border-color: var(--gold-dark);">
+            <input type="text" id="ai-search" placeholder="🔍 Rehberde ara... (Örn: Widerspruch, Çeviri, Jobcenter)"
+                   style="width:100%; padding:0.6rem 1rem; border-radius:2rem; border:1px solid var(--gray-300); font-size:0.9rem; font-family:system-ui; outline:none; transition:border-color 0.2s;">
+        </div>
+
+        <!-- ––– HIZLI NAVİGASYON ––– -->
+        <div class="card" style="margin-bottom: 1.5rem; background: var(--gray-100); border-color: var(--gray-200);">
+            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--gray-600); margin-bottom: 0.5rem; letter-spacing: 0.05em;">📍 Hızlı Navigasyon</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <a href="#section1" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">🧠 Nedir?</a>
+                <a href="#section2" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">✍️ Prompt Kuralları</a>
+                <a href="#section3" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">📨 Kurumsal Şablonlar</a>
+                <a href="#section4" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">🌐 Çeviri & Özet</a>
+                <a href="#section5" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">🛠️ Araçlar</a>
+                <a href="#section6" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">⚠️ Kritik Uyarılar</a>
+                <a href="#section7" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">📋 İlk 5 Prompt</a>
+                <a href="#faq" style="font-size: 0.8rem; background: var(--white); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--gray-200); text-decoration:none; color:var(--navy); font-weight:500;">❓ SSS</a>
+            </div>
+        </div>
 
         <!-- ––––– SECTION 1: Yapay Zeka Nedir? ––––– -->
         <section class="section" id="section1">
@@ -1238,80 +1295,43 @@
         </section>
 
         <!-- ––– SOSYAL MEDYA PAYLAŞIM BUTONLARI ––– -->
-<div class="text-center mt-1 mb-1">
-  <p style="font-size:0.85rem;color:var(--gray-600);margin-bottom:1rem;">
-    🚀 Bu rehber iş arkadaşlarınızın da hayatını kolaylaştırsın:
-  </p>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;max-width:400px;margin:0 auto;">
+        <div class="text-center mt-1 mb-1">
+            <p style="font-size:0.85rem;color:var(--gray-600);margin-bottom:1rem;">
+                🚀 Bu rehber iş arkadaşlarınızın da hayatını kolaylaştırsın:
+            </p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;max-width:400px;margin:0 auto;">
 
-    <!-- WhatsApp -->
-    <a href="https://api.whatsapp.com/send?text=%C4%B0%C5%9F%20hayat%C4%B1nda%20Yapay%20Zekay%C4%B1%20etkili%20kullanmak%20i%C3%A7in%20harika%20bir%20%C3%BCcretsiz%20rehber%20buldum!%20%C4%B0%C3%A7inde%20resmi%20mektup%20ve%20itiraz%20%C5%9Fablonlar%C4%B1%20da%20var:%20https://pacdi.eu"
-       target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:0.4rem;background:#25D366;color:white;font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;text-decoration:none;min-width:140px;justify-content:center;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.523 5.845L.057 23.5l5.797-1.522A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.663-.516-5.181-1.415l-.371-.22-3.844 1.008 1.027-3.737-.242-.385A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-      WhatsApp
-    </a>
+                <!-- WhatsApp -->
+                <a href="https://api.whatsapp.com/send?text=%C4%B0%C5%9F%20hayat%C4%B1nda%20Yapay%20Zekay%C4%B1%20etkili%20kullanmak%20i%C3%A7in%20harika%20bir%20%C3%BCcretsiz%20rehber%20buldum!%20%C4%B0%C3%A7inde%20resmi%20mektup%20ve%20itiraz%20%C5%9Fablonlar%C4%B1%20da%20var:%20https://pacdi.eu"
+                   target="_blank" rel="noopener"
+                   style="display:inline-flex;align-items:center;gap:0.4rem;background:#25D366;color:white;font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;text-decoration:none;min-width:140px;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.523 5.845L.057 23.5l5.797-1.522A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.663-.516-5.181-1.415l-.371-.22-3.844 1.008 1.027-3.737-.242-.385A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                    WhatsApp
+                </a>
 
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://pacdi.eu"
-       target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:0.4rem;background:#0077B5;color:white;font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;text-decoration:none;min-width:140px;justify-content:center;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      LinkedIn
-    </a>
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://pacdi.eu"
+                   target="_blank" rel="noopener"
+                   style="display:inline-flex;align-items:center;gap:0.4rem;background:#0077B5;color:white;font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;text-decoration:none;min-width:140px;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
 
-    <!-- X / Twitter -->
-    <a href="https://twitter.com/intent/tweet?text=%C4%B0%C5%9F%20hayat%C4%B1nda%20yapay%20zekay%C4%B1%20do%C4%9Fru%20kullanmak%20i%C3%A7in%20harika%20bir%20%C3%BCcretsiz%20rehber!%20Resmi%20mektup%20%26%20Widerspruch%20%C5%9Fablonlar%C4%B1%20da%20var.&url=https://pacdi.eu"
-       target="_blank" rel="noopener"
-       style="display:inline-flex;align-items:center;gap:0.4rem;background:#000000;color:white;font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;text-decoration:none;min-width:140px;justify-content:center;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.629 5.905-5.629zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      X / Twitter
-    </a>
+                <!-- X / Twitter -->
+                <a href="https://twitter.com/intent/tweet?text=%C4%B0%C5%9F%20hayat%C4%B1nda%20yapay%20zekay%C4%B1%20do%C4%9Fru%20kullanmak%20i%C3%A7in%20harika%20bir%20%C3%BCcretsiz%20rehber!%20Resmi%20mektup%20%26%20Widerspruch%20%C5%9Fablonlar%C4%B1%20da%20var.&url=https://pacdi.eu"
+                   target="_blank" rel="noopener"
+                   style="display:inline-flex;align-items:center;gap:0.4rem;background:#000000;color:white;font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;text-decoration:none;min-width:140px;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.629 5.905-5.629zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X / Twitter
+                </a>
 
-    <!-- Link Kopyala -->
-    function copyLink(btn) {
-  var text = document.getElementById('copy-link-text');
-  var url = 'https://pacdi.eu';
-  
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(url).then(function() {
-      showSuccess(text);
-    })['catch'](function() {
-      fallbackCopyUrl(url, text);
-    });
-  } else {
-    fallbackCopyUrl(url, text);
-  }
-}
+                <!-- Link Kopyala -->
+                <button onclick="copyLink(this)" style="display:inline-flex;align-items:center;gap:0.4rem;background:var(--gray-200);color:var(--gray-700);font-size:0.78rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:2rem;border:1px solid var(--gray-300);cursor:pointer;min-width:140px;justify-content:center;font-family:system-ui;">
+                    🔗 <span id="copy-link-text">Link Kopyala</span>
+                </button>
 
-function showSuccess(textEl) {
-  textEl.textContent = '✓ Kopyalandı!';
-  setTimeout(function() { textEl.textContent = 'Link Kopyala'; }, 2000);
-}
-
-function fallbackCopyUrl(url, textEl) {
-  var textarea = document.createElement('textarea');
-  textarea.value = url;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
-  showSuccess(textEl);
-}
-
-
-  </div>
-</div>
-
-<script>
-function copyLink(btn) {
-  var text = document.getElementById('copy-link-text');
-  navigator.clipboard.writeText('https://pacdi.eu').then(function() {
-    text.textContent = '✓ Kopyalandı!';
-    setTimeout(function() { text.textContent = 'Link Kopyala'; }, 2000);
-  });
-}
-</script>
+            </div>
+        </div>
 
         <!-- ––––– CTA BANNER ––––– -->
         <div class="cta-banner">
@@ -1330,6 +1350,11 @@ function copyLink(btn) {
             <a href="/legal.html">Impressum &amp; Datenschutz</a>
         </div>
     </footer>
+
+    <!-- ––– YUKARI ÇIK BUTONU ––– -->
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Sayfa başına dön">
+        ▲
+    </button>
 
     <!-- ––––– JAVASCRIPT ––––– -->
     <script>
@@ -1428,7 +1453,6 @@ function copyLink(btn) {
                     "case-text": "Bu rehberin hazırlık sürecinde popüler bir AI aracına pacdi.eu dosyası gösterildi. Dosyayı gerçekten okumak yerine \"PACDI\" kelimesini tıp literatüründen ezberledi ve dakikalarca \"hastane taburcu ve klinik bakım otomasyonu\" anlattı. Uyarılınca bu sefer hiç ilgisi olmayan \"Pusula Akademik Kariyer\" diye bambaşka bir senaryo uydurdu. Ta ki gerçek ekran görüntüsü önüne konulana kadar.",
                     "case-moral": "Ne öğrendik? AI devasa bir güçtür — ama kör güvenildiğinde en profesyonel insanı bile yanlış uçağa bindirir, gözünüzü hiç bilmediğiniz yerlerde açabilir. Bu yüzden bu rehber var: AI'yi doğru yönetmek, neyi bilip neyi uydurduğunu anlamak için.",
                     "case-note": "💡 Not: İlgili AI aracı hatayı kabul etti — bu da onun güçlü yanı. Ders: Her zaman doğrulayın.",
-                    // YENİ EKLENENLER (TR)
                     "wid-num": "Widerspruch Modülü",
                     "wid-title": "⚖️ Resmi İtiraz Üretici",
                     "wid-copy": "📋 Kopyala",
@@ -1527,7 +1551,6 @@ function copyLink(btn) {
                     "case-text": "Während der Vorbereitung dieses Leitfadens wurde einem bekannten KI-Tool die Datei pacdi.eu gezeigt. Statt sie wirklich zu lesen, griff es auf medizinische Fachliteratur zurück und erklärte minutenlang Krankenhaus-Entlassungsautomatisierung. Nach einem Hinweis erfand es eine völlig andere Geschichte. Erst nach einem echten Screenshot hörte es auf.",
                     "case-moral": "Was haben wir gelernt? KI ist eine enorme Kraft – aber blind vertraut kann sie Sie in den falschen Flieger setzen. Deshalb gibt es diesen Leitfaden.",
                     "case-note": "Das betreffende KI-Tool hat den Fehler eingestanden – das ist seine Stärke. Lektion: Immer verifizieren.",
-                    // YENİ EKLENENLER (DE)
                     "wid-num": "Widerspruch Modülü",
                     "wid-title": "⚖️ Offizieller Widerspruch-Generator",
                     "wid-copy": "📋 Kopieren",
@@ -1626,7 +1649,6 @@ function copyLink(btn) {
                     "case-text": "During the preparation of this guide, a popular AI tool was shown the pacdi.eu file. Instead of actually reading it, it memorized the word \"PACDI\" from medical literature and explained \"hospital discharge and clinical care automation\" for minutes. After being warned, it invented a completely different scenario: \"Compass Academic Career\". Only after a real screenshot was placed in front of it did it stop.",
                     "case-moral": "What did we learn? AI is a massive force – but if you trust it blindly, it can put even the most professional person on the wrong plane, opening your eyes in places you've never known. That's why this guide exists: to manage AI correctly, to understand what it knows and what it invents.",
                     "case-note": "The AI tool in question admitted the error – that's its strength. Lesson: Always verify.",
-                    // YENİ EKLENENLER (EN)
                     "wid-num": "Widerspruch Module",
                     "wid-title": "⚖️ Official Objection Generator",
                     "wid-copy": "📋 Copy",
@@ -1744,11 +1766,28 @@ function copyLink(btn) {
                     bar.setAttribute('aria-valuenow', Math.round(progress));
                 }
             }
-            window.addEventListener('scroll', updateProgress);
+
+            // ———— Back to Top butonu görünürlüğü ————
+            function toggleBackToTop() {
+                var btt = document.getElementById('back-to-top');
+                if (btt) {
+                    if (window.scrollY > 500) {
+                        btt.style.display = 'flex';
+                    } else {
+                        btt.style.display = 'none';
+                    }
+                }
+            }
+
+            // ———— scroll listener ————
+            window.addEventListener('scroll', function() {
+                updateProgress();
+                toggleBackToTop();
+            });
             window.addEventListener('resize', updateProgress);
             updateProgress();
 
-            // ———— event listeners ————
+            // ———— event listeners for language ————
             for (var k = 0; k < langBtns.length; k++) {
                 langBtns[k].addEventListener('click', function(e) {
                     var lang = this.getAttribute('data-lang');
@@ -1770,6 +1809,53 @@ function copyLink(btn) {
                 document.title = 'PACDI_Yapay_Zeka_Rehberi';
                 window.print();
             };
+
+            // ———— Arama Filtresi ————
+            var searchInput = document.getElementById('ai-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    var query = e.target.value.toLowerCase().trim();
+                    var cards = document.querySelectorAll('.prompt-card, .example-item, .card');
+                    // Arama çubuğunun kendisini gizlememek için kontrol
+                    for (var i = 0; i < cards.length; i++) {
+                        var card = cards[i];
+                        if (card.contains(searchInput)) continue;
+                        var text = card.textContent.toLowerCase();
+                        if (text.indexOf(query) > -1) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            }
+
+            // ———— Link Kopyala ————
+            window.copyLink = function(btn) {
+                var textEl = document.getElementById('copy-link-text');
+                var url = 'https://pacdi.eu';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        textEl.textContent = '✓ Kopyalandı!';
+                        setTimeout(function() { textEl.textContent = 'Link Kopyala'; }, 2000);
+                    })['catch'](function() {
+                        fallbackCopyUrl(url, textEl);
+                    });
+                } else {
+                    fallbackCopyUrl(url, textEl);
+                }
+            };
+
+            function fallbackCopyUrl(url, textEl) {
+                var textarea = document.createElement('textarea');
+                textarea.value = url;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                textEl.textContent = '✓ Kopyalandı!';
+                setTimeout(function() { textEl.textContent = 'Link Kopyala'; }, 2000);
+            }
 
         })();
     </script>
