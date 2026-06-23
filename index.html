@@ -71,6 +71,11 @@
             --radius: 1.2rem;
         }
 
+        /* ––– Smooth Scroll ––– */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* ––– Typography ––– */
         h1,
         h2,
@@ -740,7 +745,10 @@
             .lang-toggle,
             .site-header .header-actions .pdf-btn,
             .site-header .lang-toggle,
-            #back-to-top {
+            #back-to-top,
+            #ai-search,
+            .card[style*="background: var(--gray-100)"],
+            .text-center.mt-1.mb-1 {
                 display: none !important;
             }
             .site-header {
@@ -1810,16 +1818,19 @@
                 window.print();
             };
 
-            // ———— Arama Filtresi ————
+            // ———— Arama Filtresi (Navigasyon kartını gizlemeyi engeller) ————
             var searchInput = document.getElementById('ai-search');
             if (searchInput) {
                 searchInput.addEventListener('input', function(e) {
                     var query = e.target.value.toLowerCase().trim();
                     var cards = document.querySelectorAll('.prompt-card, .example-item, .card');
-                    // Arama çubuğunun kendisini gizlememek için kontrol
+                    // Arama çubuğunun kendisini ve navigasyon kartını gizlememek için
                     for (var i = 0; i < cards.length; i++) {
                         var card = cards[i];
+                        // Arama çubuğu kartını atla
                         if (card.contains(searchInput)) continue;
+                        // Hızlı navigasyon kartını atla (içinde h4 ve "Navigasyon" metni olan)
+                        if (card.querySelector('h4') && card.textContent.indexOf('Navigasyon') > -1) continue;
                         var text = card.textContent.toLowerCase();
                         if (text.indexOf(query) > -1) {
                             card.style.display = '';
