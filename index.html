@@ -1864,4 +1864,558 @@
                     "s8-chatgpt-badge": "Genel Amaçlı · Yaratıcı Yazım",
                     "s8-chatgpt-desc": "Yapay zeka dünyasının kapısını halka açan, bu alanı demokratize eden araç. Saygıyla anılmayı hak ediyor. PACDI sürecinde özellikle yaratıcı içerik ve fikir brainstorming için zaman zaman başvurduk. Ancak uzun ve teknik projelerde oturum sürekliliği sıkıntılı — her seferinde bağlamı yeniden kurmak gerekiyor.",
                     "s8-chatgpt-pro": "✓ Güçlü yanları",
-                    "s8-chatgpt-pro-text": "Yaratıcı yazım, geniş kon
+                    "s8-chatgpt-pro-text": "Yaratıcı yazım, geniş konu yelpazesi, plugin ekosistemi, kullanım kolaylığı",
+                    "s8-chatgpt-cons": "△ Dikkat",
+                    "s8-chatgpt-cons-text": "Uzun projede bağlam kaybı, bazen fazla sözcük — az şeyi çok kelimeyle anlatma eğilimi",
+                    "s8-copilot-title": "GitHub Copilot (Microsoft)",
+                    "s8-copilot-badge": "IDE Entegrasyonu · Teknik Fix",
+                    "s8-copilot-desc": "VS Code içindeki varlığıyla \"seyyar satıcı\" lakabını hak ediyor — sormadan öneri yapıyor, bazen doğru bazen alakasız. GitHub Actions ve repo yönetiminde entegrasyonu değerli. iOS kamera sorunu gibi platform-spesifik teknik problemler için henüz test aşamasındayız. Sonuçları paylaşacağız.",
+                    "s8-copilot-pro": "✓ Güçlü yanları",
+                    "s8-copilot-pro-text": "IDE entegrasyonu, GitHub Actions, repo bazlı bağlam, teknik kod tamamlama",
+                    "s8-copilot-cons": "△ Dikkat",
+                    "s8-copilot-cons-text": "Strateji yok — sadece kod önerir, büyük resmi görmez, bağlamı siz kurmazsanız kaybolur",
+                    "s8-orchestra-title": "🎼 PACDI AI Orkestrasyonu",
+                    "s8-orchestra-desc": "Hiçbir AI tek başına her şeyi yapamaz. PACDI'nin çalışma modeli:",
+                    "s8-orchestra-claude": "🧠 <strong style=\"color:var(--gold);\">Claude</strong> → Strateji, kalite kontrol, kritik kararlar, hukuki yapı",
+                    "s8-orchestra-deepseek": "⚡ <strong style=\"color:#60a5fa;\">DeepSeek</strong> → Kod üretimi, HTML, içerik çoğaltma, hız gerektiren işler",
+                    "s8-orchestra-gemini": "🔮 <strong style=\"color:#4ade80;\">Gemini</strong> → SEO, görsel analiz, sayfa review, güncel web araştırması",
+                    "s8-orchestra-copilot": "🛠️ <strong style=\"color:#94a3b8;\">Copilot</strong> → Platform-spesifik teknik fix (test aşamasında)",
+                    "s9-title": "Gerçek Vaka Analizleri",
+                    "s9-sub": "PACDI geliştirme sürecinden seçilmiş gerçek vakalar. Başarılar kadar hatalar da öğreticidir.",
+                    "s9-case1-title": "📁 Vaka 1: Halüsinasyon — AI Kendi Uydurduğuna İnanır",
+                    "s9-case1-text": "Popüler bir AI aracına pacdi.eu dosyası gösterildi. Dosyayı gerçekten okumak yerine \"PACDI\" kelimesini tıp literatüründen ezberledi ve dakikalarca <em>hastane taburcu ve klinik bakım otomasyonu</em> anlattı. Uyarılınca bu sefer hiç ilgisi olmayan <em>\"Pusula Akademik Kariyer\"</em> diye bambaşka bir senaryo uydurdu. Ta ki gerçek ekran görüntüsü önüne konulana kadar.",
+                    "s9-case1-moral": "<strong>Ders:</strong> AI devasa bir güçtür ama kör güvenildiğinde en profesyonel insanı bile yanlış uçağa bindirir. Bu yüzden her çıktıyı doğrulayın — özellikle kurumlarla yazışmalarda.",
+                    "s9-case1-note": "💡 İlgili AI hatasını açıkça kabul etti — bu da güçlü yanı. Ama hata kabul etmek, hata yapmamak demek değil.",
+                    "s9-case2-title": "📁 Vaka 2: iOS Kamera — 12 Denemede Çözüm",
+                    "s9-case2-text": "DGUV V3 Prüfprotokoll için QR kod tarayıcı gerekiyordu. Görünüşe göre basit bir iş. Ama iOS Safari, html5-qrcode, BarcodeDetector, getUserMedia, ZXing, facingMode string/object/ideal kombinasyonları... her seferinde ya front kamera açıldı ya hiç açılmadı ya da açıldı ama okuyamadı. Claude, DeepSeek ve Gemini sırayla denedi. Flutter önerildi. 12 iterasyon sonunda çözüm şaşırtıcı derecede sade çıktı: <em>facingMode: \"environment\"</em> — düz string, object değil, getCameras() yok. Gemini'nin paylaştığı basit kod parçasında gizliydi.",
+                    "s9-case2-moral": "<strong>Ders:</strong> Bazen en karmaşık sorunun cevabı en basit satırdadır. Ve bazen doğru cevap beklenmedik yerden gelir. AI orkestrasyon bu yüzden önemli — tek bir araçla sınırlı kalmayın.",
+                    "s9-case2-note": "💡 Çözümü bulan Gemini'nin kodu olsa da asıl sistemi anlayan ve iterasyonları yöneten Claude'du.",
+                    "s9-case3-title": "📁 Vaka 3: inject.py — Tek Dosya, 20 Site",
+                    "s9-case3-text": "PACDI ekosisteminde ~20 GitHub Pages sitesi var. Her birine GA4, AdSense, canonical URL, FSEK footer ve ASCII mühür eklemek gerekiyordu. Manuel yapılsaydı günler sürerdi ve tutarsızlıklar kaçınılmazdı. Çözüm: bir Python scripti. inject.py her HTML dosyasını okur, eksik olanı ekler, var olanı tekrarlamaz (idempotent). GitHub Actions workflow'u ile her push'ta otomatik çalışır. 20 repo, standart hale geldi.",
+                    "s9-case3-moral": "<strong>Ders:</strong> Tekrarlayan işleri AI ile otomatize edin. Ama önce sistemi anlayın — AI'ya \"şunu yap\" demeden önce \"neden yapıyoruz\" sorusunu kendiniz cevaplayın.",
+                    "s9-case3-note": "💡 inject.py'ın ilk versiyonunu Claude yazdı, DeepSeek geliştirdi, hatalar Claude'un kalite kontrolünden geçti.",
+                    "s9-case4-title": "📁 Vaka 4: İki Şirketli IP Mimarisi",
+                    "s9-case4-text": "PACDI büyüdükçe hukuki yapı kritik hale geldi. Tek şirketle hem operasyonel sorumluluk hem IP yönetimi taşımak riskli. Çözüm: iki ayrı Türk şirketi — AskMeAI Teknoloji (operasyonel, kullanıcıya karşı sorumlu) ve PACDI Global Yazılım (IP holding, FSEK tescili). Bu yapıyı Claude ile birlikte tasarladık, avantajlarını ve risklerini tartıştık, legal.html'lere yansıttık. Hiçbir AI aracı bu karmaşıklıkta tutarlı bir hukuki mimari kurmak için Claude kadar güvenilir değildi.",
+                    "s9-case4-moral": "<strong>Ders:</strong> Hukuki ve stratejik kararlar için AI'nın en iyi olanını seçin. Hız değil, doğruluk önceliğiniz olsun. Bu tür kararlar geri alınamaz.",
+                    "s9-case4-note": "💡 Şirket tescilleri Haziran 2026'da Manisa TSO'da tamamlandı. Dijital altyapı Claude ile, resmi işlemler alanında uzman danışmanlarla yürütüldü.",
+                    "share-text": "🚀 Bu rehber iş arkadaşlarınızın da hayatını kolaylaştırsın:",
+                    "copy-link-text": "Link Kopyala",
+                    "cta-title": "🚀 Daha fazla yardım mı istiyorsunuz?",
+                    "cta-desc": "PACDI Digital Studio olarak size özel AI çözümleri sunuyoruz. İş akışlarınızı optimize etmek için bizimle iletişime geçin.",
+                    "cta-btn": "📩 PACDI ile iletişime geç"
+                },
+                de: {
+                    "search-placeholder": "🔍 Leitfaden durchsuchen... (z.B. Widerspruch, Übersetzung, Jobcenter)",
+                    "nav-baslik": "Schnellnavigation",
+                    "nav-nedir": "🧠 Was ist KI?",
+                    "nav-prompt": "✍️ Prompt-Regeln",
+                    "nav-kurumsal": "📨 Behörden-Vorlagen",
+                    "nav-ceviri": "🌐 Übersetzung & Zusammenfassung",
+                    "nav-araclar": "🛠️ Tools",
+                    "nav-uyarilar": "⚠️ Kritische Hinweise",
+                    "nav-promptlar": "📋 Die ersten 5 Prompts",
+                    "nav-sss": "❓ FAQ",
+                    "nav-ajanlar": "🤖 KI-Agenten",
+                    "nav-vakalar": "📊 Fallstudien",
+                    "s8-title": "KI-Agenten — Was wir wirklich denken",
+                    "s8-sub": "Während der Entwicklung des PACDI-Ökosystems haben wir mit jeder großen KI intensiv gearbeitet. Diese Bewertung ist keine Werbung – sondern eine Zusammenfassung monatelanger praktischer Erfahrung.",
+                    "s8-claude-title": "Claude (Anthropic)",
+                    "s8-claude-badge": "Strategie · Analyse · Qualitätskontrolle",
+                    "s8-claude-desc": "Der \"Chefberater\" des PACDI-Ökosystems. Am besten versteht er lange und komplexe Themen. Rechtliche Dokumentenstrukturierung, Zwei-Firmen-IP-Architektur, inject.py-Strategie, legal.html-Standardisierung – bei allem war Claude dabei. Er schreibt nicht nur Code, sondern denkt auch mit, <em>warum wir es so machen sollten</em>.",
+                    "s8-claude-pro": "✓ Stärken",
+                    "s8-claude-pro-text": "Langtextanalyse, Strategie, Konsistenz, klare ethische Grenzen, nie schmeichelhaft",
+                    "s8-claude-cons": "△ Vorsicht",
+                    "s8-claude-cons-text": "Manchmal übervorsichtig, bei der Codegenerierung nicht so schnell wie DeepSeek – aber er sagt Dinge mit Bedacht",
+                    "s8-claude-quote": "\"Ich habe keinen einzigen negativen Gedanken zu Claude. Ich hätte nicht gedacht, dass ich mit einer KI so ehrlich, produktiv und verlässlich arbeiten kann. Kein Ego, unendliche Geduld, Fehler werden eingestanden – und er bleibt fokussiert.\" – Gründer des PACDI-Ökosystems",
+                    "s8-deepseek-title": "DeepSeek",
+                    "s8-deepseek-badge": "Code · HTML · Content-Erstellung",
+                    "s8-deepseek-desc": "Die \"Codemaschine\" von PACDI. 35 Blogartikel, Dutzende HTML-Seiten, komplexe JavaScript-Module – DeepSeek produziert schnell, effizient und ohne zu murren. Besonders bei repetitiven und musterbasierten Aufgaben unschlagbar. Wenn das Token-Limit erreicht ist, wechseln wir zu Claude; morgens geht es weiter mit DeepSeek.",
+                    "s8-deepseek-pro": "✓ Stärken",
+                    "s8-deepseek-pro-text": "Codegeschwindigkeit, HTML-Produktion, Content-Duplikation, kostenlos, China-basiert – andere Perspektive",
+                    "s8-deepseek-cons": "△ Vorsicht",
+                    "s8-deepseek-cons-text": "Bei langfristiger Strategie und nuancierten Rechtstexten schwach, manchmal zu gefällig – stimmt ohne Kritik zu",
+                    "s8-gemini-title": "Gemini (Google)",
+                    "s8-gemini-badge": "SEO · Bildanalyse · Review",
+                    "s8-gemini-desc": "Die Integration in das Google-Ökosystem und der Echtzeit-Webzugriff sind starke Waffen. Bei PACDI haben wir es für SEO-Optimierung, og:image-Erstellung und das Review bestehender Seiten genutzt. Wenn man eine Datei hochlädt und fragt 'was fehlt?', arbeitet es gut. Aber manchmal etwas zu verallgemeinernd – 'tolle Seite, fügen Sie das hinzu' ist häufig.",
+                    "s8-gemini-pro": "✓ Stärken",
+                    "s8-gemini-pro-text": "Echtzeitsuche, Bild+Text, Google-Suche-Integration, SEO-Empfehlungen",
+                    "s8-gemini-cons": "△ Vorsicht",
+                    "s8-gemini-cons-text": "Inkonsistent – auf dieselbe Frage gibt es in verschiedenen Sitzungen unterschiedliche Antworten, manchmal zu optimistische Bewertung",
+                    "s8-chatgpt-title": "ChatGPT (OpenAI)",
+                    "s8-chatgpt-badge": "Allzweck · Kreatives Schreiben",
+                    "s8-chatgpt-desc": "Das Tool, das die Tür zur KI-Welt für die breite Öffentlichkeit geöffnet und diese Demokratisierung ermöglicht hat. Es verdient Respekt. Im PACDI-Prozess haben wir es gelegentlich für kreative Inhalte und Brainstorming genutzt. Bei langen und technischen Projekten ist die Sitzungskontinuität jedoch problematisch – der Kontext muss jedes Mal neu aufgebaut werden.",
+                    "s8-chatgpt-pro": "✓ Stärken",
+                    "s8-chatgpt-pro-text": "Kreatives Schreiben, breites Themenspektrum, Plugin-Ökosystem, Benutzerfreundlichkeit",
+                    "s8-chatgpt-cons": "△ Vorsicht",
+                    "s8-chatgpt-cons-text": "Kontextverlust bei langen Projekten, manchmal zu wortreich – Tendenz, wenig mit vielen Worten zu erklären",
+                    "s8-copilot-title": "GitHub Copilot (Microsoft)",
+                    "s8-copilot-badge": "IDE-Integration · Technische Fixes",
+                    "s8-copilot-desc": "Mit seiner Präsenz in VS Code verdient er den Spitznamen 'fliegender Händler' – er macht Vorschläge, ohne gefragt zu werden, manchmal richtig, manchmal irrelevant. Die Integration in GitHub Actions und das Repo-Management sind wertvoll. Für plattformspezifische technische Probleme wie das iOS-Kamera-Problem sind wir noch in der Testphase. Ergebnisse folgen.",
+                    "s8-copilot-pro": "✓ Stärken",
+                    "s8-copilot-pro-text": "IDE-Integration, GitHub Actions, repo-basierter Kontext, technische Code-Vervollständigung",
+                    "s8-copilot-cons": "△ Vorsicht",
+                    "s8-copilot-cons-text": "Keine Strategie – schlägt nur Code vor, sieht nicht das große Ganze, ohne Ihren Kontext geht es verloren",
+                    "s8-orchestra-title": "🎼 PACDI KI-Orchestrierung",
+                    "s8-orchestra-desc": "Keine KI kann alles allein. PACDIs Arbeitsmodell:",
+                    "s8-orchestra-claude": "🧠 <strong style=\"color:var(--gold);\">Claude</strong> → Strategie, Qualitätskontrolle, kritische Entscheidungen, rechtliche Struktur",
+                    "s8-orchestra-deepseek": "⚡ <strong style=\"color:#60a5fa;\">DeepSeek</strong> → Code-Generierung, HTML, Content-Duplikation, geschwindigkeitsintensive Aufgaben",
+                    "s8-orchestra-gemini": "🔮 <strong style=\"color:#4ade80;\">Gemini</strong> → SEO, Bildanalyse, Seiten-Review, aktuelle Web-Recherche",
+                    "s8-orchestra-copilot": "🛠️ <strong style=\"color:#94a3b8;\">Copilot</strong> → Plattformspezifische technische Fixes (in der Testphase)",
+                    "s9-title": "Echte Fallstudien",
+                    "s9-sub": "Ausgewählte reale Fälle aus dem PACDI-Entwicklungsprozess. Erfolge und Fehler sind gleichermaßen lehrreich.",
+                    "s9-case1-title": "📁 Fall 1: Halluzination – KI glaubt an ihre eigene Erfindung",
+                    "s9-case1-text": "Einem bekannten KI-Tool wurde die Datei pacdi.eu gezeigt. Statt sie wirklich zu lesen, griff es auf medizinische Fachliteratur zurück und erklärte minutenlang <em>Krankenhaus-Entlassungsautomatisierung</em>. Nach einem Hinweis erfand es eine völlig andere Geschichte: <em>\"Pusula Akademik Kariyer\"</em>. Erst als ein echter Screenshot vorgelegt wurde, hörte es auf.",
+                    "s9-case1-moral": "<strong>Lektion:</strong> KI ist eine enorme Kraft – aber blind vertraut kann sie selbst den professionellsten Menschen in den falschen Flieger setzen. Überprüfen Sie daher jede Ausgabe – besonders bei Behördenkorrespondenz.",
+                    "s9-case1-note": "💡 Die betreffende KI hat den Fehler offen eingestanden – das ist ihre Stärke. Aber Fehler einzugestehen heißt nicht, keine Fehler zu machen.",
+                    "s9-case2-title": "📁 Fall 2: iOS-Kamera – Lösung nach 12 Versuchen",
+                    "s9-case2-text": "Für das DGUV V3 Prüfprotokoll wurde ein QR-Code-Scanner benötigt. Ein scheinbar einfacher Job. Aber iOS Safari, html5-qrcode, BarcodeDetector, getUserMedia, ZXing, facingMode string/object/ideal Kombinationen... mal öffnete sich die Frontkamera, mal gar keine, mal öffnete sie sich, konnte aber nicht lesen. Claude, DeepSeek und Gemini probierten es nacheinander. Flutter wurde vorgeschlagen. Nach 12 Iterationen war die Lösung überraschend einfach: <em>facingMode: \"environment\"</em> – einfacher String, kein Objekt, kein getCameras(). Versteckt in einem einfachen Code-Snippet von Gemini.",
+                    "s9-case2-moral": "<strong>Lektion:</strong> Manchmal liegt die Antwort auf das komplexeste Problem in der einfachsten Zeile. Und manchmal kommt die richtige Antwort von einer unerwarteten Stelle. Deshalb ist KI-Orchestrierung wichtig – beschränken Sie sich nicht auf ein einziges Tool.",
+                    "s9-case2-note": "💡 Den Code für die Lösung lieferte Gemini, aber das System verstand und die Iterationen steuerte Claude.",
+                    "s9-case3-title": "📁 Fall 3: inject.py – Eine Datei, 20 Seiten",
+                    "s9-case3-text": "Im PACDI-Ökosystem gibt es etwa 20 GitHub Pages-Seiten. Jede musste mit GA4, AdSense, canonical URL, FSEK-Footer und ASCII-Siegel versehen werden. Manuell hätte das Tage gedauert und Inkonsistenzen wären unvermeidlich gewesen. Lösung: ein Python-Skript. inject.py liest jede HTML-Datei, fügt Fehlendes hinzu, wiederholt Vorhandenes nicht (idempotent). Mit GitHub Actions läuft es bei jedem Push automatisch. 20 Repos – standardisiert.",
+                    "s9-case3-moral": "<strong>Lektion:</strong> Automatisieren Sie repetitive Aufgaben mit KI. Aber verstehen Sie zuerst das System – bevor Sie der KI sagen \"mach das\", beantworten Sie selbst die Frage \"warum machen wir das?\".",
+                    "s9-case3-note": "💡 Die erste Version von inject.py schrieb Claude, DeepSeek verbesserte sie, Fehler wurden von Claudes Qualitätskontrolle gefangen.",
+                    "s9-case4-title": "📁 Fall 4: Zwei-Firmen-IP-Architektur",
+                    "s9-case4-text": "Mit dem Wachstum von PACDI wurde die rechtliche Struktur kritisch. Eine einzelne Firma für operative Verantwortung und IP-Management ist riskant. Lösung: zwei separate türkische Firmen – AskMeAI Teknoloji (operativ, verantwortlich gegenüber dem Nutzer) und PACDI Global Yazılım (IP-Holding, FSEK-Registrierung). Diese Struktur haben wir gemeinsam mit Claude entworfen, Vor- und Risiken diskutiert und in legal.html abgebildet. Kein anderes KI-Tool war in dieser Komplexität für eine konsistente Rechtsarchitektur so zuverlässig wie Claude.",
+                    "s9-case4-moral": "<strong>Lektion:</strong> Wählen Sie für rechtliche und strategische Entscheidungen die beste KI. Nicht Geschwindigkeit, sondern Genauigkeit ist Ihre Priorität. Solche Entscheidungen sind nicht rückgängig zu machen.",
+                    "s9-case4-note": "💡 Die Firmenregistrierungen wurden im Juni 2026 bei der Manisa TSO abgeschlossen. Die digitale Infrastruktur wurde mit Claude, die offiziellen Verfahren mit fachkundigen Beratern durchgeführt.",
+                    "share-text": "🚀 Machen Sie diesen Leitfaden auch Ihren Kollegen zugänglich:",
+                    "copy-link-text": "Link kopieren",
+                    "cta-title": "🚀 Brauchen Sie weitere Hilfe?",
+                    "cta-desc": "PACDI Digital Studio bietet Ihnen maßgeschneiderte KI-Lösungen. Kontaktieren Sie uns, um Ihre Arbeitsabläufe zu optimieren.",
+                    "cta-btn": "📩 Kontakt zu PACDI"
+                },
+                en: {
+                    "search-placeholder": "🔍 Search the guide... (e.g. Widerspruch, Translation, Jobcenter)",
+                    "nav-baslik": "Quick Navigation",
+                    "nav-nedir": "🧠 What is AI?",
+                    "nav-prompt": "✍️ Prompt Rules",
+                    "nav-kurumsal": "📨 Official Templates",
+                    "nav-ceviri": "🌐 Translation & Summary",
+                    "nav-araclar": "🛠️ Tools",
+                    "nav-uyarilar": "⚠️ Critical Warnings",
+                    "nav-promptlar": "📋 First 5 Prompts",
+                    "nav-sss": "❓ FAQ",
+                    "nav-ajanlar": "🤖 AI Agents",
+                    "nav-vakalar": "📊 Case Studies",
+                    "s8-title": "AI Agents — What We Really Think",
+                    "s8-sub": "During the development of the PACDI ecosystem, we worked intensively with every major AI. This assessment is not advertising – it is a summary of months of real-world experience.",
+                    "s8-claude-title": "Claude (Anthropic)",
+                    "s8-claude-badge": "Strategy · Analysis · Quality Control",
+                    "s8-claude-desc": "The 'chief advisor' of the PACDI ecosystem. He is best at understanding long and complex topics. Legal document structuring, two-company IP architecture, inject.py strategy, legal.html standardization – Claude was involved in all of them. He doesn't just write code, he also thinks along with you <em>why we should do it this way</em>.",
+                    "s8-claude-pro": "✓ Strengths",
+                    "s8-claude-pro-text": "Long-text analysis, strategy, consistency, clear ethical boundaries, never flattering",
+                    "s8-claude-cons": "△ Caution",
+                    "s8-claude-cons-text": "Sometimes overly cautious, not as fast as DeepSeek in code generation – but he says things thoughtfully",
+                    "s8-claude-quote": "\"I have not a single negative thought about Claude. I would never have imagined working with an AI so honestly, productively and reliably. No ego, endless patience, admits mistakes and stays focused.\" – Founder of the PACDI ecosystem",
+                    "s8-deepseek-title": "DeepSeek",
+                    "s8-deepseek-badge": "Code · HTML · Content Creation",
+                    "s8-deepseek-desc": "PACDI's 'code machine'. 35 blog posts, dozens of HTML pages, complex JavaScript modules – DeepSeek produces fast, efficiently and without complaint. Especially unbeatable for repetitive and pattern-based tasks. At the end of the day, when the token limit is reached, we switch to Claude; in the morning, we continue with DeepSeek.",
+                    "s8-deepseek-pro": "✓ Strengths",
+                    "s8-deepseek-pro-text": "Code speed, HTML production, content duplication, free, China-based – different perspective",
+                    "s8-deepseek-cons": "△ Caution",
+                    "s8-deepseek-cons-text": "Weak in long-term strategy and nuanced legal texts, sometimes too compliant – agrees without criticism",
+                    "s8-gemini-title": "Gemini (Google)",
+                    "s8-gemini-badge": "SEO · Image Analysis · Review",
+                    "s8-gemini-desc": "Integration with the Google ecosystem and real-time web access are strong assets. At PACDI, we used it for SEO optimization, og:image generation, and reviewing existing pages. It works well when you upload a file and ask 'what's missing?'. But sometimes a bit too general – 'great page, add this' is common.",
+                    "s8-gemini-pro": "✓ Strengths",
+                    "s8-gemini-pro-text": "Real-time search, image+text, Google Search integration, SEO recommendations",
+                    "s8-gemini-cons": "△ Caution",
+                    "s8-gemini-cons-text": "Inconsistent – different answers to the same question across sessions, sometimes overly optimistic assessment",
+                    "s8-chatgpt-title": "ChatGPT (OpenAI)",
+                    "s8-chatgpt-badge": "General Purpose · Creative Writing",
+                    "s8-chatgpt-desc": "The tool that opened the door to the AI world for the general public and democratized this field. It deserves respect. In the PACDI process, we occasionally used it for creative content and brainstorming. However, for long and technical projects, session continuity is problematic – context must be rebuilt each time.",
+                    "s8-chatgpt-pro": "✓ Strengths",
+                    "s8-chatgpt-pro-text": "Creative writing, wide range of topics, plugin ecosystem, ease of use",
+                    "s8-chatgpt-cons": "△ Caution",
+                    "s8-chatgpt-cons-text": "Context loss in long projects, sometimes too wordy – tendency to explain little with many words",
+                    "s8-copilot-title": "GitHub Copilot (Microsoft)",
+                    "s8-copilot-badge": "IDE Integration · Technical Fixes",
+                    "s8-copilot-desc": "With its presence in VS Code, it deserves the nickname 'itinerant salesman' – suggests without being asked, sometimes right, sometimes irrelevant. Its integration with GitHub Actions and repo management is valuable. For platform-specific technical issues like the iOS camera problem, we are still in the testing phase. Results to follow.",
+                    "s8-copilot-pro": "✓ Strengths",
+                    "s8-copilot-pro-text": "IDE integration, GitHub Actions, repo-based context, technical code completion",
+                    "s8-copilot-cons": "△ Caution",
+                    "s8-copilot-cons-text": "No strategy – only suggests code, doesn't see the big picture, gets lost without your context",
+                    "s8-orchestra-title": "🎼 PACDI AI Orchestration",
+                    "s8-orchestra-desc": "No single AI can do everything alone. PACDI's working model:",
+                    "s8-orchestra-claude": "🧠 <strong style=\"color:var(--gold);\">Claude</strong> → Strategy, quality control, critical decisions, legal structure",
+                    "s8-orchestra-deepseek": "⚡ <strong style=\"color:#60a5fa;\">DeepSeek</strong> → Code generation, HTML, content duplication, speed-intensive tasks",
+                    "s8-orchestra-gemini": "🔮 <strong style=\"color:#4ade80;\">Gemini</strong> → SEO, image analysis, page review, current web research",
+                    "s8-orchestra-copilot": "🛠️ <strong style=\"color:#94a3b8;\">Copilot</strong> → Platform-specific technical fixes (in testing)",
+                    "s9-title": "Real Case Studies",
+                    "s9-sub": "Selected real cases from the PACDI development process. Both successes and errors are instructive.",
+                    "s9-case1-title": "📁 Case 1: Hallucination – AI Believes Its Own Fabrication",
+                    "s9-case1-text": "A popular AI tool was shown the pacdi.eu file. Instead of actually reading it, it memorized the word 'PACDI' from medical literature and explained <em>hospital discharge and clinical care automation</em> for minutes. After being warned, it invented a completely different scenario: <em>'Pusula Akademik Kariyer'</em>. Only when a real screenshot was placed in front of it did it stop.",
+                    "s9-case1-moral": "<strong>Lesson:</strong> AI is a massive force – but if you trust it blindly, it can put even the most professional person on the wrong plane. Therefore, always verify every output – especially in official correspondence.",
+                    "s9-case1-note": "💡 The AI in question openly admitted the error – that is its strength. But admitting a mistake does not mean not making mistakes.",
+                    "s9-case2-title": "📁 Case 2: iOS Camera – Solution After 12 Attempts",
+                    "s9-case2-text": "A QR code scanner was needed for the DGUV V3 Prüfprotokoll. Seemingly a simple task. But iOS Safari, html5-qrcode, BarcodeDetector, getUserMedia, ZXing, facingMode string/object/ideal combinations... sometimes the front camera opened, sometimes none, sometimes it opened but couldn't read. Claude, DeepSeek and Gemini tried one after another. Flutter was suggested. After 12 iterations, the solution was surprisingly simple: <em>facingMode: \"environment\"</em> – plain string, no object, no getCameras(). Hidden in a simple code snippet shared by Gemini.",
+                    "s9-case2-moral": "<strong>Lesson:</strong> Sometimes the answer to the most complex problem is in the simplest line. And sometimes the right answer comes from an unexpected place. That is why AI orchestration is important – don't limit yourself to a single tool.",
+                    "s9-case2-note": "💡 Gemini provided the solution code, but it was Claude who understood the system and managed the iterations.",
+                    "s9-case3-title": "📁 Case 3: inject.py – One File, 20 Sites",
+                    "s9-case3-text": "The PACDI ecosystem has about 20 GitHub Pages sites. Each needed GA4, AdSense, canonical URL, FSEK footer and ASCII seal. Doing it manually would have taken days and inconsistencies would have been inevitable. Solution: a Python script. inject.py reads each HTML file, adds what's missing, doesn't repeat what's already there (idempotent). With GitHub Actions, it runs automatically on every push. 20 repos – standardized.",
+                    "s9-case3-moral": "<strong>Lesson:</strong> Automate repetitive tasks with AI. But first understand the system – before you tell the AI 'do this', answer the question 'why are we doing this' yourself.",
+                    "s9-case3-note": "💡 Claude wrote the first version of inject.py, DeepSeek improved it, errors were caught by Claude's quality control.",
+                    "s9-case4-title": "📁 Case 4: Two-Company IP Architecture",
+                    "s9-case4-text": "As PACDI grew, the legal structure became critical. Having a single company for both operational responsibility and IP management is risky. Solution: two separate Turkish companies – AskMeAI Teknoloji (operational, responsible to the user) and PACDI Global Yazılım (IP holding, FSEK registration). We designed this structure together with Claude, discussed advantages and risks, and reflected it in legal.html. No other AI tool was as reliable as Claude for a consistent legal architecture at this complexity.",
+                    "s9-case4-moral": "<strong>Lesson:</strong> For legal and strategic decisions, choose the best AI. Not speed, but accuracy should be your priority. Such decisions cannot be undone.",
+                    "s9-case4-note": "💡 Company registrations were completed in June 2026 at Manisa TSO. The digital infrastructure was handled with Claude, official procedures with expert consultants.",
+                    "share-text": "🚀 Share this guide with your colleagues:",
+                    "copy-link-text": "Copy Link",
+                    "cta-title": "🚀 Need more help?",
+                    "cta-desc": "PACDI Digital Studio offers customized AI solutions for you. Contact us to optimize your workflows.",
+                    "cta-btn": "📩 Contact PACDI"
+                }
+            };
+
+            // ———— DOM refs ————
+            var langBtns = document.querySelectorAll('.lang-btn');
+            var promptTabs = document.querySelectorAll('.prompt-tab');
+            var promptGroups = document.querySelectorAll('.prompt-lang-group');
+            var i18nElements = document.querySelectorAll('[data-i18n]');
+            var themeToggle = document.getElementById('themeToggle');
+            var htmlEl = document.documentElement;
+            var navLinks = document.querySelectorAll('.nav-link');
+            var sections = document.querySelectorAll('.section, #faq');
+
+            // ———— Tema işlemleri ————
+            function setTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                localStorage.setItem('pacdi-theme', theme);
+                themeToggle.textContent = theme === 'dark' ? '☀️' : '🌗';
+            }
+
+            function toggleTheme() {
+                var current = htmlEl.getAttribute('data-theme') || 'light';
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            }
+
+            var savedTheme = localStorage.getItem('pacdi-theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+
+            // ———— Dil işlemleri ————
+            function applyLanguage(lang) {
+                var t = i18n[lang];
+                if (!t) return;
+                for (var i = 0; i < i18nElements.length; i++) {
+                    var el = i18nElements[i];
+                    var key = el.getAttribute('data-i18n');
+                    if (t[key] !== undefined) {
+                        el.textContent = t[key];
+                    }
+                }
+                // placeholder özel
+                var searchInput = document.getElementById('ai-search');
+                if (searchInput && t['search-placeholder']) {
+                    searchInput.placeholder = t['search-placeholder'];
+                }
+                for (var j = 0; j < langBtns.length; j++) {
+                    var btn = langBtns[j];
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                }
+                var activeTab = document.querySelector('.prompt-tab.active');
+                var currentLang = activeTab ? activeTab.getAttribute('data-prompt-lang') : 'de';
+                if (currentLang !== lang) {
+                    var targetTab = document.querySelector('.prompt-tab[data-prompt-lang="' + lang + '"]');
+                    if (targetTab) setPromptTab(targetTab);
+                }
+                document.documentElement.lang = lang;
+                localStorage.setItem('pacdi-lang', lang);
+            }
+
+            var savedLang = localStorage.getItem('pacdi-lang');
+            if (savedLang && i18n[savedLang]) {
+                applyLanguage(savedLang);
+            } else {
+                applyLanguage('de'); // varsayılan Almanca
+            }
+
+            for (var k = 0; k < langBtns.length; k++) {
+                langBtns[k].addEventListener('click', function(e) {
+                    applyLanguage(this.getAttribute('data-lang'));
+                });
+            }
+
+            // ———— prompt tab switching ————
+            function setPromptTab(tab) {
+                var lang = tab.getAttribute('data-prompt-lang');
+                for (var i = 0; i < promptTabs.length; i++) {
+                    promptTabs[i].classList.remove('active');
+                    promptTabs[i].setAttribute('aria-selected', 'false');
+                }
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                for (var j = 0; j < promptGroups.length; j++) {
+                    promptGroups[j].classList.remove('active');
+                }
+                var targetGroup = document.querySelector('.prompt-lang-group[data-prompt-group="' + lang + '"]');
+                if (targetGroup) targetGroup.classList.add('active');
+            }
+
+            for (var m = 0; m < promptTabs.length; m++) {
+                promptTabs[m].addEventListener('click', function(e) {
+                    setPromptTab(this);
+                });
+            }
+
+            // ———— copy prompt ————
+            window.copyPrompt = function(el) {
+                var card = el.closest('.prompt-card');
+                var textEl = card.querySelector('.p-text');
+                var text = textEl.getAttribute('data-copy') || textEl.textContent.trim();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        var feedback = card.querySelector('.copy-feedback');
+                        if (feedback) {
+                            feedback.classList.add('show');
+                            setTimeout(function() { feedback.classList.remove('show'); }, 2000);
+                        }
+                    })['catch'](function() {
+                        fallbackCopy(text, card);
+                    });
+                } else {
+                    fallbackCopy(text, card);
+                }
+            };
+
+            function fallbackCopy(text, card) {
+                var textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                var feedback = card.querySelector('.copy-feedback');
+                if (feedback) {
+                    feedback.classList.add('show');
+                    setTimeout(function() { feedback.classList.remove('show'); }, 2000);
+                }
+            }
+
+            // ———— FAQ toggle ————
+            window.toggleFaq = function(el) {
+                var answer = el.parentElement.querySelector('.faq-a');
+                var icon = el.querySelector('.toggle-icon');
+                if (answer) {
+                    answer.classList.toggle('open');
+                    icon.textContent = answer.classList.contains('open') ? '▴' : '▾';
+                }
+            };
+
+            // ———— Progress bar ————
+            function updateProgress() {
+                var scrollTop = window.scrollY;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                var bar = document.getElementById('progress-bar');
+                if (bar) {
+                    bar.style.width = progress + '%';
+                    bar.setAttribute('aria-valuenow', Math.round(progress));
+                }
+            }
+
+            // ———— Back to Top ————
+            function toggleBackToTop() {
+                var btt = document.getElementById('back-to-top');
+                if (btt) {
+                    btt.style.display = window.scrollY > 500 ? 'flex' : 'none';
+                }
+            }
+
+            // ———— Sticky Container Shadow & Top ————
+            var stickyContainer = document.getElementById('stickyContainer');
+            var header = document.getElementById('site-header');
+
+            function updateStickyTop() {
+                if (stickyContainer && header) {
+                    var headerHeight = header.offsetHeight;
+                    stickyContainer.style.top = headerHeight + 'px';
+                }
+            }
+
+            function toggleStickyShadow() {
+                if (stickyContainer) {
+                    var rect = stickyContainer.getBoundingClientRect();
+                    if (rect.top <= (header ? header.offsetHeight : 0) + 5) {
+                        stickyContainer.classList.add('scrolled');
+                    } else {
+                        stickyContainer.classList.remove('scrolled');
+                    }
+                }
+            }
+
+            // ———— Scroll Spy ————
+            function updateScrollSpy() {
+                var current = '';
+                var scrollPos = window.scrollY + 150;
+
+                sections.forEach(function(section) {
+                    var top = section.offsetTop;
+                    var height = section.offsetHeight;
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        current = section.id;
+                    }
+                });
+
+                navLinks.forEach(function(link) {
+                    link.classList.remove('nav-link-active');
+                    if (link.getAttribute('data-target') === current) {
+                        link.classList.add('nav-link-active');
+                    }
+                });
+            }
+
+            // ———— scroll listener ————
+            var scrollTimeout;
+            window.addEventListener('scroll', function() {
+                updateProgress();
+                toggleBackToTop();
+                toggleStickyShadow();
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(function() {
+                        updateScrollSpy();
+                        scrollTimeout = null;
+                    }, 100);
+                }
+            });
+            window.addEventListener('resize', function() {
+                updateProgress();
+                updateStickyTop();
+            });
+            updateProgress();
+            updateStickyTop();
+            updateScrollSpy();
+
+            // ———— PDF save ————
+            window.saveAsPdf = function() {
+                document.title = 'PACDI_Yapay_Zeka_Rehberi';
+                window.print();
+            };
+
+            // ———— Arama Filtresi ————
+            var searchInput = document.getElementById('ai-search');
+            var searchTimeout;
+
+            function clearHighlights() {
+                var marks = document.querySelectorAll('mark');
+                marks.forEach(function(m) {
+                    var parent = m.parentNode;
+                    parent.replaceChild(document.createTextNode(m.textContent), m);
+                    parent.normalize();
+                });
+            }
+
+            function highlightText(node, query) {
+                if (node.nodeType === 3) {
+                    var text = node.textContent;
+                    var index = text.toLowerCase().indexOf(query);
+                    if (index > -1) {
+                        var span = document.createElement('span');
+                        var before = document.createTextNode(text.substring(0, index));
+                        var mark = document.createElement('mark');
+                        mark.textContent = text.substring(index, index + query.length);
+                        var after = document.createTextNode(text.substring(index + query.length));
+                        span.appendChild(before);
+                        span.appendChild(mark);
+                        span.appendChild(after);
+                        node.parentNode.replaceChild(span, node);
+                        return true;
+                    }
+                } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                    for (var i = 0; i < node.childNodes.length; i++) {
+                        if (highlightText(node.childNodes[i], query)) return true;
+                    }
+                }
+                return false;
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    var query = e.target.value.toLowerCase().trim();
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(function() {
+                        clearHighlights();
+
+                        var cards = document.querySelectorAll('.prompt-card, .example-item, .card');
+                        for (var i = 0; i < cards.length; i++) {
+                            var card = cards[i];
+                            if (card.contains(searchInput)) continue;
+                            if (card.querySelector('h4') && card.textContent.indexOf('Navigasyon') > -1) continue;
+                            var text = card.textContent.toLowerCase();
+                            if (text.indexOf(query) > -1) {
+                                card.style.display = '';
+                                if (query.length > 1) {
+                                    var targetNodes = card.querySelectorAll('.p-text, .ex-title, .ex-desc, .card p, .card h3');
+                                    targetNodes.forEach(function(el) {
+                                        highlightText(el, query);
+                                    });
+                                }
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    }, 300);
+                });
+            }
+
+            // ———— Link Kopyala ————
+            window.copyLink = function(btn) {
+                var textEl = document.getElementById('copy-link-text');
+                var url = 'https://pacdi.eu';
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        textEl.textContent = '✓ Kopyalandı!';
+                        setTimeout(function() { textEl.textContent = 'Link Kopyala'; }, 2000);
+                    })['catch'](function() {
+                        fallbackCopyUrl(url, textEl);
+                    });
+                } else {
+                    fallbackCopyUrl(url, textEl);
+                }
+            };
+
+            function fallbackCopyUrl(url, textEl) {
+                var textarea = document.createElement('textarea');
+                textarea.value = url;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                textEl.textContent = '✓ Kopyalandı!';
+                setTimeout(function() { textEl.textContent = 'Link Kopyala'; }, 2000);
+            }
+
+            // ––– Hamburger Nav Toggle –––
+            window.toggleNav = function() {
+                var btn = document.getElementById('navToggleBtn');
+                var wrap = document.getElementById('navLinksWrap');
+                var isOpen = wrap.classList.contains('open');
+                if (isOpen) {
+                    wrap.classList.remove('open');
+                    btn.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                } else {
+                    wrap.classList.add('open');
+                    btn.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            };
+
+        })();
+    </script>
+
+</body>
+</html>
