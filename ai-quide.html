@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<!--
+╔═══════════════════════════════════════════════════════════════╗
+║         🛡️  PACDI FRAMEWORK — PROTECTED WORK                  ║
+║  © 2026 PACDI Global Yazılım Ltd. Şti.                       ║
+║  FSEK Registration No : 2026/18897                            ║
+╚═══════════════════════════════════════════════════════════════╝
+-->
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KI-Leitfaden / Yapay Zeka Rehberi / AI Guide | PACDI</title>
+    <meta name="description" content="Günlük hayatta yapay zeka rehberi — KI-Leitfaden für den Alltag — AI Guide for everyone. TR / DE / EN">
+    <link rel="canonical" href="https://pacdi.eu/ai-guide.html">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E6ML8EDW0H"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-E6ML8EDW0H");</script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0d1b35;
+            color: #e8edf2;
+            line-height: 1.75;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: rgba(13,27,53,0.97);
+            border-bottom: 1px solid rgba(129,140,248,0.15);
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 54px;
+        }
+        .logo { color: #818cf8; font-weight: 800; font-size: 1rem; text-decoration: none; }
+        .logo span { color: #e8edf2; }
+        .lang-switch { display: flex; gap: 6px; }
+        .lang-btn {
+            background: rgba(129,140,248,0.08);
+            border: 1px solid rgba(129,140,248,0.2);
+            color: #818cf8;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .lang-btn.active, .lang-btn:hover {
+            background: #818cf8;
+            color: #0d1b35;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #0d1b35 0%, #1a1060 100%);
+            padding: 72px 24px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(129,140,248,0.12) 0%, transparent 70%);
+        }
+        .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(129,140,248,0.1);
+            border: 1px solid rgba(129,140,248,0.25);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 0.72rem;
+            color: #818cf8;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .hero h1 span { color: #818cf8; }
+        .hero-sub {
+            font-size: 0.95rem;
+            color: #7a9ab8;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        .hero-langs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .hero-lang-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            color: #b0b5bf;
+        }
+
+        /* ── MAIN ── */
+        main { max-width: 1000px; margin: 0 auto; padding: 48px 24px 80px; }
+
+        /* Section */
+        .section { margin-bottom: 56px; }
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #818cf8;
+            margin-bottom: 12px;
+        }
+        .section h2 {
+            font-size: 1.4rem;
+            color: #e8edf2;
+            margin-bottom: 8px;
+        }
+        .section-desc {
+            font-size: 0.88rem;
+            color: #7a9ab8;
+            margin-bottom: 24px;
+            max-width: 600px;
+        }
+
+        /* Tool cards */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+        }
+        .tool-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(129,140,248,0.1);
+            border-radius: 14px;
+            padding: 20px;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+        .tool-card:hover {
+            border-color: #818cf8;
+            background: rgba(129,140,248,0.05);
+            transform: translateY(-2px);
+        }
+        .tool-icon { font-size: 1.5rem; margin-bottom: 10px; }
+        .tool-name { font-size: 0.95rem; font-weight: 700; color: #e8edf2; margin-bottom: 4px; }
+        .tool-desc { font-size: 0.8rem; color: #7a9ab8; line-height: 1.5; margin-bottom: 10px; }
+        .tool-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tool-tag {
+            background: rgba(129,140,248,0.08);
+            border: 1px solid rgba(129,140,248,0.15);
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.65rem;
+            color: #818cf8;
+        }
+        .tool-tag.free { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.2); color: #22c55e; }
+        .tool-tag.paid { background: rgba(246,180,95,0.08); border-color: rgba(246,180,95,0.2); color: #F6B45F; }
+
+        /* Tip boxes */
+        .tip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+        .tip-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(129,140,248,0.08);
+            border-left: 3px solid #818cf8;
+            border-radius: 10px;
+            padding: 16px 18px;
+        }
+        .tip-card h3 { font-size: 0.85rem; color: #c8cdd5; margin-bottom: 8px; }
+        .tip-card p { font-size: 0.8rem; color: #7a9ab8; line-height: 1.6; }
+        .tip-card code {
+            display: block;
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.78rem;
+            color: #a5b4fc;
+            margin-top: 8px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+
+        /* PACDI Products */
+        .pacdi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+        .pacdi-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(129,140,248,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .pacdi-card:hover { border-color: rgba(129,140,248,0.4); background: rgba(129,140,248,0.04); }
+        .pacdi-card-name { font-size: 0.9rem; font-weight: 700; color: #e8edf2; margin-bottom: 4px; }
+        .pacdi-card-url { font-size: 0.7rem; color: #818cf8; margin-bottom: 6px; }
+        .pacdi-card-desc { font-size: 0.78rem; color: #6B7280; line-height: 1.5; }
+
+        /* Comparison table */
+        .compare-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        .compare-table th {
+            background: rgba(129,140,248,0.08);
+            color: #818cf8;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .compare-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #b0b5bf; }
+        .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .yes { color: #22c55e; }
+        .no { color: #f87171; }
+        .partial { color: #F6B45F; }
+
+        /* CTA */
+        .cta-block {
+            background: linear-gradient(135deg, rgba(129,140,248,0.08), rgba(129,140,248,0.02));
+            border: 1px solid rgba(129,140,248,0.2);
+            border-radius: 16px;
+            padding: 36px;
+            text-align: center;
+            margin-top: 48px;
+        }
+        .cta-block h2 { font-size: 1.3rem; color: #e8edf2; margin-bottom: 10px; }
+        .cta-block p { font-size: 0.88rem; color: #7a9ab8; margin-bottom: 20px; }
+        .cta-btn {
+            display: inline-block;
+            background: #818cf8;
+            color: #0d1b35;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .cta-btn:hover { background: #a5b4fc; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(129,140,248,0.08);
+            padding: 24px;
+            text-align: center;
+            font-size: 0.72rem;
+            color: #4a6a88;
+        }
+        footer a { color: rgba(129,140,248,0.5); text-decoration: none; margin: 0 8px; }
+        footer a:hover { color: #818cf8; }
+
+        /* Lang sections */
+        .lang-section { display: none; }
+        .lang-section.active { display: block; }
+
+        @media (max-width: 600px) {
+            .hero { padding: 48px 16px 36px; }
+            main { padding: 32px 16px 60px; }
+            .tool-grid, .tip-grid, .pacdi-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="https://pacdi.eu" class="logo">PACDI<span>.eu</span></a>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('tr')">TR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">&#129302; KI-Leitfaden &middot; Yapay Zeka Rehberi &middot; AI Guide</div>
+    <h1>Künstliche Intelligenz<br><span>für den Alltag</span></h1>
+    <p class="hero-sub" id="hero-sub">Welche KI-Tools gibt es? Wie nutzt man sie richtig? Was macht PACDI mit KI? &mdash; Auf Deutsch, Türkisch und Englisch.</p>
+    <div class="hero-langs">
+      <div class="hero-lang-tag">&#127465;&#127466; Deutsch</div>
+      <div class="hero-lang-tag">&#127481;&#127479; Türkçe</div>
+      <div class="hero-lang-tag">&#127468;&#127463; English</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════ DEUTSCH ═══════ -->
+<div class="lang-section active" id="lang-de">
+
+  <!-- 1. Was ist KI -->
+  <div class="section">
+    <div class="section-label">Grundlagen</div>
+    <h2>Was ist Künstliche Intelligenz?</h2>
+    <p class="section-desc">KI ist Software, die menschliches Denken nachahmt — Texte schreiben, Bilder erstellen, Fragen beantworten, Muster erkennen. Hier die wichtigsten Tools im Überblick.</p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon">&#129302;</div>
+        <div class="tool-name">ChatGPT</div>
+        <div class="tool-desc">Textgenerierung, Fragen beantworten, Zusammenfassungen, Code schreiben. Der bekannteste KI-Assistent.</div>
+        <div class="tool-tags"><span class="tool-tag free">Kostenlos</span><span class="tool-tag paid">Plus 20$/Mo</span><span class="tool-tag">OpenAI</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#129668;</div>
+        <div class="tool-name">Claude (Anthropic)</div>
+        <div class="tool-desc">Längere Texte, nuancierte Antworten, sicherheitsorientiert. Besonders gut für komplexe Aufgaben und lange Dokumente.</div>
+        <div class="tool-tags"><span class="tool-tag free">Kostenlos</span><span class="tool-tag paid">Pro 20$/Mo</span><span class="tool-tag">Anthropic</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#128269;</div>
+        <div class="tool-name">Gemini (Google)</div>
+        <div class="tool-desc">Google-Integration, Websuche in Echtzeit, multimodal. Gut für aktuelle Informationen und Google Workspace.</div>
+        <div class="tool-tags"><span class="tool-tag free">Kostenlos</span><span class="tool-tag">Google</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#9889;</div>
+        <div class="tool-name">DeepSeek</div>
+        <div class="tool-desc">Leistungsstarke Open-Source-Alternative, besonders gut für Code und technische Aufgaben. Kostenlos nutzbar.</div>
+        <div class="tool-tags"><span class="tool-tag free">Kostenlos</span><span class="tool-tag">Open Source</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#127775;</div>
+        <div class="tool-name">Midjourney / DALL·E</div>
+        <div class="tool-desc">Bilder aus Text erstellen. Logos, Illustrationen, kreative Grafiken — ohne Designkenntnisse.</div>
+        <div class="tool-tags"><span class="tool-tag paid">Ab 10$/Mo</span><span class="tool-tag">Bildgenerierung</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#127908;</div>
+        <div class="tool-name">Whisper / ElevenLabs</div>
+        <div class="tool-desc">Sprache zu Text (Whisper) oder Text zu Sprache (ElevenLabs). Ideal für Transkriptionen und Audioproduktion.</div>
+        <div class="tool-tags"><span class="tool-tag free">Kostenlos</span><span class="tool-tag">Audio</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Prompt Tipps -->
+  <div class="section">
+    <div class="section-label">Prompting</div>
+    <h2>Bessere Ergebnisse mit richtigen Prompts</h2>
+    <p class="section-desc">Ein "Prompt" ist die Anweisung, die Sie der KI geben. Mit diesen Techniken erhalten Sie deutlich bessere Antworten.</p>
+    <div class="tip-grid">
+      <div class="tip-card">
+        <h3>&#127919; Rolle zuweisen</h3>
+        <p>Sagen Sie der KI, wer sie sein soll — dann antwortet sie gezielter.</p>
+        <code>Du bist ein erfahrener Elektriker in Deutschland. Erkläre mir, was eine DGUV V3 Prüfung ist.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#127995; Format vorgeben</h3>
+        <p>Geben Sie das gewünschte Format an — Liste, Tabelle, E-Mail, kurz oder ausführlich.</p>
+        <code>Schreibe mir eine kurze E-Mail (max. 5 Sätze) an meinen Vermieter über eine defekte Heizung.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#128204; Kontext geben</h3>
+        <p>Je mehr Kontext, desto besser die Antwort. Erklären Sie Ihre Situation.</p>
+        <code>Ich lebe seit 3 Jahren in Deutschland, habe 2 Kinder und möchte wissen, ob ich Anspruch auf Kindergeld habe.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#128260; Schritt für Schritt</h3>
+        <p>Für komplexe Aufgaben bitten Sie die KI, Schritt für Schritt vorzugehen.</p>
+        <code>Erkläre mir Schritt für Schritt, wie ich in Deutschland einen Gewerbeschein beantrage.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#127919; Sprache wählen</h3>
+        <p>KI antwortet in der Sprache, in der Sie fragen — oder Sie geben es explizit an.</p>
+        <code>Bitte antworte auf Deutsch. / Lütfen Türkçe yanıtla. / Please respond in English.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#9999;&#65039; Korrektur bitten</h3>
+        <p>Lassen Sie Texte prüfen, verbessern oder vereinfachen.</p>
+        <code>Verbessere diesen Text grammatikalisch und mache ihn formeller: [Ihr Text hier]</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PACDI & KI -->
+  <div class="section">
+    <div class="section-label">PACDI &amp; KI</div>
+    <h2>Wie PACDI Künstliche Intelligenz einsetzt</h2>
+    <p class="section-desc">Alle PACDI-Produkte wurden mit KI-Unterstützung entwickelt und nutzen KI, um Ihren Alltag zu vereinfachen.</p>
+    <div class="pacdi-grid">
+      <a href="https://pacdi.store/pruefprotokoll.html" class="pacdi-card">
+        <div class="pacdi-card-name">&#9889; DGUV Prüfprotokoll</div>
+        <div class="pacdi-card-url">pacdi.store</div>
+        <div class="pacdi-card-desc">KI-gestützte Fristenberechnung, automatische Formularausfüllung, PDF-Export in 2 Minuten.</div>
+      </a>
+      <a href="https://wasstehtmirzu.com" class="pacdi-card">
+        <div class="pacdi-card-name">&#128196; WasStehtMirZu</div>
+        <div class="pacdi-card-url">wasstehtmirzu.com</div>
+        <div class="pacdi-card-desc">KI erklärt deutsche Sozialleistungen verständlich — auf Türkisch und Deutsch.</div>
+      </a>
+      <a href="https://easygov.io" class="pacdi-card">
+        <div class="pacdi-card-name">&#127968; EasyGov</div>
+        <div class="pacdi-card-url">easygov.io</div>
+        <div class="pacdi-card-desc">Mehrsprachiger Ratgeber für Bürokratie und Behördengänge in Deutschland.</div>
+      </a>
+      <a href="https://silvercompass.world" class="pacdi-card">
+        <div class="pacdi-card-name">&#129517; SilverCompass</div>
+        <div class="pacdi-card-url">silvercompass.world</div>
+        <div class="pacdi-card-desc">KI-gestützte kognitive Übungen für Senioren — Gedächtnis, Aufmerksamkeit, Logik.</div>
+      </a>
+      <a href="https://pacdi.games" class="pacdi-card">
+        <div class="pacdi-card-name">&#127918; PACDI Games</div>
+        <div class="pacdi-card-url">pacdi.games</div>
+        <div class="pacdi-card-desc">Lernspiele und Denktraining — KI-generierte Inhalte, mehrsprachig.</div>
+      </a>
+      <a href="https://pacdi.store/qr.html" class="pacdi-card">
+        <div class="pacdi-card-name">&#9643; QR &amp; Barcode</div>
+        <div class="pacdi-card-url">pacdi.store</div>
+        <div class="pacdi-card-desc">Intelligenter QR-Generator mit Barcode-Erkennung und PDF-Export.</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 4. Vergleich -->
+  <div class="section">
+    <div class="section-label">Vergleich</div>
+    <h2>KI-Tools im Vergleich</h2>
+    <p class="section-desc">Welches Tool eignet sich wofür? Eine schnelle Übersicht.</p>
+    <div style="overflow-x:auto;">
+    <table class="compare-table">
+      <tr><th>Tool</th><th>Texte</th><th>Code</th><th>Bilder</th><th>Websuche</th><th>Kostenlos</th><th>Deutsch</th></tr>
+      <tr><td><strong>ChatGPT</strong></td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="partial">teilweise</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+      <tr><td><strong>Claude</strong></td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="no">&#10005;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+      <tr><td><strong>Gemini</strong></td><td class="yes">&#10003;</td><td class="partial">teilweise</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+      <tr><td><strong>DeepSeek</strong></td><td class="yes">&#10003;</td><td class="yes">&#10003;</td><td class="no">&#10005;</td><td class="no">&#10005;</td><td class="yes">&#10003;</td><td class="partial">teilweise</td></tr>
+      <tr><td><strong>Midjourney</strong></td><td class="no">&#10005;</td><td class="no">&#10005;</td><td class="yes">&#10003;</td><td class="no">&#10005;</td><td class="no">&#10005;</td><td class="partial">teilweise</td></tr>
+    </table>
+    </div>
+  </div>
+
+</div><!-- /lang-de -->
+
+
+<!-- ═══════ TÜRKÇE ═══════ -->
+<div class="lang-section" id="lang-tr">
+
+  <div class="section">
+    <div class="section-label">Temel Bilgiler</div>
+    <h2>Yapay Zeka Nedir?</h2>
+    <p class="section-desc">Yapay zeka, insan düşüncesini taklit eden yazılımdır — metin yazar, resim üretir, soruları yanıtlar, kalıpları tanır. İşte en önemli araçlara genel bakış.</p>
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon">&#129302;</div>
+        <div class="tool-name">ChatGPT</div>
+        <div class="tool-desc">Metin üretme, soru yanıtlama, özetleme, kod yazma. En bilinen yapay zeka asistanı.</div>
+        <div class="tool-tags"><span class="tool-tag free">Ücretsiz</span><span class="tool-tag paid">Plus 20$/Ay</span><span class="tool-tag">OpenAI</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#129668;</div>
+        <div class="tool-name">Claude (Anthropic)</div>
+        <div class="tool-desc">Uzun metinler, nüanslı yanıtlar, güvenlik odaklı. Karmaşık görevler ve uzun belgeler için özellikle güçlü.</div>
+        <div class="tool-tags"><span class="tool-tag free">Ücretsiz</span><span class="tool-tag paid">Pro 20$/Ay</span><span class="tool-tag">Anthropic</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#128269;</div>
+        <div class="tool-name">Gemini (Google)</div>
+        <div class="tool-desc">Google entegrasyonu, gerçek zamanlı web araması, çok modlu. Güncel bilgiler için ideal.</div>
+        <div class="tool-tags"><span class="tool-tag free">Ücretsiz</span><span class="tool-tag">Google</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#9889;</div>
+        <div class="tool-name">DeepSeek</div>
+        <div class="tool-desc">Güçlü açık kaynak alternatif, özellikle kod ve teknik görevler için mükemmel. Ücretsiz kullanılabilir.</div>
+        <div class="tool-tags"><span class="tool-tag free">Ücretsiz</span><span class="tool-tag">Açık Kaynak</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#127775;</div>
+        <div class="tool-name">Midjourney / DALL·E</div>
+        <div class="tool-desc">Metinden görsel üretme. Logo, illüstrasyon, yaratıcı grafikler — tasarım bilgisi gerekmez.</div>
+        <div class="tool-tags"><span class="tool-tag paid">10$/Aydan</span><span class="tool-tag">Görsel Üretme</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#127908;</div>
+        <div class="tool-name">Whisper / ElevenLabs</div>
+        <div class="tool-desc">Sesten yazıya (Whisper) veya yazıdan sese (ElevenLabs). Transkripsiyon ve ses üretimi için ideal.</div>
+        <div class="tool-tags"><span class="tool-tag free">Ücretsiz</span><span class="tool-tag">Ses</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Prompt Teknikleri</div>
+    <h2>Doğru Promptlarla Daha İyi Sonuçlar</h2>
+    <p class="section-desc">"Prompt" yapay zekaya verdiğiniz talimattır. Bu tekniklerle çok daha iyi yanıtlar alırsınız.</p>
+    <div class="tip-grid">
+      <div class="tip-card">
+        <h3>&#127919; Rol Atama</h3>
+        <p>Yapay zekaya kim olması gerektiğini söyleyin — daha odaklı yanıtlar verir.</p>
+        <code>Sen Almanya'da deneyimli bir iş avukatısın. Bana kıdem tazminatı hakkımı açıkla.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#127995; Format Belirle</h3>
+        <p>İstediğiniz formatı belirtin — liste, tablo, e-posta, kısa veya ayrıntılı.</p>
+        <code>Bana 5 maddeli bir liste yap: Almanya'da ev kiralarken dikkat edilmesi gerekenler.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#128204; Bağlam Ver</h3>
+        <p>Ne kadar çok bağlam verirseniz, yanıt o kadar iyi olur.</p>
+        <code>3 yıldır Almanya'da yaşıyorum, 2 çocuğum var, serbest çalışıyorum. Hangi sosyal yardımlara hak kazanabilirim?</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#128260; Adım Adım İste</h3>
+        <p>Karmaşık görevler için adım adım ilerlemesini isteyin.</p>
+        <code>Almanya'da şirket kurmayı adım adım anlat. Her adımı ayrı bir başlıkla yaz.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#127919; Dil Seçimi</h3>
+        <p>Yapay zeka sorduğunuz dilde yanıt verir — ya da açıkça belirtin.</p>
+        <code>Lütfen Türkçe yanıtla. / Bitte auf Deutsch antworten. / Please respond in English.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#9999;&#65039; Düzeltme İste</h3>
+        <p>Metinleri kontrol ettirin, geliştirin ya da sadeleştirin.</p>
+        <code>Bu Almanca metni dilbilgisi açısından düzelt ve daha resmi hale getir: [metniniz]</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">PACDI &amp; Yapay Zeka</div>
+    <h2>PACDI Yapay Zekayı Nasıl Kullanıyor?</h2>
+    <p class="section-desc">Tüm PACDI ürünleri yapay zeka desteğiyle geliştirildi ve günlük hayatı kolaylaştırmak için yapay zekadan yararlanıyor.</p>
+    <div class="pacdi-grid">
+      <a href="https://pacdi.store/pruefprotokoll.html" class="pacdi-card">
+        <div class="pacdi-card-name">&#9889; DGUV Prüfprotokoll</div>
+        <div class="pacdi-card-url">pacdi.store</div>
+        <div class="pacdi-card-desc">Otomatik süre hesaplama, akıllı form doldurma, 2 dakikada PDF çıktısı.</div>
+      </a>
+      <a href="https://wasstehtmirzu.com" class="pacdi-card">
+        <div class="pacdi-card-name">&#128196; WasStehtMirZu</div>
+        <div class="pacdi-card-url">wasstehtmirzu.com</div>
+        <div class="pacdi-card-desc">Almanya'daki sosyal haklarınızı Türkçe ve Almanca olarak anlıyorsunuz.</div>
+      </a>
+      <a href="https://easygov.io" class="pacdi-card">
+        <div class="pacdi-card-name">&#127968; EasyGov</div>
+        <div class="pacdi-card-url">easygov.io</div>
+        <div class="pacdi-card-desc">Almanya'da bürokrasi ve resmi işlemler için çok dilli rehber.</div>
+      </a>
+      <a href="https://silvercompass.world" class="pacdi-card">
+        <div class="pacdi-card-name">&#129517; SilverCompass</div>
+        <div class="pacdi-card-url">silvercompass.world</div>
+        <div class="pacdi-card-desc">Yaşlılar için yapay zeka destekli bilişsel egzersizler — hafıza, dikkat, mantık.</div>
+      </a>
+      <a href="https://pacdi.games" class="pacdi-card">
+        <div class="pacdi-card-name">&#127918; PACDI Games</div>
+        <div class="pacdi-card-url">pacdi.games</div>
+        <div class="pacdi-card-desc">Yapay zeka üretimli içeriklerle öğrenme oyunları ve zihin egzersizleri.</div>
+      </a>
+      <a href="https://pacdi.store/qr.html" class="pacdi-card">
+        <div class="pacdi-card-name">&#9643; QR &amp; Barkod</div>
+        <div class="pacdi-card-url">pacdi.store</div>
+        <div class="pacdi-card-desc">Akıllı QR üreticisi, barkod okuyucu ve PDF dışa aktarma.</div>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /lang-tr -->
+
+
+<!-- ═══════ ENGLISH ═══════ -->
+<div class="lang-section" id="lang-en">
+
+  <div class="section">
+    <div class="section-label">Basics</div>
+    <h2>What is Artificial Intelligence?</h2>
+    <p class="section-desc">AI is software that mimics human thinking — writing text, generating images, answering questions, recognizing patterns. Here's an overview of the most important tools.</p>
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon">&#129302;</div>
+        <div class="tool-name">ChatGPT</div>
+        <div class="tool-desc">Text generation, Q&amp;A, summaries, code writing. The most well-known AI assistant.</div>
+        <div class="tool-tags"><span class="tool-tag free">Free</span><span class="tool-tag paid">Plus $20/mo</span><span class="tool-tag">OpenAI</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#129668;</div>
+        <div class="tool-name">Claude (Anthropic)</div>
+        <div class="tool-desc">Long-form text, nuanced answers, safety-focused. Particularly strong for complex tasks and long documents.</div>
+        <div class="tool-tags"><span class="tool-tag free">Free</span><span class="tool-tag paid">Pro $20/mo</span><span class="tool-tag">Anthropic</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#128269;</div>
+        <div class="tool-name">Gemini (Google)</div>
+        <div class="tool-desc">Google integration, real-time web search, multimodal. Great for current information and Google Workspace.</div>
+        <div class="tool-tags"><span class="tool-tag free">Free</span><span class="tool-tag">Google</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#9889;</div>
+        <div class="tool-name">DeepSeek</div>
+        <div class="tool-desc">Powerful open-source alternative, especially strong for code and technical tasks. Free to use.</div>
+        <div class="tool-tags"><span class="tool-tag free">Free</span><span class="tool-tag">Open Source</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#127775;</div>
+        <div class="tool-name">Midjourney / DALL·E</div>
+        <div class="tool-desc">Generate images from text. Logos, illustrations, creative graphics — no design skills needed.</div>
+        <div class="tool-tags"><span class="tool-tag paid">From $10/mo</span><span class="tool-tag">Image Generation</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#127908;</div>
+        <div class="tool-name">Whisper / ElevenLabs</div>
+        <div class="tool-desc">Speech to text (Whisper) or text to speech (ElevenLabs). Ideal for transcription and audio production.</div>
+        <div class="tool-tags"><span class="tool-tag free">Free</span><span class="tool-tag">Audio</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Prompting</div>
+    <h2>Better Results with the Right Prompts</h2>
+    <p class="section-desc">A "prompt" is the instruction you give to the AI. Use these techniques to get significantly better responses.</p>
+    <div class="tip-grid">
+      <div class="tip-card">
+        <h3>&#127919; Assign a Role</h3>
+        <p>Tell the AI who it should be — it will give more targeted answers.</p>
+        <code>You are an experienced employment lawyer in Germany. Explain my rights if my employer terminates my contract.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#127995; Specify Format</h3>
+        <p>Tell it what format you want — list, table, email, short or detailed.</p>
+        <code>Write me a formal email (max 5 sentences) to my landlord about a broken heating system.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#128204; Give Context</h3>
+        <p>The more context, the better the answer. Explain your situation.</p>
+        <code>I've lived in Germany for 3 years, have 2 children, and work freelance. What social benefits might I be entitled to?</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#128260; Step by Step</h3>
+        <p>For complex tasks, ask the AI to proceed step by step.</p>
+        <code>Explain step by step how to register a business in Germany. Use a separate heading for each step.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#127919; Choose Language</h3>
+        <p>AI responds in the language you use — or you can specify explicitly.</p>
+        <code>Please respond in English. / Bitte auf Deutsch antworten. / Lütfen Türkçe yanıtla.</code>
+      </div>
+      <div class="tip-card">
+        <h3>&#9999;&#65039; Ask for Corrections</h3>
+        <p>Have texts checked, improved, or simplified.</p>
+        <code>Correct the grammar in this text and make it more formal: [your text here]</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">PACDI &amp; AI</div>
+    <h2>How PACDI Uses Artificial Intelligence</h2>
+    <p class="section-desc">All PACDI products were developed with AI assistance and use AI to simplify everyday life.</p>
+    <div class="pacdi-grid">
+      <a href="https://pacdi.store/pruefprotokoll.html" class="pacdi-card">
+        <div class="pacdi-card-name">&#9889; DGUV Inspection Tool</div>
+        <div class="pacdi-card-url">pacdi.store</div>
+        <div class="pacdi-card-desc">AI-powered deadline calculation, smart form filling, PDF export in 2 minutes.</div>
+      </a>
+      <a href="https://wasstehtmirzu.com" class="pacdi-card">
+        <div class="pacdi-card-name">&#128196; WasStehtMirZu</div>
+        <div class="pacdi-card-url">wasstehtmirzu.com</div>
+        <div class="pacdi-card-desc">AI explains German social benefits clearly — in Turkish and German.</div>
+      </a>
+      <a href="https://easygov.io" class="pacdi-card">
+        <div class="pacdi-card-name">&#127968; EasyGov</div>
+        <div class="pacdi-card-url">easygov.io</div>
+        <div class="pacdi-card-desc">Multilingual guide for bureaucracy and official processes in Germany.</div>
+      </a>
+      <a href="https://silvercompass.world" class="pacdi-card">
+        <div class="pacdi-card-name">&#129517; SilverCompass</div>
+        <div class="pacdi-card-url">silvercompass.world</div>
+        <div class="pacdi-card-desc">AI-powered cognitive exercises for seniors — memory, attention, logic.</div>
+      </a>
+      <a href="https://pacdi.games" class="pacdi-card">
+        <div class="pacdi-card-name">&#127918; PACDI Games</div>
+        <div class="pacdi-card-url">pacdi.games</div>
+        <div class="pacdi-card-desc">AI-generated learning games and brain training — multilingual.</div>
+      </a>
+      <a href="https://pacdi.store/qr.html" class="pacdi-card">
+        <div class="pacdi-card-name">&#9643; QR &amp; Barcode</div>
+        <div class="pacdi-card-url">pacdi.store</div>
+        <div class="pacdi-card-desc">Smart QR generator with barcode scanner and PDF export.</div>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /lang-en -->
+
+<!-- CTA -->
+<div class="cta-block">
+    <h2 id="cta-title">PACDI-Tools kostenlos testen</h2>
+    <p id="cta-desc">Alle Tools — ohne Anmeldung, ohne Download, direkt im Browser.</p>
+    <a href="https://pacdi.store" class="cta-btn" id="cta-btn">Zu PACDI Store &rarr;</a>
+</div>
+
+</main>
+
+<footer>
+    <span>&copy; 2026 PACDI Global Yaz&#305;l&#305;m Ltd. &#350;ti.</span>
+    <a href="https://pacdi.eu/legal.html">Legal &amp; Privacy</a>
+    <a href="https://pacdi.eu">pacdi.eu</a>
+    <a href="https://pacdi.store">pacdi.store</a>
+</footer>
+
+<script>
+var currentLang = 'de';
+var cta = {
+    de: { title: 'PACDI-Tools kostenlos testen', desc: 'Alle Tools — ohne Anmeldung, ohne Download, direkt im Browser.', btn: 'Zu PACDI Store \u2192' },
+    tr: { title: 'PACDI Araçlarını Ücretsiz Deneyin', desc: 'Tüm araçlar — kayıt olmadan, indirme yapmadan, doğrudan tarayıcıda.', btn: 'PACDI Store\u2019a Git \u2192' },
+    en: { title: 'Try PACDI Tools for Free', desc: 'All tools — no sign-up, no download, directly in your browser.', btn: 'Go to PACDI Store \u2192' }
+};
+
+function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-section').forEach(function(el) { el.classList.remove('active'); });
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.querySelectorAll('.lang-btn').forEach(function(btn) { btn.classList.remove('active'); });
+    event.target.classList.add('active');
+    var c = cta[lang];
+    document.getElementById('cta-title').textContent = c.title;
+    document.getElementById('cta-desc').textContent = c.desc;
+    document.getElementById('cta-btn').textContent = c.btn;
+}
+
+// Auto-detect browser language
+var browserLang = (navigator.language || 'de').substring(0, 2).toLowerCase();
+if (browserLang === 'tr') setLang('tr');
+else if (browserLang === 'en') setLang('en');
+</script>
+
+</body>
+</html>
