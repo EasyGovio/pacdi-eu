@@ -1029,6 +1029,48 @@
             z-index: 50;
             transition: box-shadow 0.2s;
         }
+
+        /* ––– Hamburger Nav ––– */
+        .nav-hamburger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: system-ui;
+            padding: 0;
+            color: var(--text-color);
+        }
+        .nav-hamburger-btn .nav-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .nav-hamburger-btn .nav-chevron {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+        .nav-hamburger-btn.open .nav-chevron {
+            transform: rotate(180deg);
+        }
+        .nav-links-wrap {
+            display: none;
+            padding-top: 0.6rem;
+        }
+        .nav-links-wrap.open {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        @media (min-width: 768px) {
+            .nav-hamburger-btn { display: none; }
+            .nav-links-wrap { display: flex !important; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.5rem; }
+        }
         .nav-sticky.scrolled {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
@@ -1103,18 +1145,21 @@
 
         <!-- ––– HIZLI NAVİGASYON (STICKY) ––– -->
         <div class="card nav-sticky" id="quickNav" style="margin-bottom: 1.5rem; background: var(--bg-alt); border-color: var(--border-color);">
-            <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">📍 <span data-i18n="nav-baslik">Hızlı Navigasyon</span></h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                <a href="#section1" class="nav-link" data-target="section1" data-i18n="nav-nedir" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🧠 Nedir?</a>
-                <a href="#section2" class="nav-link" data-target="section2" data-i18n="nav-prompt" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">✍️ Prompt Kuralları</a>
-                <a href="#section3" class="nav-link" data-target="section3" data-i18n="nav-kurumsal" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📨 Kurumsal Şablonlar</a>
-                <a href="#section4" class="nav-link" data-target="section4" data-i18n="nav-ceviri" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🌐 Çeviri & Özet</a>
-                <a href="#section5" class="nav-link" data-target="section5" data-i18n="nav-araclar" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🛠️ Araçlar</a>
-                <a href="#section6" class="nav-link" data-target="section6" data-i18n="nav-uyarilar" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">⚠️ Kritik Uyarılar</a>
-                <a href="#section7" class="nav-link" data-target="section7" data-i18n="nav-promptlar" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📋 İlk 5 Prompt</a>
-                <a href="#section8" class="nav-link" data-target="section8" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🤖 AI Ajanlar</a>
-                <a href="#section9" class="nav-link" data-target="section9" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📊 Vaka Analizleri</a>
-                <a href="#faq" class="nav-link" data-target="faq" data-i18n="nav-sss" style="font-size: 0.8rem; background: var(--bg-card); padding: 0.3rem 0.8rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">❓ SSS</a>
+            <button class="nav-hamburger-btn" id="navToggleBtn" onclick="toggleNav()" aria-expanded="false" aria-controls="navLinksWrap">
+                <span class="nav-label">📍 <span data-i18n="nav-baslik">Hızlı Navigasyon</span></span>
+                <span class="nav-chevron">▼</span>
+            </button>
+            <div class="nav-links-wrap" id="navLinksWrap">
+                <a href="#section1" class="nav-link" data-target="section1" data-i18n="nav-nedir" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🧠 Nedir?</a>
+                <a href="#section2" class="nav-link" data-target="section2" data-i18n="nav-prompt" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">✍️ Prompt Kuralları</a>
+                <a href="#section3" class="nav-link" data-target="section3" data-i18n="nav-kurumsal" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📨 Kurumsal Şablonlar</a>
+                <a href="#section4" class="nav-link" data-target="section4" data-i18n="nav-ceviri" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🌐 Çeviri & Özet</a>
+                <a href="#section5" class="nav-link" data-target="section5" data-i18n="nav-araclar" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🛠️ Araçlar</a>
+                <a href="#section6" class="nav-link" data-target="section6" data-i18n="nav-uyarilar" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">⚠️ Kritik Uyarılar</a>
+                <a href="#section7" class="nav-link" data-target="section7" data-i18n="nav-promptlar" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📋 İlk 5 Prompt</a>
+                <a href="#section8" class="nav-link" data-target="section8" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">🤖 AI Ajanlar</a>
+                <a href="#section9" class="nav-link" data-target="section9" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">📊 Vaka Analizleri</a>
+                <a href="#faq" class="nav-link" data-target="faq" data-i18n="nav-sss" style="font-size: 0.75rem; background: var(--bg-card); padding: 0.25rem 0.7rem; border-radius: 1rem; border: 1px solid var(--border-color); text-decoration:none; color:var(--text-color); font-weight:500; transition:0.2s;">❓ SSS</a>
             </div>
         </div>
 
@@ -1502,7 +1547,7 @@
                     </div>
                 </div>
                 <div style="margin-top:0.8rem;padding:0.7rem 1rem;background:rgba(212,175,55,0.08);border-radius:0.6rem;border-left:3px solid #D4AF37;">
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin:0;font-style:italic;">"Claude için en ufak bir negatif düşüncem yok. Bir yapay zeka ile bu kadar dürüst, verimli ve güvenilir çalışabileceğimi tahmin etmezdim. Egosu yok, sabrı sonsuz, hataları kabul eder ve konuya odaklı kalır." — Mehmet Aydınlı, PACDI kurucu</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin:0;font-style:italic;">"Claude için en ufak bir negatif düşüncem yok. Bir yapay zeka ile bu kadar dürüst, verimli ve güvenilir çalışabileceğimi tahmin etmezdim. Egosu yok, sabrı sonsuz, hataları kabul eder ve konuya odaklı kalır." — PACDI ekosistemi kurucusu</p>
                 </div>
             </div>
 
@@ -2408,6 +2453,22 @@
                 textEl.textContent = '✓ Kopyalandı!';
                 setTimeout(function() { textEl.textContent = 'Link Kopyala'; }, 2000);
             }
+
+            // ––– Hamburger Nav Toggle –––
+            window.toggleNav = function() {
+                var btn = document.getElementById('navToggleBtn');
+                var wrap = document.getElementById('navLinksWrap');
+                var isOpen = wrap.classList.contains('open');
+                if (isOpen) {
+                    wrap.classList.remove('open');
+                    btn.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                } else {
+                    wrap.classList.add('open');
+                    btn.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            };
 
         })();
     </script>
