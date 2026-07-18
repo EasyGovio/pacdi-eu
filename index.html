@@ -2421,7 +2421,13 @@
                     var el = i18nElements[i];
                     var key = el.getAttribute('data-i18n');
                     if (t[key] !== undefined) {
-                        el.textContent = t[key];
+                        // Çeviri metninde HTML etiketi varsa (örn. <strong>) render et,
+                        // yoksa güvenli varsayılan olan textContent'i kullan.
+                        if (t[key].indexOf('<') !== -1) {
+                            el.innerHTML = t[key];
+                        } else {
+                            el.textContent = t[key];
+                        }
                     }
                 }
                 // placeholder özel
