@@ -1475,6 +1475,11 @@
                 <p class="case-note" data-i18n="case-note">
                     💡 Not: İlgili AI aracı hatayı kabul etti — bu da onun güçlü yanı. Ders: Her zaman doğrulayın.
                 </p>
+                <p style="margin-top:14px;">
+                    <a href="yapay-zeka-ile-calisma-rehberi.html" data-i18n="case-cta" data-i18n-href="case-cta-href" style="font-weight:600;">
+                        📖 Yapay zekâ ile çalışırken nelere dikkat etmeli? Tam rehberi oku →
+                    </a>
+                </p>
             </div>
             <!-- ––– BLOK SONU ––– -->
 
@@ -2029,6 +2034,8 @@
                     "case-text": "Bu rehberin hazırlık sürecinde popüler bir AI aracına pacdi.eu dosyası gösterildi. Dosyayı gerçekten okumak yerine \"PACDI\" kelimesini tıp literatüründen ezberledi ve dakikalarca \"hastane taburcu ve klinik bakım otomasyonu\" anlattı. Uyarılınca bu sefer hiç ilgisi olmayan \"Pusula Akademik Kariyer\" diye bambaşka bir senaryo uydurdu. Ta ki gerçek ekran görüntüsü önüne konulana kadar.",
                     "case-moral": "Ne öğrendik? AI devasa bir güçtür — ama kör güvenildiğinde en profesyonel insanı bile yanlış uçağa bindirir, gözünüzü hiç bilmediğiniz yerlerde açabilir. Bu yüzden bu rehber var: AI'yi doğru yönetmek, neyi bilip neyi uydurduğunu anlamak için.",
                     "case-note": "💡 Not: İlgili AI aracı hatayı kabul etti — bu da onun güçlü yanı. Ders: Her zaman doğrulayın.",
+                    "case-cta": "📖 Yapay zekâ ile çalışırken nelere dikkat etmeli? Tam rehberi oku →",
+                    "case-cta-href": "yapay-zeka-ile-calisma-rehberi.html",
                     "wid-num": "Widerspruch Modülü",
                     "wid-title": "⚖️ Resmi İtiraz Üretici",
                     "wid-copy": "📋 Kopyala",
@@ -2206,6 +2213,8 @@
                     "case-text": "Während der Vorbereitung dieses Leitfadens wurde einem bekannten KI-Tool die Datei pacdi.eu gezeigt. Statt sie wirklich zu lesen, griff es auf medizinische Fachliteratur zurück und erklärte minutenlang Krankenhaus-Entlassungsautomatisierung. Nach einem Hinweis erfand es eine völlig andere Geschichte. Erst nach einem echten Screenshot hörte es auf.",
                     "case-moral": "Was haben wir gelernt? KI ist eine enorme Kraft – aber blind vertraut kann sie Sie in den falschen Flieger setzen. Deshalb gibt es diesen Leitfaden.",
                     "case-note": "Das betreffende KI-Tool hat den Fehler eingestanden – das ist seine Stärke. Lektion: Immer verifizieren.",
+                    "case-cta": "📖 Worauf sollten Sie bei der Arbeit mit KI achten? Vollständigen Leitfaden lesen →",
+                    "case-cta-href": "ki-leitfaden-worauf-achten.html",
                     "wid-num": "Widerspruch Modülü",
                     "wid-title": "⚖️ Offizieller Widerspruch-Generator",
                     "wid-copy": "📋 Kopieren",
@@ -2383,6 +2392,8 @@
                     "case-text": "During the preparation of this guide, a popular AI tool was shown the pacdi.eu file. Instead of actually reading it, it memorized the word \"PACDI\" from medical literature and explained \"hospital discharge and clinical care automation\" for minutes. After being warned, it invented a completely different scenario: \"Compass Academic Career\". Only after a real screenshot was placed in front of it did it stop.",
                     "case-moral": "What did we learn? AI is a massive force – but if you trust it blindly, it can put even the most professional person on the wrong plane, opening your eyes in places you've never known. That's why this guide exists: to manage AI correctly, to understand what it knows and what it invents.",
                     "case-note": "The AI tool in question admitted the error – that's its strength. Lesson: Always verify.",
+                    "case-cta": "📖 What to watch for when working with AI? Read the full guide →",
+                    "case-cta-href": "ai-working-guide-what-to-watch-for.html",
                     "wid-num": "Widerspruch Module",
                     "wid-title": "⚖️ Official Objection Generator",
                     "wid-copy": "📋 Copy",
@@ -2521,6 +2532,10 @@
                         } else {
                             el.textContent = t[key];
                         }
+                    }
+                    var hrefKey = el.getAttribute('data-i18n-href');
+                    if (hrefKey && t[hrefKey] !== undefined) {
+                        el.setAttribute('href', t[hrefKey]);
                     }
                 }
                 // placeholder özel
