@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://pacdi.eu/sitemap.xml
