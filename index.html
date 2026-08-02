@@ -1878,43 +1878,7 @@
 
             <!-- ––– PACDI FRAMEWORK ROZETİ ––– -->
             <div class="pacdi-share-bar" id="pacdiShareBar" style="clear:both;width:100%;flex-basis:100%;"></div>
-<script>
-(function(){
-  var pageTitle = (document.title.split('|')[0] || document.title).trim();
-  var pageUrl = window.location.href;
-  var shareText = 'Bu ' + pageTitle + ' aracını faydalı buldum, senin de işine yarayabilir:';
-
-  var bar = document.getElementById('pacdiShareBar');
-  if (!bar) return;
-  bar.innerHTML =
-    '<div class="pacdi-share-label">🔗 Bu aracı paylaş</div>' +
-    '<div class="pacdi-share-btns">' +
-      '<button class="pacdi-share-btn" id="pacdiShareNative" style="display:none;">📤 Paylaş</button>' +
-      '<a class="pacdi-share-btn" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText + ' ' + pageUrl) + '">💬 WhatsApp</a>' +
-      '<a class="pacdi-share-btn" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(pageUrl) + '">𝕏</a>' +
-      '<a class="pacdi-share-btn" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl) + '">Facebook</a>' +
-      '<a class="pacdi-share-btn" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(pageUrl) + '">LinkedIn</a>' +
-      '<button class="pacdi-share-btn" id="pacdiShareCopy">🔗 Kopyala</button>' +
-    '</div>';
-
-  if (navigator.share) {
-    var nativeBtn = document.getElementById('pacdiShareNative');
-    nativeBtn.style.display = 'inline-flex';
-    nativeBtn.onclick = function(){
-      navigator.share({ title: pageTitle, text: shareText, url: pageUrl }).catch(function(){});
-    };
-  }
-
-  var copyBtn = document.getElementById('pacdiShareCopy');
-  copyBtn.onclick = function(){
-    navigator.clipboard.writeText(pageUrl).then(function(){
-      var old = copyBtn.textContent;
-      copyBtn.textContent = '✓ Kopyalandı!';
-      setTimeout(function(){ copyBtn.textContent = old; }, 2000);
-    }).catch(function(){});
-  };
-})();
-</script>
+<script src="https://pacdi.store/assets/share-bar.js"></script>
 
 <div id="pacdi-fsek" style="clear:both;width:100%;flex-basis:100%;margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid rgba(240,208,128,0.15);display:flex;flex-direction:column;align-items:center;gap:0.4rem;">
                 <span style="display:inline-flex;align-items:center;gap:0.3rem;background:rgba(240,208,128,0.1);color:var(--gold-dark);font-size:0.65rem;font-weight:700;padding:0.25rem 0.8rem;border-radius:2rem;border:1px solid var(--gold-border);text-transform:uppercase;letter-spacing:0.05em;">
