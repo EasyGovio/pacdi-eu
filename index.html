@@ -297,6 +297,15 @@
             box-shadow: 0 0 8px rgba(246, 180, 95, 0.4);
         }
 
+
+        /* ––– Corporate Banner ––– */
+        .corp-bar{background:linear-gradient(90deg,#0B1E35,#1a3a5a);border-bottom:2px solid #F0D080;padding:.7rem 1rem}
+        .corp-bar-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:.5rem 1rem;flex-wrap:wrap;text-align:center}
+        .corp-bar-msg{color:#F0D080;font-weight:700;font-size:.85rem}
+        .corp-bar-msg span{color:#E8ECF2;font-weight:500}
+        .corp-bar-btn{background:#F0D080;color:#0B1E35;font-weight:800;padding:.4rem 1.2rem;border-radius:2rem;font-size:.8rem;text-decoration:none;display:inline-block}
+        .corp-bar-btn:hover,.corp-bar-btn:focus-visible{background:#fff}
+
         /* ––– Header ––– */
         .site-header {
             background: var(--navy);
@@ -1305,6 +1314,14 @@
         </div>
     </header>
 
+    <!-- ––– CORPORATE BANNER ––– -->
+    <aside class="corp-bar" aria-label="Corporate">
+        <div class="corp-bar-inner">
+            <div class="corp-bar-msg"><b data-i18n="corp-bar-tag">🚀 NEU: Für Unternehmen</b> <span data-i18n="corp-bar-text">KI-Kompetenz im Arbeitsalltag – Pilotangebot</span></div>
+            <a class="corp-bar-btn" href="/corporate.html" data-i18n="corp-bar-btn">Corporate Pilot ansehen →</a>
+        </div>
+    </aside>
+
     <main class="container">
 
         <!-- ––– STICKY CONTAINER: ARAMA + NAV ––– -->
@@ -2175,7 +2192,10 @@
                     "copy-link-text": "Link Kopyala",
                     "cta-title": "🚀 Daha fazla yardım mı istiyorsunuz?",
                     "cta-desc": "PACDI Digital Studio olarak size özel AI çözümleri sunuyoruz. İş akışlarınızı optimize etmek için bizimle iletişime geçin.",
-                    "cta-btn": "📩 PACDI ile iletişime geç"
+                    "cta-btn": "📩 PACDI ile iletişime geç",
+                    "corp-bar-tag": "🚀 YENİ: Kurumlar için",
+                    "corp-bar-text": "Çalışma hayatında yapay zekâ yetkinliği — pilot teklifi",
+                    "corp-bar-btn": "Kurumsal Pilot'u incele →"
                 },
                 de: {
                     "s1-title": "Was ist Künstliche Intelligenz?",
@@ -2354,7 +2374,10 @@
                     "copy-link-text": "Link kopieren",
                     "cta-title": "🚀 Brauchen Sie weitere Hilfe?",
                     "cta-desc": "PACDI Digital Studio bietet Ihnen maßgeschneiderte KI-Lösungen. Kontaktieren Sie uns, um Ihre Arbeitsabläufe zu optimieren.",
-                    "cta-btn": "📩 Kontakt zu PACDI"
+                    "cta-btn": "📩 Kontakt zu PACDI",
+                    "corp-bar-tag": "🚀 NEU: Für Unternehmen",
+                    "corp-bar-text": "KI-Kompetenz im Arbeitsalltag – Pilotangebot",
+                    "corp-bar-btn": "Corporate Pilot ansehen →"
                 },
                 en: {
                     "s1-title": "What is Artificial Intelligence?",
@@ -2533,7 +2556,10 @@
                     "copy-link-text": "Copy Link",
                     "cta-title": "🚀 Need more help?",
                     "cta-desc": "PACDI Digital Studio offers customized AI solutions for you. Contact us to optimize your workflows.",
-                    "cta-btn": "📩 Contact PACDI"
+                    "cta-btn": "📩 Contact PACDI",
+                    "corp-bar-tag": "🚀 NEW: For organisations",
+                    "corp-bar-text": "AI skills for everyday work – pilot offer",
+                    "corp-bar-btn": "View Corporate Pilot →"
                 }
             };
 
