@@ -117,7 +117,6 @@ TOOL_DISPLAY_NAMES = {
     'audiotool.html': {'short': 'Ses', 'name': 'PACDI Ses Aracı', 'desc': 'Ses dosyalarını düzenleyin ve dönüştürün.'},
     'speechtools.html': {'short': 'Konuşma', 'name': 'PACDI Konuşma & Metin', 'desc': 'Konuşmayı metne, metni konuşmaya çevirin.'},
     'audiorecorder.html': {'short': 'Kayıt', 'name': 'PACDI Ses Kaydedici', 'desc': 'Tarayıcınızdan doğrudan ses kaydedin.'},
-    'corporate.html': {'short': 'Corp', 'name': 'PACDI Corporate – AI Work Essentials', 'desc': 'Kein Beamer-Training: 90 Minuten KI im Arbeitsalltag für Teams — Pilotangebot ab 490€.'},
     'sozlesme-duzenleme-imza.html': {'short': 'Sözleşme', 'name': 'PACDI Sözleşme Düzenleme', 'desc': 'Sunucusuz sözleşme düzenleme ve e-imza aracı.'},
 }
 
