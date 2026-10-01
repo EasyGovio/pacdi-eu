@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PACDI Corporate - AI Work Essentials | Kein Beamer-Training</title>
+<meta name="description" content="Wir sind nicht die 400€ Beamer-Schulung. PACDI AI Work Essentials: 90 Min Core + 7 Prinzipien für sicheres, nachweisbares Arbeiten mit KI im Unternehmen." />
+<link rel="canonical" href="https://pacdi.eu/corporate.html" />
+<style>
+        /* ––– Reset & Base ––– */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-body, #f8fafc);
+            color: var(--text-color, #1e293b);
+            line-height: 1.6;
+            padding: 0 0 2rem 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        :root {
+            --navy: #0B1E35;
+            --gold: #F0D080;
+            --gold-dark: #C9A84C;
+            --gold-dim: rgba(240, 208, 128, 0.15);
+            --gold-border: rgba(240, 208, 128, 0.3);
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --amber-border: #fcd34d;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --white: #ffffff;
+            --shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
+            --radius: 1.2rem;
+
+            /* Tema değişkenleri */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-alt: #f1f5f9;
+            --bg-input: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --bg-alt: #1e293b;
+            --bg-input: #1e293b;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --card-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            --navy: #1e293b;
+            --gold: #F0D080;
+            --gold-dark: #C9A84C;
+            --gold-dim: rgba(240, 208, 128, 0.1);
+            --gold-border: rgba(240, 208, 128, 0.2);
+            --amber-bg: #2d1f00;
+            --amber-border: #92400e;
+            --gray-50: #0f172a;
+            --gray-100: #1e293b;
+            --gray-200: #334155;
+            --gray-300: #475569;
+            --gray-600: #94a3b8;
+            --gray-700: #cbd5e1;
+            --gray-800: #e2e8f0;
+            --white: #1e293b;
+        }
+
+        [data-theme="dark"] .site-header {
+            background: #0f172a;
+            border-bottom-color: var(--gold-border);
+        }
+        [data-theme="dark"] .card {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .card:hover {
+            border-color: var(--gold-dark);
+        }
+        [data-theme="dark"] .prompt-card .p-text {
+            background: #0f172a;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        [data-theme="dark"] .prompt-card {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .example-item {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .faq-item {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .do-box {
+            background: #0f2d1a;
+            border-color: #1a4a2a;
+        }
+        [data-theme="dark"] .dont-box {
+            background: #2d0f0f;
+            border-color: #4a1a1a;
+        }
+        [data-theme="dark"] .warning-box {
+            background: #2d1f00;
+            border-color: #92400e;
+        }
+        [data-theme="dark"] .warning-box h4 {
+            color: #fbbf24;
+        }
+        [data-theme="dark"] .warning-box p {
+            color: #fde68a;
+        }
+        [data-theme="dark"] .cta-banner {
+            background: #0f172a;
+            border-color: var(--gold-border);
+        }
+        [data-theme="dark"] .site-footer {
+            background: #0f172a;
+            border-top-color: var(--gold-border);
+        }
+        [data-theme="dark"] .real-case-box {
+            background: #1a0a00;
+            border-color: #f59e0b;
+        }
+        [data-theme="dark"] .prompt-box.good {
+            background: #0f2d1a;
+            border-color: #22c55e;
+        }
+        [data-theme="dark"] .prompt-box.bad {
+            background: #2d0f0f;
+            border-color: #ef4444;
+        }
+        [data-theme="dark"] .prompt-box pre {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        [data-theme="dark"] .lang-btn {
+            color: rgba(255,255,255,0.5);
+        }
+        [data-theme="dark"] .lang-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        [data-theme="dark"] .pdf-btn {
+            border-color: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+        [data-theme="dark"] .pdf-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        [data-theme="dark"] #ai-search {
+            background: var(--bg-input);
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .comp-table {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+        }
+        [data-theme="dark"] .comp-table th {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        [data-theme="dark"] .comp-table td {
+            border-bottom-color: var(--border-color);
+        }
+        [data-theme="dark"] .card[style*="background: var(--gray-100)"] {
+            background: var(--bg-alt) !important;
+        }
+
+        /* ––– Smooth Scroll ––– */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ––– Typography ––– */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-color);
+        }
+        h1 {
+            font-size: 1.7rem;
+            letter-spacing: -0.3px;
+        }
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        h2 .icon {
+            font-size: 1.6rem;
+        }
+        h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+        p {
+            color: var(--text-muted);
+        }
+        a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        /* ––– Layout ––– */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ––– Progress Bar ––– */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #F6B45F;
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 8px rgba(246, 180, 95, 0.4);
+        }
+
+        /* ––– Header ––– */
+        .site-header {
+            background: var(--navy);
+            padding: 1.2rem 1rem;
+            border-bottom: 3px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background 0.3s;
+        }
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+        }
+        .site-title {
+            color: var(--white);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+        .site-title span {
+            color: var(--gold);
+        }
+        .site-title small {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.08em;
+            margin-top: 0.05rem;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .pdf-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.7rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: system-ui;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .pdf-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .lang-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            padding: 0.15rem;
+            gap: 0.1rem;
+            flex-shrink: 0;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 0.7rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: system-ui;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        .lang-btn:hover:not(.active) {
+            color: var(--white);
+        }
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1;
+        }
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+
+        /* ––– Sections ––– */
+        .section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+        .section-alt {
+            background: var(--bg-alt);
+        }
+        .section-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ––– Cards ––– */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .card-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
+        }
+        .card:hover {
+            border-color: var(--gold-dark);
+            box-shadow: var(--card-shadow);
+        }
+        .card .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .card h3 {
+            color: var(--text-color);
+        }
+        .card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* ––– Prompt Examples ––– */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 599px) {
+            .prompt-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .prompt-box {
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            border-left: 5px solid;
+        }
+        .prompt-box.good {
+            background: #f0fdf4;
+            border-color: #22c55e;
+        }
+        .prompt-box.bad {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+        .prompt-box .label {
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .prompt-box.good .label {
+            color: #16a34a;
+        }
+        .prompt-box.bad .label {
+            color: #dc2626;
+        }
+        .prompt-box pre {
+            font-family: system-ui, monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 0.5rem 0.7rem;
+            border-radius: 0.5rem;
+            margin-top: 0.3rem;
+            color: var(--text-color);
+        }
+        .do-dont-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 599px) {
+            .do-dont-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .do-box,
+        .dont-box {
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
+        }
+        .do-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+        .dont-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+        .do-box h4,
+        .dont-box h4 {
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        .do-box h4 {
+            color: #16a34a;
+        }
+        .dont-box h4 {
+            color: #dc2626;
+        }
+        .do-box ul,
+        .dont-box ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .do-box ul li::before {
+            content: "✓ ";
+            color: #16a34a;
+            font-weight: 700;
+        }
+        .dont-box ul li::before {
+            content: "✗ ";
+            color: #dc2626;
+            font-weight: 700;
+        }
+        .do-box ul li,
+        .dont-box ul li {
+            padding: 0.2rem 0;
+        }
+
+        /* ––– Examples ––– */
+        .example-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+        .example-item {
+            background: var(--bg-card);
+            border-radius: 0.8rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.2s;
+        }
+        .example-item:hover {
+            border-color: var(--gold-dark);
+        }
+        .example-item .ex-title {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        .example-item .ex-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+        .example-item .ex-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--gold-dim);
+            color: var(--gold-dark);
+            padding: 0.1rem 0.6rem;
+            border-radius: 1rem;
+            margin-top: 0.3rem;
+            border: 1px solid var(--gold-border);
+        }
+
+        /* ––– Comparison Table ––– */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .comp-table th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .comp-table td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            color: var(--text-color);
+        }
+        .comp-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comp-table .tool-icon {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+        .comp-table .use-case {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+        @media (max-width: 500px) {
+            .comp-table th,
+            .comp-table td {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.78rem;
+            }
+        }
+
+        /* ––– Warning Boxes ––– */
+        .warning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 599px) {
+            .warning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .warning-box {
+            background: var(--amber-bg);
+            border-left: 6px solid var(--amber);
+            border-radius: 0.8rem;
+            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
+            border: 1px solid var(--amber-border);
+        }
+        .warning-box .warn-icon {
+            font-size: 1.3rem;
+            margin-right: 0.4rem;
+        }
+        .warning-box h4 {
+            color: #92400e;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .warning-box p {
+            font-size: 0.82rem;
+            color: #78350f;
+            margin-top: 0.3rem;
+        }
+
+        /* ––– Real Case Box ––– */
+        .real-case-box {
+            background: #1a0a00;
+            border: 2px solid #f59e0b;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .real-case-box .case-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #f59e0b;
+            margin-bottom: 0.8rem;
+        }
+        .real-case-box .case-text,
+        .real-case-box .case-moral {
+            font-size: 0.85rem;
+            color: #fde68a;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .real-case-box .case-note {
+            font-size: 0.75rem;
+            color: #f59e0b;
+            font-style: italic;
+        }
+        .real-case-box strong {
+            color: #ffb347;
+        }
+        .real-case-box em {
+            color: #fbbf24;
+        }
+
+        /* ––– Prompts Section ––– */
+        .prompt-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .prompt-tab {
+            background: var(--gray-100);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: system-ui;
+            color: var(--text-muted);
+        }
+        .prompt-tab.active {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .prompt-tab:hover:not(.active) {
+            background: var(--gray-200);
+        }
+        .prompt-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 0.8rem;
+        }
+        .prompt-card .p-number {
+            font-weight: 700;
+            color: var(--gold-dark);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .prompt-card .p-title {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            margin: 0.1rem 0 0.3rem 0;
+        }
+        .prompt-card .p-text {
+            background: var(--gray-50);
+            padding: 0.7rem 1rem;
+            border-radius: 0.6rem;
+            font-family: system-ui, monospace;
+            font-size: 0.82rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            margin-top: 0.3rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .prompt-card .p-text:hover {
+            background: var(--gray-100);
+        }
+        .prompt-card .p-copy {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .prompt-card .p-copy:hover {
+            color: var(--text-color);
+        }
+        .prompt-lang-group {
+            display: none;
+        }
+        .prompt-lang-group.active {
+            display: block;
+        }
+
+        /* ––– FAQ ––– */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: 0.8rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.2s;
+        }
+        .faq-item:hover {
+            border-color: var(--gold-dark);
+        }
+        .faq-item .faq-q {
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item .faq-q .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .faq-item .faq-a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            display: none;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .faq-item .faq-a.open {
+            display: block;
+        }
+
+        /* ––– CTA Banner ––– */
+        .cta-banner {
+            background: var(--navy);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid var(--gold-border);
+        }
+        .cta-banner h3 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+        .cta-banner .cta-btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+            padding: 0.6rem 2rem;
+            border-radius: 2rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .cta-banner .cta-btn:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ––– Footer ––– */
+        .site-footer {
+            background: var(--navy);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 1.8rem 1rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            border-top: 2px solid var(--gold);
+        }
+        .site-footer a {
+            color: var(--gold);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        /* ––– Utilities ––– */
+        .mt-1 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .text-center { text-align: center; }
+        .gold-link { color: var(--gold-dark); font-weight: 600; }
+        .badge-gold {
+            display: inline-block;
+            background: var(--gold-dim);
+            color: var(--gold-dark);
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.15rem 0.7rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gold-border);
+        }
+
+        /* ––– Print Styles ––– */
+        @media print {
+            #progress-bar, .pdf-btn, .lang-toggle, .site-header .header-actions .pdf-btn,
+            .site-header .lang-toggle, #back-to-top, #ai-search,
+            .card[style*="background: var(--gray-100)"], .text-center.mt-1.mb-1,
+            .theme-toggle {
+                display: none !important;
+            }
+            .site-header {
+                position: static !important;
+                border-bottom: 2px solid #F6B45F;
+            }
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 0;
+            }
+            .card, .example-item, .faq-item, .cta-banner {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                background: #fff !important;
+            }
+            .site-footer {
+                background: #eee !important;
+                color: #333 !important;
+                border-top: 1px solid #ccc !important;
+            }
+            .site-footer a {
+                color: #0B1E35 !important;
+            }
+            [data-theme="dark"] .card,
+            [data-theme="dark"] .example-item,
+            [data-theme="dark"] .faq-item {
+                background: #fff !important;
+                color: #000 !important;
+            }
+            [data-theme="dark"] .prompt-card .p-text {
+                background: #f8fafc !important;
+                color: #1e293b !important;
+            }
+        }
+
+        /* ––– Responsive fine-tune ––– */
+        @media (max-width: 480px) {
+            .site-title { font-size: 1rem; }
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+            .header-actions { justify-content: space-between; }
+            .lang-toggle { align-self: flex-start; }
+            h2 { font-size: 1.2rem; }
+            .card { padding: 1.2rem; }
+            .real-case-box { padding: 1rem; }
+        }
+        @media (min-width: 640px) {
+            .header-inner { flex-wrap: nowrap; }
+            .site-title small {
+                display: inline;
+                margin-left: 0.3rem;
+                font-size: 0.55rem;
+            }
+        }
+
+        /* ––– Copy feedback ––– */
+        .copy-feedback {
+            font-size: 0.7rem;
+            color: #16a34a;
+            margin-left: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .copy-feedback.show { opacity: 1; }
+
+        /* ––– Back to Top Button ––– */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--gold);
+            border: 1px solid var(--gold-border);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            z-index: 99;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--card-shadow);
+            transition: background 0.2s, transform 0.2s;
+        }
+        #back-to-top:hover {
+            background: var(--gold-dark);
+            color: var(--navy);
+            transform: scale(1.05);
+        }
+        @media (max-width: 480px) {
+            #back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 2.2rem;
+                height: 2.2rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* ––– Sticky Container ––– */
+        .sticky-container {
+            position: sticky;
+            z-index: 50;
+            background: var(--bg-body);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: box-shadow 0.2s;
+        }
+        .sticky-container.scrolled {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        [data-theme="dark"] .sticky-container.scrolled {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        .sticky-container .card {
+            margin: 0.25rem 0;
+        }
+
+        /* ––– Hamburger Nav ––– */
+        .nav-hamburger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: system-ui;
+            padding: 0;
+            color: var(--text-color);
+        }
+        .nav-hamburger-btn .nav-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .nav-hamburger-btn .nav-chevron {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+        .nav-hamburger-btn.open .nav-chevron {
+            transform: rotate(180deg);
+        }
+        .nav-links-wrap {
+            display: none;
+            padding-top: 0.6rem;
+        }
+        .nav-links-wrap.open {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        @media (min-width: 768px) {
+            .nav-hamburger-btn { display: none; }
+            .nav-links-wrap { display: flex !important; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.5rem; }
+        }
+
+        /* ––– Scroll Spy active link ––– */
+        .nav-link-active {
+            background: var(--gold) !important;
+            color: var(--navy) !important;
+            border-color: var(--gold) !important;
+        }
+
+        /* ––– Arama vurgusu ––– */
+        mark {
+            background: #fde047;
+            color: #1e293b;
+            padding: 0 0.1rem;
+            border-radius: 2px;
+        }
+        [data-theme="dark"] mark {
+            background: #facc15;
+            color: #0f172a;
+        }
+
+        /* ––– Constraint kutusu dark override ––– */
+        [data-theme="dark"] div[style*="background:#f0fdf4"] {
+            background: #0f2d1a !important;
+            border-color: #1a4a2a !important;
+        }
+        [data-theme="dark"] div[style*="background:#f0fdf4"] p {
+            color: #bbf7d0 !important;
+        }
+        [data-theme="dark"] div[style*="background:#f0fdf4"] strong {
+            color: #4ade80 !important;
+        }
+    
+/* Corporate specific */
+.corporate-hero {
+  background: linear-gradient(135deg, #0B1E35 0%, #0a2340 60%, #112a4a 100%);
+  border-bottom: 3px solid #F0D080;
+  padding: 3rem 1rem 2.5rem 1rem;
+  color: white;
+}
+.hero-badge {
+  display:inline-block;
+  background: rgba(240,208,128,0.15);
+  border:1px solid rgba(240,208,128,0.3);
+  color:#F0D080;
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  padding:0.3rem 0.9rem;
+  border-radius:2rem;
+  margin-bottom:1rem;
+  text-transform:uppercase;
+}
+.hero-title {
+  font-size:2rem;
+  line-height:1.15;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  margin-bottom:0.8rem;
+  color:white;
+}
+.hero-title span { color:#F0D080; }
+.hero-sub {
+  font-size:1.05rem;
+  color:rgba(255,255,255,0.75);
+  max-width:640px;
+  line-height:1.6;
+  margin-bottom:1.6rem;
+}
+.hero-cta-row { display:flex; gap:0.8rem; flex-wrap:wrap; }
+.btn-primary {
+  background:#F0D080;
+  color:#0B1E35;
+  font-weight:800;
+  padding:0.75rem 1.6rem;
+  border-radius:2rem;
+  font-size:0.9rem;
+  display:inline-block;
+  transition:0.2s;
+}
+.btn-primary:hover { background:#C9A84C; transform:translateY(-2px); }
+.btn-secondary {
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.25);
+  color:rgba(255,255,255,0.8);
+  padding:0.75rem 1.6rem;
+  border-radius:2rem;
+  font-size:0.9rem;
+  display:inline-block;
+}
+.btn-secondary:hover { background:rgba(255,255,255,0.08); color:white; }
+.story-box {
+  background: #fffbeb;
+  border:1px solid #fcd34d;
+  border-left:5px solid #f59e0b;
+  border-radius:1rem;
+  padding:1.5rem;
+  margin:2rem 0;
+}
+.principle-card {
+  background: var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:1.2rem;
+  padding:1.4rem;
+  position:relative;
+  overflow:hidden;
+}
+.principle-card:hover { border-color:#C9A84C; box-shadow:0 8px 24px rgba(11,30,53,0.08); }
+.p-num {
+  font-size:0.65rem;
+  font-weight:800;
+  letter-spacing:0.08em;
+  color:#C9A84C;
+  background:rgba(240,208,128,0.15);
+  padding:0.2rem 0.6rem;
+  border-radius:2rem;
+  display:inline-block;
+  margin-bottom:0.6rem;
+}
+.p-title { font-size:1.05rem; font-weight:800; margin-bottom:0.3rem; }
+.p-formula {
+  font-size:0.78rem;
+  font-weight:700;
+  color:#0B1E35;
+  background:#f1f5f9;
+  padding:0.35rem 0.7rem;
+  border-radius:0.5rem;
+  display:inline-block;
+  margin-bottom:0.6rem;
+  font-family:monospace;
+}
+.p-desc { font-size:0.86rem; color:var(--text-muted); line-height:1.6; }
+.offer-box {
+  background: var(--navy);
+  border:2px solid #F0D080;
+  border-radius:1.2rem;
+  padding:2rem;
+  color:white;
+  margin:2rem 0;
+}
+.offer-box h3 { color:#F0D080; }
+.check-list { list-style:none; padding:0; margin:1rem 0; }
+.check-list li { padding:0.4rem 0; font-size:0.88rem; color:rgba(255,255,255,0.8); }
+.check-list li::before { content:"✓ "; color:#F0D080; font-weight:800; }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/index.html" class="site-title">PACDI<span>.eu</span><small>KORUNAN ESER · FSEK 2026/18897</small></a>
+    <div class="header-actions">
+      <a href="/index.html" class="pdf-btn">📖 Ücretsiz Rehber →</a>
+      <a href="#pilot" class="lang-btn active" style="text-decoration:none;">PILOT ANFRAGEN</a>
+    </div>
+  </div>
+</header>
+
+<div class="corporate-hero">
+  <div class="container">
+    <div class="hero-badge">⚠️ Anti-Beamer-Training</div>
+    <h1 class="hero-title">Wir sind nicht die <span>400€ Beamer-Schulung.</span></h1>
+    <p class="hero-sub">Ihre Mitarbeiter hatten schon ein KI-Training. Beamer an, Folien mit "Was ist KI?", 3 ChatGPT Beispiele, Zertifikat, alle unzufrieden. Genau deshalb gibt es PACDI.<br><br><strong style="color:white;">Wir bringen bei, wie man SICHER und NACHWEISBAR mit KI arbeitet – nicht was KI ist.</strong></p>
+    <div class="hero-cta-row">
+      <a href="#prinzipien" class="btn-primary">7 Prinzipien ansehen ↓</a>
+      <a href="/index.html" class="btn-secondary">Erstmal kostenlos testen</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="story-box">
+    <h4 style="font-size:0.9rem; margin-bottom:0.5rem;">🎯 Die Ausgangslage, die uns zu pacdi.eu gebracht hat:</h4>
+    <p style="font-size:0.85rem; line-height:1.7; color:#92400e;">"Ein Unternehmen lädt eine Dozentin ein. Beamer, Folien, 'KI ist wie ein Grundschüler'. 300-400€ kassiert, geht. Mitarbeiter: 'Note 0, nichts gelernt – außer die Dozentin war zufrieden.' Genau das ist das Problem: Checkbox-Schulungen erfüllen HR-Akten, aber ändern keine Arbeitsweise."</p>
+  </div>
+</div>
+
+<section class="section" id="prinzipien">
+  <div class="container">
+    <h2>🧩 AI Work Essentials – 7 Prinzipien</h2>
+    <p class="section-sub">Kein 9,5-Stunden-Video-Marathon. 90 Minuten Core, die jeder Mitarbeiter bestehen muss. Dahinter 20 Deep-Dive Lektionen als Bibliothek.</p>
+    <div class="card-grid card-grid-2" style="margin-top:1.5rem;">
+      <div class="principle-card">
+        <div class="p-num">PRINZIP 01</div>
+        <div class="p-title">İşi Ver / Aufgabe geben</div>
+        <div class="p-formula">SOR → YAPTIR → ÇÖZDÜR → YÖNETTİR</div>
+        <div class="p-desc">Ziel setzt der Mensch, Arbeit macht die KI. Nicht "Schreib mir eine E-Mail", sondern klare Aufgabendelegation mit Verantwortung.</div>
+      </div>
+      <div class="principle-card">
+        <div class="p-num">PRINZIP 02</div>
+        <div class="p-title">Bağlamı Ver / Kontext geben</div>
+        <div class="p-formula">Hedef + Neden + Ne var + Ne eksik</div>
+        <div class="p-desc">Ohne Kontext kein guter Prompt. Was ist das Ziel, warum, welche Infos gibt es, was darf nicht passieren?</div>
+      </div>
+      <div class="principle-card">
+        <div class="p-num">PRINZIP 03</div>
+        <div class="p-title">Aracı Seç / Tool wählen</div>
+        <div class="p-formula">Richtiges Tool für richtigen Job</div>
+        <div class="p-desc">ChatGPT ist nicht alles. Claude für Analyse, DeepSeek für Code, Gemini für Recherche. Tool-Chaos beenden.</div>
+      </div>
+      <div class="principle-card">
+        <div class="p-num">PRINZIP 04</div>
+        <div class="p-title">Birlikte Çalış / Iterieren</div>
+        <div class="p-formula">Erste Antwort ≠ Ergebnis</div>
+        <div class="p-desc">Erste KI-Antwort ist Arbeitsmaterial, nicht Ergebnis. Iterativ verbessern, Multi-AI als Team nutzen.</div>
+      </div>
+      <div class="principle-card">
+        <div class="p-num">PRINZIP 05</div>
+        <div class="p-title">Doğrula / Verifizieren</div>
+        <div class="p-formula">KI sagt → Quelle prüfen → Mensch entscheidet</div>
+        <div class="p-desc">KI ist Denkpartner, nicht Wahrheitsrichter. Halluzinationen erkennen – wie bei unserem PACDI-Fall (Klinik + Pusula Akademik).</div>
+      </div>
+      <div class="principle-card">
+        <div class="p-num">PRINZIP 06</div>
+        <div class="p-title">Sisteme Dönüştür / Systematisieren</div>
+        <div class="p-formula">Üretim ≠ İlerleme</div>
+        <div class="p-desc">Wiederholung → Standardisieren → Testen → Automatisieren → Kontrollieren. Aus einmaliger Produktion wird System.</div>
+      </div>
+      <div class="principle-card" style="border:2px solid #F0D080;">
+        <div class="p-num">PRINZIP 07</div>
+        <div class="p-title">Sorumluluğu Tut / Verantwortung</div>
+        <div class="p-formula">Workflow + Freigabe + Kosten</div>
+        <div class="p-desc">Wo bleibt die menschliche Freigabe? Was kostet das? Wie wird das dokumentiert für Art. 4 AI Act? Das ist AI Operating System.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="pilot">
+  <div class="container">
+    <div class="offer-box">
+      <h3>🚀 Pilot-Angebot – Kein 9,5h Marathon</h3>
+      <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; margin-top:0.5rem;">Ziel: Verkaufsvalidierung, nicht LMS-Imperium. Deshalb schlank:</p>
+      <ul class="check-list">
+        <li>90 Min Core Training (DE) – live oder On-Demand</li>
+        <li>20 Deep-Dive Lektionen als Bibliothek (PDF + Shorts)</li>
+        <li>7 Cep Kartları – Mitarbeiter nehmen echte Karten mit</li>
+        <li>Quiz + Teilnahmenachweis (dokumentierbare KI-Kompetenz Art.4)</li>
+        <li>4x 10-Min Updates / Jahr (neue Risiken, Tools, Fälle)</li>
+        <li>Manager-Report: Wer hat abgeschlossen, Scores</li>
+        <li>12 Monate Zugriff</li>
+      </ul>
+      <div style="margin-top:1.5rem; padding:1rem; background:rgba(240,208,128,0.1); border-radius:0.8rem; border:1px dashed rgba(240,208,128,0.3);">
+        <div style="font-size:0.8rem; color:#F0D080; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Pilot-Preis Test</div>
+        <div style="font-size:1.6rem; font-weight:800; color:white; margin-top:0.2rem;">10 Mitarbeiter Pilot: 490€ – 790€</div>
+        <div style="font-size:0.82rem; color:rgba(255,255,255,0.6); margin-top:0.3rem;">Kein Abo-Falle. Ein Jahr, dann entscheiden Sie ob Sie verlängern. Wir testen gemeinsam ob das Problem echtes Budget hat.</div>
+      </div>
+      <div style="margin-top:1.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+        <a href="mailto:info@pacdi.eu?subject=Pilot-Anfrage%20AI%20Work%20Essentials&body=Hallo%20PACDI%2C%0A%0AWir%20haben%20Interesse%20am%20Pilot%3A%0AAnzahl%20Mitarbeiter%3A%20%0AFirma%3A%20%0A%0AWas%20w%C3%BCrden%20Sie%20nach%2090%20Min%20als%20Ergebnis%20erwarten%3F%0A" class="btn-primary">📧 Pilot anfragen – info@pacdi.eu</a>
+        <a href="/index.html" class="btn-secondary">Kostenlosen Guide ansehen</a>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:2rem;">
+      <div class="card">
+        <span class="icon">❌</span>
+        <h3>Was wir NICHT sind</h3>
+        <p>60 Min "Was ist KI?" mit Beamer. Gibt es schon für 29€ überall. Braucht niemand.</p>
+      </div>
+      <div class="card">
+        <span class="icon">✅</span>
+        <h3>Was wir sind</h3>
+        <p>90 Min Core, wie Mitarbeiter sicher, effizient und nachweisbar mit KI arbeiten. Dokumentierbar für Art.4.</p>
+      </div>
+      <div class="card" style="border:2px solid #F0D080;">
+        <span class="icon">🎯</span>
+        <h3>Pilot-Ziel</h3>
+        <p>1 Firma × 490-790€ beweist: Jemand zahlt echtes Geld für echtes Problem. Dann skalieren wir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div style="margin-bottom:0.8rem;">
+      <a href="/index.html">Ücretsiz Rehber</a> · <a href="/corporate.html">Corporate Pilot</a> · <a href="mailto:info@pacdi.eu">info@pacdi.eu</a>
+    </div>
+    © 2026 PACDI Global Yazılım Ltd. Şti. · FSEK 2026/18897 · Alle Rechte vorbehalten<br>
+    Dokumentierbare KI-Kompetenz · Art.4 AI Act · Kein Beamer-Tourismus
+  </div>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', function(){
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById('progress-bar');
+  if(bar) bar.style.width = scrolled + "%";
+});
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
