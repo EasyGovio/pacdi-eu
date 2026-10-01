@@ -1,1458 +1,405 @@
 <!DOCTYPE html>
-<html lang="de">
-<head><style>
-@font-face {
-  font-family: "Optimistic";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Optimistic Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
-}
-:where(html) {
-  font-family: "Optimistic", system-ui, sans-serif;
-}
-:where(code, pre, kbd, samp) {
-  font-family: "Optimistic Mono", ui-monospace, monospace;
-}
-</style>
+<html lang="de" data-ui-lang="de">
+<head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0B1E35" />
 <title>PACDI Corporate - AI Work Essentials | Kein Beamer-Training</title>
 <meta name="description" content="Wir sind nicht die 400€ Beamer-Schulung. PACDI AI Work Essentials: 90 Min Core + 7 Prinzipien für sicheres, nachweisbares Arbeiten mit KI im Unternehmen." />
 <link rel="canonical" href="https://pacdi.eu/corporate.html" />
+<script>
+/* Frueh: Sprache und Theme setzen, bevor die Seite gezeichnet wird (kein Flackern) */
+(function(){
+  try {
+    var l = sessionStorage.getItem('autoLang');
+    if (l === 'de' || l === 'tr' || l === 'en') {
+      document.documentElement.setAttribute('data-ui-lang', l);
+      document.documentElement.setAttribute('lang', l);
+    }
+  } catch (e) {}
+  try {
+    var t = localStorage.getItem('pacdi-theme');
+    if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  } catch (e) {}
+})();
+</script>
 <style>
-        /* ––– Reset & Base ––– */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-body, #f8fafc);
-            color: var(--text-color, #1e293b);
-            line-height: 1.6;
-            padding: 0 0 2rem 0;
-            transition: background 0.3s, color 0.3s;
-        }
-        :root {
-            --navy: #0B1E35;
-            --gold: #F0D080;
-            --gold-dark: #C9A84C;
-            --gold-dim: rgba(240, 208, 128, 0.15);
-            --gold-border: rgba(240, 208, 128, 0.3);
-            --amber: #f59e0b;
-            --amber-bg: #fffbeb;
-            --amber-border: #fcd34d;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
-            --white: #ffffff;
-            --shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
-            --radius: 1.2rem;
+/* ––– Reset & Base ––– */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-body);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 0 0 2rem 0;
+  transition: background 0.3s, color 0.3s;
+}
+:root {
+  --navy: #0B1E35;
+  --gold: #F0D080;
+  --gold-dark: #C9A84C;
+  --gold-text: #8A6D1F;
+  --gold-dim: rgba(240, 208, 128, 0.15);
+  --gold-border: rgba(240, 208, 128, 0.3);
+  --amber: #f59e0b;
+  --amber-bg: #fffbeb;
+  --amber-border: #fcd34d;
+  --white: #ffffff;
+  --radius: 1.2rem;
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-alt: #f1f5f9;
+  --text-color: #1e293b;
+  --text-muted: #475569;
+  --border-color: #e2e8f0;
+  --card-shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
+}
+[data-theme="dark"] {
+  --bg-body: #0f172a;
+  --bg-card: #1e293b;
+  --bg-alt: #1e293b;
+  --text-color: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --navy: #1e293b;
+  --gold-text: #F0D080;
+  --amber-bg: #2d1f00;
+  --amber-border: #92400e;
+  --white: #e2e8f0;
+}
 
-            /* Tema değişkenleri */
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --bg-alt: #f1f5f9;
-            --bg-input: #ffffff;
-            --text-color: #1e293b;
-            --text-muted: #475569;
-            --border-color: #e2e8f0;
-            --card-shadow: 0 4px 16px rgba(11, 30, 53, 0.08);
-        }
+/* ––– Sprachumschaltung (alle Texte liegen als data-lang-Bloecke im HTML; JS schaltet nur die Anzeige) ––– */
+html[data-ui-lang="de"] [data-lang]:not([data-lang="de"]),
+html[data-ui-lang="tr"] [data-lang]:not([data-lang="tr"]),
+html[data-ui-lang="en"] [data-lang]:not([data-lang="en"]) { display: none !important; }
 
-        [data-theme="dark"] {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --bg-alt: #1e293b;
-            --bg-input: #1e293b;
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --card-shadow: 0 4px 16px rgba(0,0,0,0.4);
-            --navy: #1e293b;
-            --gold: #F0D080;
-            --gold-dark: #C9A84C;
-            --gold-dim: rgba(240, 208, 128, 0.1);
-            --gold-border: rgba(240, 208, 128, 0.2);
-            --amber-bg: #2d1f00;
-            --amber-border: #92400e;
-            --gray-50: #0f172a;
-            --gray-100: #1e293b;
-            --gray-200: #334155;
-            --gray-300: #475569;
-            --gray-600: #94a3b8;
-            --gray-700: #cbd5e1;
-            --gray-800: #e2e8f0;
-            --white: #1e293b;
-        }
+/* ––– Typografie ––– */
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; color: var(--text-color); }
+h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+p { color: var(--text-muted); }
+a { color: var(--text-color); text-decoration: none; }
+:focus-visible { outline: 3px solid var(--gold-dark); outline-offset: 2px; }
+.skip-link {
+  position: absolute; left: 0.5rem; top: -4rem; z-index: 2000;
+  background: var(--gold); color: var(--navy); font-weight: 700;
+  padding: 0.5rem 1rem; border-radius: 0.5rem;
+}
+.skip-link:focus { top: 0.5rem; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
 
-        [data-theme="dark"] .site-header {
-            background: #0f172a;
-            border-bottom-color: var(--gold-border);
-        }
-        [data-theme="dark"] .card {
-            background: var(--bg-card);
-            border-color: var(--border-color);
-        }
-        [data-theme="dark"] .card:hover {
-            border-color: var(--gold-dark);
-        }
-        [data-theme="dark"] .prompt-card .p-text {
-            background: #0f172a;
-            border-color: var(--border-color);
-            color: var(--text-color);
-        }
-        [data-theme="dark"] .prompt-card {
-            background: var(--bg-card);
-            border-color: var(--border-color);
-        }
-        [data-theme="dark"] .example-item {
-            background: var(--bg-card);
-            border-color: var(--border-color);
-        }
-        [data-theme="dark"] .faq-item {
-            background: var(--bg-card);
-            border-color: var(--border-color);
-        }
-        [data-theme="dark"] .do-box {
-            background: #0f2d1a;
-            border-color: #1a4a2a;
-        }
-        [data-theme="dark"] .dont-box {
-            background: #2d0f0f;
-            border-color: #4a1a1a;
-        }
-        [data-theme="dark"] .warning-box {
-            background: #2d1f00;
-            border-color: #92400e;
-        }
-        [data-theme="dark"] .warning-box h4 {
-            color: #fbbf24;
-        }
-        [data-theme="dark"] .warning-box p {
-            color: #fde68a;
-        }
-        [data-theme="dark"] .cta-banner {
-            background: #0f172a;
-            border-color: var(--gold-border);
-        }
-        [data-theme="dark"] .site-footer {
-            background: #0f172a;
-            border-top-color: var(--gold-border);
-        }
-        [data-theme="dark"] .real-case-box {
-            background: #1a0a00;
-            border-color: #f59e0b;
-        }
-        [data-theme="dark"] .prompt-box.good {
-            background: #0f2d1a;
-            border-color: #22c55e;
-        }
-        [data-theme="dark"] .prompt-box.bad {
-            background: #2d0f0f;
-            border-color: #ef4444;
-        }
-        [data-theme="dark"] .prompt-box pre {
-            background: #0f172a;
-            color: #e2e8f0;
-        }
-        [data-theme="dark"] .lang-btn {
-            color: rgba(255,255,255,0.5);
-        }
-        [data-theme="dark"] .lang-btn.active {
-            background: var(--gold);
-            color: var(--navy);
-        }
-        [data-theme="dark"] .pdf-btn {
-            border-color: rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-        }
-        [data-theme="dark"] .pdf-btn:hover {
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-        }
-        [data-theme="dark"] #ai-search {
-            background: var(--bg-input);
-            color: var(--text-color);
-            border-color: var(--border-color);
-        }
-        [data-theme="dark"] .comp-table {
-            background: var(--bg-card);
-            border-color: var(--border-color);
-        }
-        [data-theme="dark"] .comp-table th {
-            background: #0f172a;
-            color: #e2e8f0;
-        }
-        [data-theme="dark"] .comp-table td {
-            border-bottom-color: var(--border-color);
-        }
-        [data-theme="dark"] .card[style*="background: var(--gray-100)"] {
-            background: var(--bg-alt) !important;
-        }
+/* ––– Fortschrittsbalken ––– */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+  background: #F6B45F; z-index: 1000; transition: width 0.1s ease;
+  box-shadow: 0 0 8px rgba(246, 180, 95, 0.4);
+}
 
-        /* ––– Smooth Scroll ––– */
-        html {
-            scroll-behavior: smooth;
-        }
+/* ––– Header ––– */
+.site-header {
+  background: var(--navy); padding: 1.2rem 1rem;
+  border-bottom: 3px solid var(--gold);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: space-between; gap: 0.8rem;
+}
+.site-title { color: #fff; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.2px; }
+.site-title span { color: var(--gold); }
+.site-title small {
+  display: block; font-size: 0.6rem; font-weight: 400;
+  color: rgba(255, 255, 255, 0.6); letter-spacing: 0.08em; margin-top: 0.05rem;
+}
+.header-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+.pdf-btn {
+  background: transparent; border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.8); font-size: 0.7rem; padding: 0.3rem 0.8rem;
+  border-radius: 2rem; transition: 0.2s; font-weight: 500; white-space: nowrap;
+}
+.pdf-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.lang-toggle {
+  display: flex; background: rgba(255, 255, 255, 0.08);
+  border-radius: 2rem; padding: 0.15rem; gap: 0.1rem; flex-shrink: 0;
+}
+.lang-btn {
+  background: transparent; border: none; color: rgba(255, 255, 255, 0.7);
+  font-size: 0.7rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 2rem;
+  cursor: pointer; transition: all 0.2s; font-family: inherit;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.lang-btn.active { background: var(--gold); color: #0B1E35; }
+.lang-btn:hover:not(.active) { color: #fff; }
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.08); border: none; color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem; padding: 0.3rem 0.6rem; border-radius: 2rem; cursor: pointer;
+  transition: 0.2s; line-height: 1;
+}
+.theme-toggle:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
+.header-cta {
+  background: var(--gold); color: #0B1E35; font-size: 0.7rem; font-weight: 800;
+  padding: 0.35rem 0.9rem; border-radius: 2rem; text-transform: uppercase;
+  letter-spacing: 0.04em; white-space: nowrap;
+}
+.header-cta:hover { background: var(--gold-dark); }
 
-        /* ––– Typography ––– */
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--text-color);
-        }
-        h1 {
-            font-size: 1.7rem;
-            letter-spacing: -0.3px;
-        }
-        h2 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        h2 .icon {
-            font-size: 1.6rem;
-        }
-        h3 {
-            font-size: 1.05rem;
-            margin-bottom: 0.3rem;
-        }
-        p {
-            color: var(--text-muted);
-        }
-        a {
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        /* ––– Layout ––– */
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* ––– Progress Bar ––– */
-        #progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: #F6B45F;
-            width: 0%;
-            z-index: 1000;
-            transition: width 0.1s ease;
-            box-shadow: 0 0 8px rgba(246, 180, 95, 0.4);
-        }
-
-        /* ––– Header ––– */
-        .site-header {
-            background: var(--navy);
-            padding: 1.2rem 1rem;
-            border-bottom: 3px solid var(--gold);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: background 0.3s;
-        }
-        .header-inner {
-            max-width: 960px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.8rem;
-        }
-        .site-title {
-            color: var(--white);
-            font-size: 1.15rem;
-            font-weight: 700;
-            letter-spacing: -0.2px;
-        }
-        .site-title span {
-            color: var(--gold);
-        }
-        .site-title small {
-            display: block;
-            font-size: 0.6rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.5);
-            letter-spacing: 0.08em;
-            margin-top: 0.05rem;
-        }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-        .pdf-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.7rem;
-            padding: 0.3rem 0.8rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            transition: 0.2s;
-            font-family: system-ui;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .pdf-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-        .lang-toggle {
-            display: flex;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 2rem;
-            padding: 0.15rem;
-            gap: 0.1rem;
-            flex-shrink: 0;
-        }
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.3rem 0.7rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: system-ui;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-        .lang-btn.active {
-            background: var(--gold);
-            color: var(--navy);
-        }
-        .lang-btn:hover:not(.active) {
-            color: var(--white);
-        }
-        .theme-toggle {
-            background: rgba(255,255,255,0.08);
-            border: none;
-            color: rgba(255,255,255,0.7);
-            font-size: 1rem;
-            padding: 0.3rem 0.6rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            transition: 0.2s;
-            line-height: 1;
-        }
-        .theme-toggle:hover {
-            background: rgba(255,255,255,0.15);
-            color: #fff;
-        }
-
-        /* ––– Sections ––– */
-        .section {
-            padding: 2.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .section:last-of-type {
-            border-bottom: none;
-        }
-        .section-alt {
-            background: var(--bg-alt);
-        }
-        .section-sub {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ––– Cards ––– */
-        .card-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-        @media (min-width: 640px) {
-            .card-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .card-grid-2 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        .card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
-        }
-        .card:hover {
-            border-color: var(--gold-dark);
-            box-shadow: var(--card-shadow);
-        }
-        .card .icon {
-            font-size: 2.2rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        .card h3 {
-            color: var(--text-color);
-        }
-        .card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        /* ––– Prompt Examples ––– */
-        .prompt-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        @media (max-width: 599px) {
-            .prompt-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .prompt-box {
-            border-radius: var(--radius);
-            padding: 1.2rem;
-            border-left: 5px solid;
-        }
-        .prompt-box.good {
-            background: #f0fdf4;
-            border-color: #22c55e;
-        }
-        .prompt-box.bad {
-            background: #fef2f2;
-            border-color: #ef4444;
-        }
-        .prompt-box .label {
-            font-weight: 700;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-        .prompt-box.good .label {
-            color: #16a34a;
-        }
-        .prompt-box.bad .label {
-            color: #dc2626;
-        }
-        .prompt-box pre {
-            font-family: system-ui, monospace;
-            font-size: 0.8rem;
-            white-space: pre-wrap;
-            word-break: break-word;
-            background: rgba(0, 0, 0, 0.04);
-            padding: 0.5rem 0.7rem;
-            border-radius: 0.5rem;
-            margin-top: 0.3rem;
-            color: var(--text-color);
-        }
-        .do-dont-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        @media (max-width: 599px) {
-            .do-dont-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .do-box,
-        .dont-box {
-            border-radius: var(--radius);
-            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
-        }
-        .do-box {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-        }
-        .dont-box {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-        }
-        .do-box h4,
-        .dont-box h4 {
-            font-size: 0.85rem;
-            margin-bottom: 0.3rem;
-        }
-        .do-box h4 {
-            color: #16a34a;
-        }
-        .dont-box h4 {
-            color: #dc2626;
-        }
-        .do-box ul,
-        .dont-box ul {
-            list-style: none;
-            padding: 0;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-        .do-box ul li::before {
-            content: "✓ ";
-            color: #16a34a;
-            font-weight: 700;
-        }
-        .dont-box ul li::before {
-            content: "✗ ";
-            color: #dc2626;
-            font-weight: 700;
-        }
-        .do-box ul li,
-        .dont-box ul li {
-            padding: 0.2rem 0;
-        }
-
-        /* ––– Examples ––– */
-        .example-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.8rem;
-        }
-        .example-item {
-            background: var(--bg-card);
-            border-radius: 0.8rem;
-            padding: 1rem 1.2rem;
-            border: 1px solid var(--border-color);
-            transition: border-color 0.2s;
-        }
-        .example-item:hover {
-            border-color: var(--gold-dark);
-        }
-        .example-item .ex-title {
-            font-weight: 600;
-            color: var(--text-color);
-            font-size: 0.9rem;
-        }
-        .example-item .ex-desc {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-top: 0.15rem;
-        }
-        .example-item .ex-tag {
-            display: inline-block;
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: var(--gold-dim);
-            color: var(--gold-dark);
-            padding: 0.1rem 0.6rem;
-            border-radius: 1rem;
-            margin-top: 0.3rem;
-            border: 1px solid var(--gold-border);
-        }
-
-        /* ––– Comparison Table ––– */
-        .table-wrap {
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-        .comp-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        .comp-table th {
-            background: var(--navy);
-            color: var(--white);
-            padding: 0.7rem 0.8rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-        .comp-table td {
-            padding: 0.7rem 0.8rem;
-            border-bottom: 1px solid var(--border-color);
-            vertical-align: top;
-            color: var(--text-color);
-        }
-        .comp-table tr:last-child td {
-            border-bottom: none;
-        }
-        .comp-table .tool-icon {
-            font-size: 1.2rem;
-            margin-right: 0.3rem;
-        }
-        .comp-table .use-case {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-        @media (max-width: 500px) {
-            .comp-table th,
-            .comp-table td {
-                padding: 0.5rem 0.6rem;
-                font-size: 0.78rem;
-            }
-        }
-
-        /* ––– Warning Boxes ––– */
-        .warning-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        @media (max-width: 599px) {
-            .warning-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .warning-box {
-            background: var(--amber-bg);
-            border-left: 6px solid var(--amber);
-            border-radius: 0.8rem;
-            padding: 1.2rem 1.2rem 0.8rem 1.2rem;
-            border: 1px solid var(--amber-border);
-        }
-        .warning-box .warn-icon {
-            font-size: 1.3rem;
-            margin-right: 0.4rem;
-        }
-        .warning-box h4 {
-            color: #92400e;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .warning-box p {
-            font-size: 0.82rem;
-            color: #78350f;
-            margin-top: 0.3rem;
-        }
-
-        /* ––– Real Case Box ––– */
-        .real-case-box {
-            background: #1a0a00;
-            border: 2px solid #f59e0b;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        .real-case-box .case-title {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #f59e0b;
-            margin-bottom: 0.8rem;
-        }
-        .real-case-box .case-text,
-        .real-case-box .case-moral {
-            font-size: 0.85rem;
-            color: #fde68a;
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-        }
-        .real-case-box .case-note {
-            font-size: 0.75rem;
-            color: #f59e0b;
-            font-style: italic;
-        }
-        .real-case-box strong {
-            color: #ffb347;
-        }
-        .real-case-box em {
-            color: #fbbf24;
-        }
-
-        /* ––– Prompts Section ––– */
-        .prompt-tabs {
-            display: flex;
-            gap: 0.3rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-        .prompt-tab {
-            background: var(--gray-100);
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: system-ui;
-            color: var(--text-muted);
-        }
-        .prompt-tab.active {
-            background: var(--navy);
-            color: var(--white);
-        }
-        .prompt-tab:hover:not(.active) {
-            background: var(--gray-200);
-        }
-        .prompt-card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            margin-bottom: 0.8rem;
-        }
-        .prompt-card .p-number {
-            font-weight: 700;
-            color: var(--gold-dark);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-        .prompt-card .p-title {
-            font-weight: 600;
-            color: var(--text-color);
-            font-size: 0.95rem;
-            margin: 0.1rem 0 0.3rem 0;
-        }
-        .prompt-card .p-text {
-            background: var(--gray-50);
-            padding: 0.7rem 1rem;
-            border-radius: 0.6rem;
-            font-family: system-ui, monospace;
-            font-size: 0.82rem;
-            white-space: pre-wrap;
-            word-break: break-word;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            margin-top: 0.3rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .prompt-card .p-text:hover {
-            background: var(--gray-100);
-        }
-        .prompt-card .p-copy {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 0.2rem;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .prompt-card .p-copy:hover {
-            color: var(--text-color);
-        }
-        .prompt-lang-group {
-            display: none;
-        }
-        .prompt-lang-group.active {
-            display: block;
-        }
-
-        /* ––– FAQ ––– */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.8rem;
-            margin: 1rem 0;
-        }
-        .faq-item {
-            background: var(--bg-card);
-            border-radius: 0.8rem;
-            padding: 1rem 1.2rem;
-            border: 1px solid var(--border-color);
-            transition: border-color 0.2s;
-        }
-        .faq-item:hover {
-            border-color: var(--gold-dark);
-        }
-        .faq-item .faq-q {
-            font-weight: 700;
-            color: var(--text-color);
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-item .faq-q .toggle-icon {
-            font-size: 1.2rem;
-            transition: transform 0.2s;
-        }
-        .faq-item .faq-a {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-            display: none;
-            padding-top: 0.5rem;
-            border-top: 1px solid var(--border-color);
-        }
-        .faq-item .faq-a.open {
-            display: block;
-        }
-
-        /* ––– CTA Banner ––– */
-        .cta-banner {
-            background: var(--navy);
-            border-radius: var(--radius);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            margin: 2rem 0 1rem 0;
-            border: 1px solid var(--gold-border);
-        }
-        .cta-banner h3 {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-bottom: 0.4rem;
-        }
-        .cta-banner p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
-        }
-        .cta-banner .cta-btn {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--navy);
-            font-weight: 700;
-            padding: 0.6rem 2rem;
-            border-radius: 2rem;
-            transition: background 0.2s, transform 0.2s;
-        }
-        .cta-banner .cta-btn:hover {
-            background: var(--gold-dark);
-            transform: translateY(-2px);
-        }
-
-        /* ––– Footer ––– */
-        .site-footer {
-            background: var(--navy);
-            color: rgba(255, 255, 255, 0.4);
-            padding: 1.8rem 1rem;
-            margin-top: 2rem;
-            text-align: center;
-            font-size: 0.75rem;
-            border-top: 2px solid var(--gold);
-        }
-        .site-footer a {
-            color: var(--gold);
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .site-footer a:hover {
-            text-decoration: underline;
-            color: #ffffff;
-        }
-
-        /* ––– Utilities ––– */
-        .mt-1 { margin-top: 1rem; }
-        .mb-1 { margin-bottom: 1rem; }
-        .text-center { text-align: center; }
-        .gold-link { color: var(--gold-dark); font-weight: 600; }
-        .badge-gold {
-            display: inline-block;
-            background: var(--gold-dim);
-            color: var(--gold-dark);
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 0.15rem 0.7rem;
-            border-radius: 1rem;
-            border: 1px solid var(--gold-border);
-        }
-
-        /* ––– Print Styles ––– */
-        @media print {
-            #progress-bar, .pdf-btn, .lang-toggle, .site-header .header-actions .pdf-btn,
-            .site-header .lang-toggle, #back-to-top, #ai-search,
-            .card[style*="background: var(--gray-100)"], .text-center.mt-1.mb-1,
-            .theme-toggle {
-                display: none !important;
-            }
-            .site-header {
-                position: static !important;
-                border-bottom: 2px solid #F6B45F;
-            }
-            body {
-                background: #fff !important;
-                color: #000 !important;
-                padding: 0;
-            }
-            .card, .example-item, .faq-item, .cta-banner {
-                border: 1px solid #ccc !important;
-                box-shadow: none !important;
-                background: #fff !important;
-            }
-            .site-footer {
-                background: #eee !important;
-                color: #333 !important;
-                border-top: 1px solid #ccc !important;
-            }
-            .site-footer a {
-                color: #0B1E35 !important;
-            }
-            [data-theme="dark"] .card,
-            [data-theme="dark"] .example-item,
-            [data-theme="dark"] .faq-item {
-                background: #fff !important;
-                color: #000 !important;
-            }
-            [data-theme="dark"] .prompt-card .p-text {
-                background: #f8fafc !important;
-                color: #1e293b !important;
-            }
-        }
-
-        /* ––– Responsive fine-tune ––– */
-        @media (max-width: 480px) {
-            .site-title { font-size: 1rem; }
-            .header-inner {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.5rem;
-            }
-            .header-actions { justify-content: space-between; }
-            .lang-toggle { align-self: flex-start; }
-            h2 { font-size: 1.2rem; }
-            .card { padding: 1.2rem; }
-            .real-case-box { padding: 1rem; }
-        }
-        @media (min-width: 640px) {
-            .header-inner { flex-wrap: nowrap; }
-            .site-title small {
-                display: inline;
-                margin-left: 0.3rem;
-                font-size: 0.55rem;
-            }
-        }
-
-        /* ––– Copy feedback ––– */
-        .copy-feedback {
-            font-size: 0.7rem;
-            color: #16a34a;
-            margin-left: 0.5rem;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        .copy-feedback.show { opacity: 1; }
-
-        /* ––– Back to Top Button ––– */
-        #back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            background: var(--navy);
-            color: var(--gold);
-            border: 1px solid var(--gold-border);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: none;
-            z-index: 99;
-            justify-content: center;
-            align-items: center;
-            box-shadow: var(--card-shadow);
-            transition: background 0.2s, transform 0.2s;
-        }
-        #back-to-top:hover {
-            background: var(--gold-dark);
-            color: var(--navy);
-            transform: scale(1.05);
-        }
-        @media (max-width: 480px) {
-            #back-to-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 2.2rem;
-                height: 2.2rem;
-                font-size: 1rem;
-            }
-        }
-
-        /* ––– Sticky Container ––– */
-        .sticky-container {
-            position: sticky;
-            z-index: 50;
-            background: var(--bg-body);
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: box-shadow 0.2s;
-        }
-        .sticky-container.scrolled {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        [data-theme="dark"] .sticky-container.scrolled {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        }
-        .sticky-container .card {
-            margin: 0.25rem 0;
-        }
-
-        /* ––– Hamburger Nav ––– */
-        .nav-hamburger-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-family: system-ui;
-            padding: 0;
-            color: var(--text-color);
-        }
-        .nav-hamburger-btn .nav-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .nav-hamburger-btn .nav-chevron {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            transition: transform 0.2s;
-        }
-        .nav-hamburger-btn.open .nav-chevron {
-            transform: rotate(180deg);
-        }
-        .nav-links-wrap {
-            display: none;
-            padding-top: 0.6rem;
-        }
-        .nav-links-wrap.open {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-        @media (min-width: 768px) {
-            .nav-hamburger-btn { display: none; }
-            .nav-links-wrap { display: flex !important; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.5rem; }
-        }
-
-        /* ––– Scroll Spy active link ––– */
-        .nav-link-active {
-            background: var(--gold) !important;
-            color: var(--navy) !important;
-            border-color: var(--gold) !important;
-        }
-
-        /* ––– Arama vurgusu ––– */
-        mark {
-            background: #fde047;
-            color: #1e293b;
-            padding: 0 0.1rem;
-            border-radius: 2px;
-        }
-        [data-theme="dark"] mark {
-            background: #facc15;
-            color: #0f172a;
-        }
-
-        /* ––– Constraint kutusu dark override ––– */
-        [data-theme="dark"] div[style*="background:#f0fdf4"] {
-            background: #0f2d1a !important;
-            border-color: #1a4a2a !important;
-        }
-        [data-theme="dark"] div[style*="background:#f0fdf4"] p {
-            color: #bbf7d0 !important;
-        }
-        [data-theme="dark"] div[style*="background:#f0fdf4"] strong {
-            color: #4ade80 !important;
-        }
-    
-/* Corporate specific */
+/* ––– Hero ––– */
 .corporate-hero {
   background: linear-gradient(135deg, #0B1E35 0%, #0a2340 60%, #112a4a 100%);
-  border-bottom: 3px solid #F0D080;
-  padding: 3rem 1rem 2.5rem 1rem;
-  color: white;
+  border-bottom: 3px solid #F0D080; padding: 3rem 1rem 2.5rem 1rem; color: #fff;
 }
 .hero-badge {
-  display:inline-block;
-  background: rgba(240,208,128,0.15);
-  border:1px solid rgba(240,208,128,0.3);
-  color:#F0D080;
-  font-size:0.68rem;
-  font-weight:700;
-  letter-spacing:0.08em;
-  padding:0.3rem 0.9rem;
-  border-radius:2rem;
-  margin-bottom:1rem;
-  text-transform:uppercase;
+  display: inline-block; background: rgba(240, 208, 128, 0.15);
+  border: 1px solid rgba(240, 208, 128, 0.3); color: #F0D080;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+  padding: 0.3rem 0.9rem; border-radius: 2rem; margin-bottom: 1rem; text-transform: uppercase;
 }
 .hero-title {
-  font-size:2rem;
-  line-height:1.15;
-  font-weight:800;
-  letter-spacing:-0.5px;
-  margin-bottom:0.8rem;
-  color:white;
+  font-size: 2rem; line-height: 1.15; font-weight: 800; letter-spacing: -0.5px;
+  margin-bottom: 0.8rem; color: #fff;
 }
-.hero-title span { color:#F0D080; }
+.hero-title .hl { color: #F0D080; }
 .hero-sub {
-  font-size:1.05rem;
-  color:rgba(255,255,255,0.75);
-  max-width:640px;
-  line-height:1.6;
-  margin-bottom:1.6rem;
+  font-size: 1.05rem; color: rgba(255, 255, 255, 0.8); max-width: 640px;
+  line-height: 1.6; margin-bottom: 1.6rem;
 }
-.hero-cta-row { display:flex; gap:0.8rem; flex-wrap:wrap; }
+.hero-sub strong { color: #fff; }
+.hero-cta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 .btn-primary {
-  background:#F0D080;
-  color:#0B1E35;
-  font-weight:800;
-  padding:0.75rem 1.6rem;
-  border-radius:2rem;
-  font-size:0.9rem;
-  display:inline-block;
-  transition:0.2s;
+  background: #F0D080; color: #0B1E35; font-weight: 800; padding: 0.75rem 1.6rem;
+  border-radius: 2rem; font-size: 0.9rem; display: inline-block; transition: 0.2s;
 }
-.btn-primary:hover { background:#C9A84C; transform:translateY(-2px); }
+.btn-primary:hover { background: #C9A84C; transform: translateY(-2px); }
 .btn-secondary {
-  background:transparent;
-  border:1px solid rgba(255,255,255,0.25);
-  color:rgba(255,255,255,0.8);
-  padding:0.75rem 1.6rem;
-  border-radius:2rem;
-  font-size:0.9rem;
-  display:inline-block;
+  background: transparent; border: 1px solid rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.9); padding: 0.75rem 1.6rem; border-radius: 2rem;
+  font-size: 0.9rem; display: inline-block;
 }
-.btn-secondary:hover { background:rgba(255,255,255,0.08); color:white; }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+
+/* ––– Story ––– */
 .story-box {
-  background: #fffbeb;
-  border:1px solid #fcd34d;
-  border-left:5px solid #f59e0b;
-  border-radius:1rem;
-  padding:1.5rem;
-  margin:2rem 0;
+  background: var(--amber-bg); border: 1px solid var(--amber-border);
+  border-left: 5px solid var(--amber); border-radius: 1rem; padding: 1.5rem; margin: 2rem 0;
 }
+.story-box h4 { font-size: 0.9rem; margin-bottom: 0.5rem; color: #92400e; }
+.story-box p { font-size: 0.85rem; line-height: 1.7; color: #92400e; }
+[data-theme="dark"] .story-box h4 { color: #fbbf24; }
+[data-theme="dark"] .story-box p { color: #fde68a; }
+
+/* ––– Sektionen & Karten ––– */
+.section { padding: 2.5rem 0; border-bottom: 1px solid var(--border-color); }
+.section-alt { background: var(--bg-alt); }
+.section-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+.card-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+.card {
+  background: var(--bg-card); border-radius: var(--radius); padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
+}
+.card:hover { border-color: var(--gold-dark); box-shadow: var(--card-shadow); }
+.card .icon { font-size: 2.2rem; display: block; margin-bottom: 0.5rem; }
+.card p { font-size: 0.88rem; }
 .principle-card {
-  background: var(--bg-card);
-  border:1px solid var(--border-color);
-  border-radius:1.2rem;
-  padding:1.4rem;
-  position:relative;
-  overflow:hidden;
+  background: var(--bg-card); border: 1px solid var(--border-color);
+  border-radius: 1.2rem; padding: 1.4rem; transition: border-color 0.2s, box-shadow 0.2s;
 }
-.principle-card:hover { border-color:#C9A84C; box-shadow:0 8px 24px rgba(11,30,53,0.08); }
+.principle-card:hover { border-color: #C9A84C; box-shadow: var(--card-shadow); }
+.principle-card.featured { border: 2px solid #F0D080; }
 .p-num {
-  font-size:0.65rem;
-  font-weight:800;
-  letter-spacing:0.08em;
-  color:#C9A84C;
-  background:rgba(240,208,128,0.15);
-  padding:0.2rem 0.6rem;
-  border-radius:2rem;
-  display:inline-block;
-  margin-bottom:0.6rem;
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-text);
+  background: rgba(240, 208, 128, 0.15); padding: 0.2rem 0.6rem; border-radius: 2rem;
+  display: inline-block; margin-bottom: 0.6rem; text-transform: uppercase;
 }
-.p-title { font-size:1.05rem; font-weight:800; margin-bottom:0.3rem; }
+.p-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.3rem; }
 .p-formula {
-  font-size:0.78rem;
-  font-weight:700;
-  color:#0B1E35;
-  background:#f1f5f9;
-  padding:0.35rem 0.7rem;
-  border-radius:0.5rem;
-  display:inline-block;
-  margin-bottom:0.6rem;
-  font-family:monospace;
+  font-size: 0.78rem; font-weight: 700; color: #0B1E35; background: #f1f5f9;
+  padding: 0.35rem 0.7rem; border-radius: 0.5rem; display: inline-block;
+  margin-bottom: 0.6rem; font-family: ui-monospace, monospace;
 }
-.p-desc { font-size:0.86rem; color:var(--text-muted); line-height:1.6; }
+[data-theme="dark"] .p-formula { background: #0f172a; color: #e2e8f0; }
+.p-desc { font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ––– Angebot ––– */
 .offer-box {
-  background: var(--navy);
-  border:2px solid #F0D080;
-  border-radius:1.2rem;
-  padding:2rem;
-  color:white;
-  margin:2rem 0;
+  background: var(--navy); border: 2px solid #F0D080; border-radius: 1.2rem;
+  padding: 2rem; color: #fff; margin: 2rem 0;
 }
-.offer-box h3 { color:#F0D080; }
-.check-list { list-style:none; padding:0; margin:1rem 0; }
-.check-list li { padding:0.4rem 0; font-size:0.88rem; color:rgba(255,255,255,0.8); }
-.check-list li::before { content:"✓ "; color:#F0D080; font-weight:800; }
+.offer-box h3 { color: #F0D080; font-size: 1.2rem; }
+.offer-box > p { color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; margin-top: 0.5rem; }
+.check-list { list-style: none; padding: 0; margin: 1rem 0; }
+.check-list li { padding: 0.4rem 0; font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); }
+.check-list li::before { content: "✓ "; color: #F0D080; font-weight: 800; }
+.price-box {
+  margin-top: 1.5rem; padding: 1rem; background: rgba(240, 208, 128, 0.1);
+  border-radius: 0.8rem; border: 1px dashed rgba(240, 208, 128, 0.3);
+}
+.price-box .label { font-size: 0.8rem; color: #F0D080; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.price-box .amount { font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 0.2rem; }
+.price-box .note { font-size: 0.82rem; color: rgba(255, 255, 255, 0.75); margin-top: 0.3rem; }
+.offer-actions { margin-top: 1.5rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+/* ––– Footer ––– */
+.site-footer {
+  background: var(--navy); color: rgba(255, 255, 255, 0.65); padding: 1.8rem 1rem;
+  margin-top: 2rem; text-align: center; font-size: 0.75rem; border-top: 2px solid var(--gold);
+}
+.site-footer a { color: var(--gold); font-weight: 500; transition: color 0.2s; }
+.site-footer a:hover { text-decoration: underline; color: #fff; }
+
+/* ––– Nach oben ––– */
+#back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; width: 2.5rem; height: 2.5rem;
+  border-radius: 50%; background: var(--navy); color: var(--gold);
+  border: 1px solid var(--gold-border); font-size: 1.2rem; cursor: pointer;
+  display: none; z-index: 99; justify-content: center; align-items: center;
+  box-shadow: var(--card-shadow);
+}
+#back-to-top:hover { background: var(--gold-dark); color: var(--navy); }
+
+/* ––– Responsive ––– */
+@media (max-width: 480px) {
+  .site-title { font-size: 1rem; }
+  .header-inner { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+  .header-actions { justify-content: space-between; }
+  h2 { font-size: 1.2rem; }
+  .hero-title { font-size: 1.6rem; }
+  .card { padding: 1.2rem; }
+  .offer-box { padding: 1.4rem; }
+  #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 2.2rem; height: 2.2rem; font-size: 1rem; }
+}
+@media (min-width: 640px) {
+  .header-inner { flex-wrap: nowrap; }
+  .site-title small { display: inline; margin-left: 0.3rem; font-size: 0.55rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ––– Druck ––– */
+@media print {
+  #progress-bar, .lang-toggle, .theme-toggle, .header-cta, .pdf-btn, #back-to-top, .skip-link { display: none !important; }
+  .site-header { position: static !important; border-bottom: 2px solid #F6B45F; }
+  body { background: #fff !important; color: #000 !important; }
+  .card, .principle-card { border: 1px solid #ccc !important; box-shadow: none !important; background: #fff !important; }
+}
 </style>
-    <script>
-(function(){
-  var GA_ID = "G-E6ML8EDW0H";
-  var ADS_CLIENT = "ca-pub-8426936740213369";
-  var CONSENT_KEY = "pacdiCookieConsent";
-
-  function loadGA(){
-    var s1 = document.createElement("script");
-    s1.async = true;
-    s1.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-    document.head.appendChild(s1);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ dataLayer.push(arguments); };
-    gtag("js", new Date());
-    gtag("config", GA_ID);
-  }
-  function loadAdsense(){
-    var s2 = document.createElement("script");
-    s2.async = true;
-    s2.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + ADS_CLIENT;
-    s2.crossOrigin = "anonymous";
-    document.head.appendChild(s2);
-  }
-  function loadAll(){ loadGA(); loadAdsense(); }
-
-  var consent = null;
-  try { consent = localStorage.getItem(CONSENT_KEY); } catch(e){}
-
-  if (consent === "accepted") { loadAll(); return; }
-  if (consent === "rejected") { return; }
-
-  document.addEventListener("DOMContentLoaded", function(){
-    var lang = (document.documentElement.lang || "de").substring(0,2);
-    var texts = {
-      tr: { msg: "Bu site, deneyiminizi iyileştirmek için analiz ve reklam çerezleri kullanır. Detaylar için <a href=\"/legal.html\" style=\"color:#F6B45F;\">Gizlilik Politikamıza</a> bakabilirsiniz.", accept: "Kabul Et", reject: "Reddet" },
-      de: { msg: "Diese Website verwendet Analyse- und Werbe-Cookies, um Ihre Erfahrung zu verbessern. Details finden Sie in unserer <a href=\"/legal.html\" style=\"color:#F6B45F;\">Datenschutzerklärung</a>.", accept: "Akzeptieren", reject: "Ablehnen" },
-      en: { msg: "This site uses analytics and advertising cookies to improve your experience. See our <a href=\"/legal.html\" style=\"color:#F6B45F;\">Privacy Policy</a> for details.", accept: "Accept", reject: "Reject" }
-    };
-    var t = texts[lang] || texts.de;
-
-    var banner = document.createElement("div");
-    banner.id = "pacdi-cookie-banner";
-    banner.style.cssText = "position:fixed;bottom:0;left:0;right:0;background:#04162E;border-top:1px solid rgba(246,180,95,0.25);padding:18px 20px;z-index:99999;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 -4px 20px rgba(0,0,0,0.3);font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif;";
-    banner.innerHTML =
-      "<div style=\"flex:1;min-width:240px;font-size:0.85rem;color:#c8cdd5;line-height:1.5;\">" + t.msg + "</div>" +
-      "<div style=\"display:flex;gap:10px;flex-shrink:0;\">" +
-        "<button id=\"pacdi-cookie-reject\" style=\"background:transparent;border:1px solid rgba(246,180,95,0.4);color:#c8cdd5;padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;\">" + t.reject + "</button>" +
-        "<button id=\"pacdi-cookie-accept\" style=\"background:#F6B45F;border:none;color:#04162E;padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:700;cursor:pointer;\">" + t.accept + "</button>" +
-      "</div>";
-    document.body.appendChild(banner);
-
-    document.getElementById("pacdi-cookie-accept").onclick = function(){
-      try { localStorage.setItem(CONSENT_KEY, "accepted"); } catch(e){}
-      loadAll();
-      banner.remove();
-    };
-    document.getElementById("pacdi-cookie-reject").onclick = function(){
-      try { localStorage.setItem(CONSENT_KEY, "rejected"); } catch(e){}
-      banner.remove();
-    };
-  });
-})();
-</script>
-    <link rel="manifest" href="/manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="PACDI">
-    <link rel="apple-touch-icon" href="/icons/pacdi-default.png">
-    <script>
-(function(){
-  if (sessionStorage.getItem('autoLang')) return;
-  var bl = (navigator.language || navigator.userLanguage || 'en').substring(0,2).toLowerCase();
-  var supported = ['tr','de','en'];
-  var lang = supported.indexOf(bl) > -1 ? bl : 'en';
-  sessionStorage.setItem('autoLang', lang);
-})();
-</script>
-    <script>
-(function(){
-  var params = new URLSearchParams(window.location.search);
-  if (params.get('beta') === 'pacdi2026') {
-    try { sessionStorage.setItem('betaUnlock', '1'); } catch(e) {}
-  }
-  window.isBetaUnlocked = function() {
-    try { return sessionStorage.getItem('betaUnlock') === '1'; } catch(e) { return false; }
-  };
-})();
-</script>
-    <style id="viewportLock">html,body{overscroll-behavior:none;}</style>
-<script>
-(function(){
-  function lockCanvases(){
-    document.querySelectorAll('canvas').forEach(function(c){
-      c.style.touchAction = 'none';
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', lockCanvases);
-  } else {
-    lockCanvases();
-  }
-  var mo = new MutationObserver(lockCanvases);
-  mo.observe(document.documentElement, { childList: true, subtree: true });
-})();
-</script>
-    <style>
-    .pacdi-share-bar{margin-top:24px;padding:16px;background:rgba(246,180,95,0.05);border:1px solid rgba(246,180,95,0.15);border-radius:10px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;box-sizing:border-box;}
-    .pacdi-share-label{font-size:0.8rem;color:#7a9ab8;margin-bottom:10px;font-weight:600;}
-    .pacdi-share-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-    .pacdi-share-btn{display:inline-flex;align-items:center;gap:4px;font-size:0.78rem;padding:7px 14px;border-radius:20px;border:1px solid rgba(246,180,95,0.3);background:transparent;color:#F6B45F;text-decoration:none;cursor:pointer;font-family:inherit;}
-    .pacdi-share-btn:hover{background:rgba(246,180,95,0.1);}
-    </style>
-    <style>
-    .pacdi-sponsor-title{font-size:0.9rem;font-weight:700;color:#F6B45F;text-align:center;margin-bottom:12px;letter-spacing:0.05em;}
-    .pacdi-sponsor-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
-    .pacdi-sponsor-placeholder{color:#6a7a8a;font-size:0.7rem;text-align:center;padding:10px;}
-    .pacdi-sponsor-apply-btn{background:transparent;border:1px solid rgba(246,180,95,0.4);color:#F6B45F;padding:8px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit;}
-    </style>
-    <style>
-    [data-theme="dark"]:not([data-pacdi-native-theme]) { filter: invert(1) hue-rotate(180deg); background: #fff; }
-    [data-theme="dark"]:not([data-pacdi-native-theme]) img,
-    [data-theme="dark"]:not([data-pacdi-native-theme]) svg,
-    [data-theme="dark"]:not([data-pacdi-native-theme]) video,
-    [data-theme="dark"]:not([data-pacdi-native-theme]) picture,
-    [data-theme="dark"]:not([data-pacdi-native-theme]) iframe { filter: invert(1) hue-rotate(180deg); }
-    .pacdi-theme-toggle { position: fixed; top: 10px; right: 10px; z-index: 99999; width: 2.1rem; height: 2.1rem;
-      border: none; border-radius: 50%; background: rgba(0,0,0,0.08); font-size: 1.05rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
-    .pacdi-theme-toggle:hover { background: rgba(0,0,0,0.16); }
-    </style>
-    <script>
-(function(){
-  var KEY = 'pacdi-theme';
-  function apply(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    var btn = document.getElementById('pacdiThemeToggle');
-    if (btn) btn.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
-  }
-  var saved = null;
-  try { saved = localStorage.getItem(KEY); } catch(e) {}
-  var preferred = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
-  apply(saved || preferred);
-  function addBtn() {
-    if (document.getElementById('pacdiThemeToggle')) return;
-    var btn = document.createElement('button');
-    btn.id = 'pacdiThemeToggle';
-    btn.className = 'pacdi-theme-toggle';
-    btn.setAttribute('aria-label', 'Koyu/Acik mod');
-    btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
-    btn.onclick = function() {
-      var cur = document.documentElement.getAttribute('data-theme');
-      var next = cur === 'dark' ? 'light' : 'dark';
-      try { localStorage.setItem(KEY, next); } catch(e) {}
-      apply(next);
-    };
-    document.body.appendChild(btn);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addBtn);
-  } else {
-    addBtn();
-  }
-})();
-</script>
 </head>
 <body>
-<!--
-╬═══════════════════════════════════════════════════════════════╮
-║         🛡️  PACDI FRAMEWORK — PROTECTED WORK                  ║
-║                                                               ║
-║  © 2026 PACDI Global Yazılım Ltd. Şti.                       ║
-║  FSEK Registration No : 2026/18897                            ║
-║  Trade Registry      : 23836 · Yunusemre / Manisa, TR       ║
-║                                                               ║
-║  This work and its modular software architecture are          ║
-║  protected under PACDI Software Library FSEK registration.   ║
-║  Unauthorized copying is subject to legal action.            ║
-║                                                               ║
-║  pacdi.de · pacdi.eu · info@pacdi.de                         ║
-╠═══════════════════════════════════════════════════════════════╣
--->
+<a class="skip-link" href="#main"><span data-lang="de">Zum Inhalt springen</span><span data-lang="tr">İçeriğe geç</span><span data-lang="en">Skip to content</span></a>
+<div id="progress-bar" role="presentation"></div>
 
-<div id="progress-bar"></div>
 <header class="site-header">
   <div class="header-inner">
-    <a href="/index.html" class="site-title">PACDI<span>.eu</span><small>KORUNAN ESER · FSEK 2026/18897</small></a>
+    <a href="/index.html" class="site-title">PACDI<span>.eu</span><small>Corporate</small></a>
     <div class="header-actions">
-      <a href="/index.html" class="pdf-btn">📖 Ücretsiz Rehber →</a>
-      <a href="#pilot" class="lang-btn active" style="text-decoration:none;">PILOT ANFRAGEN</a>
+      <a href="/index.html" class="pdf-btn"><span data-lang="de">📖 Kostenloser Guide →</span><span data-lang="tr">📖 Ücretsiz Rehber →</span><span data-lang="en">📖 Free guide →</span></a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" data-set-lang="de" aria-pressed="true">DE</button>
+        <button type="button" class="lang-btn" data-set-lang="tr" aria-pressed="false">TR</button>
+        <button type="button" class="lang-btn" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Theme">🌙</button>
+      <a href="#pilot" class="header-cta"><span data-lang="de">Pilot anfragen</span><span data-lang="tr">Pilot talep et</span><span data-lang="en">Request pilot</span></a>
     </div>
   </div>
 </header>
 
+<main id="main">
 <div class="corporate-hero">
   <div class="container">
-    <div class="hero-badge">⚠️ Anti-Beamer-Training</div>
-    <h1 class="hero-title">Wir sind nicht die <span>400€ Beamer-Schulung.</span></h1>
-    <p class="hero-sub">Ihre Mitarbeiter hatten schon ein KI-Training. Beamer an, Folien mit "Was ist KI?", 3 ChatGPT Beispiele, Zertifikat, alle unzufrieden. Genau deshalb gibt es PACDI.<br><br><strong style="color:white;">Wir bringen bei, wie man SICHER und NACHWEISBAR mit KI arbeitet – nicht was KI ist.</strong></p>
+    <div class="hero-badge"><span data-lang="de">⚠️ Anti-Beamer-Training</span><span data-lang="tr">⚠️ Projektör eğitimi karşıtı</span><span data-lang="en">⚠️ Anti-projector training</span></div>
+    <h1 class="hero-title">
+      <span data-lang="de">Wir sind nicht die <span class="hl">400€ Beamer-Schulung.</span></span>
+      <span data-lang="tr">Biz <span class="hl">400€'luk projektör eğitimi</span> değiliz.</span>
+      <span data-lang="en">We are not the <span class="hl">€400 projector training.</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-lang="de">Ihre Mitarbeiter hatten schon ein KI-Training. Beamer an, Folien mit „Was ist KI?“, 3 ChatGPT-Beispiele, Zertifikat, alle unzufrieden. Genau deshalb gibt es PACDI.<br><br><strong>Wir bringen bei, wie man SICHER und NACHWEISBAR mit KI arbeitet – nicht was KI ist.</strong></span>
+      <span data-lang="tr">Çalışanlarınız zaten bir yapay zekâ eğitimi aldı. Projektör açık, “Yapay zekâ nedir?” slaytları, 3 ChatGPT örneği, sertifika, herkes memnuniyetsiz. PACDI tam da bu yüzden var.<br><br><strong>Yapay zekâ ile GÜVENLİ ve KANITLANABİLİR çalışmayı öğretiyoruz – yapay zekânın ne olduğunu değil.</strong></span>
+      <span data-lang="en">Your employees have already had an AI training. Projector on, slides titled “What is AI?”, 3 ChatGPT examples, a certificate, everyone unhappy. That is exactly why PACDI exists.<br><br><strong>We teach how to work with AI SAFELY and in a PROVABLE way – not what AI is.</strong></span>
+    </p>
     <div class="hero-cta-row">
-      <a href="#prinzipien" class="btn-primary">7 Prinzipien ansehen ↓</a>
-      <a href="/index.html" class="btn-secondary">Erstmal kostenlos testen</a>
+      <a href="#prinzipien" class="btn-primary"><span data-lang="de">7 Prinzipien ansehen ↓</span><span data-lang="tr">7 İlkeyi gör ↓</span><span data-lang="en">See the 7 principles ↓</span></a>
+      <a href="/index.html" class="btn-secondary"><span data-lang="de">Erstmal kostenlos testen</span><span data-lang="tr">Önce ücretsiz dene</span><span data-lang="en">Try it free first</span></a>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="story-box">
-    <h4 style="font-size:0.9rem; margin-bottom:0.5rem;">🎯 Die Ausgangslage, die uns zu pacdi.eu gebracht hat:</h4>
-    <p style="font-size:0.85rem; line-height:1.7; color:#92400e;">"Ein Unternehmen lädt eine Dozentin ein. Beamer, Folien, 'KI ist wie ein Grundschüler'. 300-400€ kassiert, geht. Mitarbeiter: 'Note 0, nichts gelernt – außer die Dozentin war zufrieden.' Genau das ist das Problem: Checkbox-Schulungen erfüllen HR-Akten, aber ändern keine Arbeitsweise."</p>
+    <h4><span data-lang="de">🎯 Die Ausgangslage, die uns zu pacdi.eu gebracht hat:</span><span data-lang="tr">🎯 Bizi pacdi.eu'ya getiren başlangıç noktası:</span><span data-lang="en">🎯 The starting point that led us to pacdi.eu:</span></h4>
+    <p>
+      <span data-lang="de">Ein Unternehmen bucht eine KI-Schulung. Beamer, Folien, „KI ist wie ein Grundschüler“, 300–400€ Honorar, danach der Eindruck der Mitarbeiter: „Nichts gelernt.“ Genau das ist das Problem: Checkbox-Schulungen erfüllen HR-Akten, aber ändern keine Arbeitsweise.</span>
+      <span data-lang="tr">Bir şirket yapay zekâ eğitimi satın alır. Projektör, slaytlar, “Yapay zekâ ilkokul çocuğu gibidir”, 300–400€ ücret; sonrasında çalışanların izlenimi: “Hiçbir şey öğrenmedim.” Sorun tam olarak bu: Onay kutusu eğitimleri İK dosyalarını doldurur ama çalışma biçimini değiştirmez.</span>
+      <span data-lang="en">A company books an AI training. Projector, slides, “AI is like a primary-school pupil”, a €300–400 fee, and afterwards the employees’ impression: “Learned nothing.” That is exactly the problem: checkbox trainings fill HR files but do not change how people work.</span>
+    </p>
   </div>
 </div>
 
 <section class="section" id="prinzipien">
   <div class="container">
-    <h2>🧩 AI Work Essentials – 7 Prinzipien</h2>
-    <p class="section-sub">Kein 9,5-Stunden-Video-Marathon. 90 Minuten Core, die jeder Mitarbeiter bestehen muss. Dahinter 20 Deep-Dive Lektionen als Bibliothek.</p>
+    <h2><span data-lang="de">🧩 AI Work Essentials – 7 Prinzipien</span><span data-lang="tr">🧩 AI Work Essentials – 7 İlke</span><span data-lang="en">🧩 AI Work Essentials – 7 Principles</span></h2>
+    <p class="section-sub"><span data-lang="de">Kein 9,5-Stunden-Video-Marathon. 90 Minuten Core, die jeder Mitarbeiter bestehen muss. Dahinter 20 Deep-Dive Lektionen als Bibliothek.</span><span data-lang="tr">9,5 saatlik video maratonu yok. Her çalışanın geçmesi gereken 90 dakikalık çekirdek eğitim. Arkasında kütüphane olarak 20 derinlemesine ders.</span><span data-lang="en">No 9.5-hour video marathon. A 90-minute core that every employee must pass. Behind it, 20 deep-dive lessons as a library.</span></p>
     <div class="card-grid card-grid-2" style="margin-top:1.5rem;">
+
       <div class="principle-card">
-        <div class="p-num">PRINZIP 01</div>
-        <div class="p-title">İşi Ver / Aufgabe geben</div>
-        <div class="p-formula">SOR → YAPTIR → ÇÖZDÜR → YÖNETTİR</div>
-        <div class="p-desc">Ziel setzt der Mensch, Arbeit macht die KI. Nicht "Schreib mir eine E-Mail", sondern klare Aufgabendelegation mit Verantwortung.</div>
+        <div class="p-num"><span data-lang="de">Prinzip 01</span><span data-lang="tr">İlke 01</span><span data-lang="en">Principle 01</span></div>
+        <h3 class="p-title"><span data-lang="de">Aufgabe geben</span><span data-lang="tr">İşi ver</span><span data-lang="en">Delegate the task</span></h3>
+        <div class="p-formula"><span data-lang="de">FRAGEN → MACHEN LASSEN → LÖSEN LASSEN → STEUERN</span><span data-lang="tr">SOR → YAPTIR → ÇÖZDÜR → YÖNETTİR</span><span data-lang="en">ASK → HAVE IT DONE → HAVE IT SOLVED → DIRECT</span></div>
+        <p class="p-desc"><span data-lang="de">Das Ziel setzt der Mensch, die Arbeit erledigt die KI. Nicht „Schreib mir eine E-Mail“, sondern klare Aufgabendelegation mit Verantwortung.</span><span data-lang="tr">Hedefi insan koyar, işi yapay zekâ yapar. “Bana bir e-posta yaz” değil, sorumluluğu net bir görev devri.</span><span data-lang="en">The human sets the goal, the AI does the work. Not “Write me an email”, but clear task delegation with accountability.</span></p>
       </div>
+
       <div class="principle-card">
-        <div class="p-num">PRINZIP 02</div>
-        <div class="p-title">Bağlamı Ver / Kontext geben</div>
-        <div class="p-formula">Hedef + Neden + Ne var + Ne eksik</div>
-        <div class="p-desc">Ohne Kontext kein guter Prompt. Was ist das Ziel, warum, welche Infos gibt es, was darf nicht passieren?</div>
+        <div class="p-num"><span data-lang="de">Prinzip 02</span><span data-lang="tr">İlke 02</span><span data-lang="en">Principle 02</span></div>
+        <h3 class="p-title"><span data-lang="de">Kontext geben</span><span data-lang="tr">Bağlamı ver</span><span data-lang="en">Provide context</span></h3>
+        <div class="p-formula"><span data-lang="de">Ziel + Warum + Was ist da + Was fehlt</span><span data-lang="tr">Hedef + Neden + Ne var + Ne eksik</span><span data-lang="en">Goal + Why + What exists + What is missing</span></div>
+        <p class="p-desc"><span data-lang="de">Ohne Kontext kein guter Prompt. Was ist das Ziel, warum, welche Infos gibt es, was darf nicht passieren?</span><span data-lang="tr">Bağlam olmadan iyi bir prompt olmaz. Hedef ne, neden, hangi bilgiler var, ne olmamalı?</span><span data-lang="en">No context, no good prompt. What is the goal, why, what information exists, what must not happen?</span></p>
       </div>
+
       <div class="principle-card">
-        <div class="p-num">PRINZIP 03</div>
-        <div class="p-title">Aracı Seç / Tool wählen</div>
-        <div class="p-formula">Richtiges Tool für richtigen Job</div>
-        <div class="p-desc">ChatGPT ist nicht alles. Claude für Analyse, DeepSeek für Code, Gemini für Recherche. Tool-Chaos beenden.</div>
+        <div class="p-num"><span data-lang="de">Prinzip 03</span><span data-lang="tr">İlke 03</span><span data-lang="en">Principle 03</span></div>
+        <h3 class="p-title"><span data-lang="de">Tool wählen</span><span data-lang="tr">Aracı seç</span><span data-lang="en">Choose the tool</span></h3>
+        <div class="p-formula"><span data-lang="de">Richtiges Tool für den richtigen Job</span><span data-lang="tr">Doğru iş için doğru araç</span><span data-lang="en">The right tool for the right job</span></div>
+        <p class="p-desc"><span data-lang="de">Nicht jedes Tool passt zu jeder Aufgabe. Wir zeigen, wie Sie je Aufgabe das passende KI-Tool wählen – und das Tool-Chaos beenden.</span><span data-lang="tr">Her araç her işe uymaz. Göreve göre doğru yapay zekâ aracını nasıl seçeceğinizi ve araç karmaşasını nasıl bitireceğinizi gösteriyoruz.</span><span data-lang="en">Not every tool fits every task. We show how to pick the right AI tool per task – and end the tool chaos.</span></p>
       </div>
+
       <div class="principle-card">
-        <div class="p-num">PRINZIP 04</div>
-        <div class="p-title">Birlikte Çalış / Iterieren</div>
-        <div class="p-formula">Erste Antwort ≠ Ergebnis</div>
-        <div class="p-desc">Erste KI-Antwort ist Arbeitsmaterial, nicht Ergebnis. Iterativ verbessern, Multi-AI als Team nutzen.</div>
+        <div class="p-num"><span data-lang="de">Prinzip 04</span><span data-lang="tr">İlke 04</span><span data-lang="en">Principle 04</span></div>
+        <h3 class="p-title"><span data-lang="de">Gemeinsam iterieren</span><span data-lang="tr">Birlikte çalış</span><span data-lang="en">Iterate together</span></h3>
+        <div class="p-formula"><span data-lang="de">Erste Antwort ≠ Ergebnis</span><span data-lang="tr">İlk cevap ≠ sonuç</span><span data-lang="en">First answer ≠ result</span></div>
+        <p class="p-desc"><span data-lang="de">Die erste KI-Antwort ist Arbeitsmaterial, kein Ergebnis. Iterativ verbessern, mehrere KI-Tools wie ein Team nutzen.</span><span data-lang="tr">İlk yapay zekâ cevabı çalışma malzemesidir, sonuç değil. Yineleyerek geliştirin, birden fazla aracı bir ekip gibi kullanın.</span><span data-lang="en">The first AI answer is working material, not a result. Improve iteratively and use several AI tools like a team.</span></p>
       </div>
+
       <div class="principle-card">
-        <div class="p-num">PRINZIP 05</div>
-        <div class="p-title">Doğrula / Verifizieren</div>
-        <div class="p-formula">KI sagt → Quelle prüfen → Mensch entscheidet</div>
-        <div class="p-desc">KI ist Denkpartner, nicht Wahrheitsrichter. Halluzinationen erkennen – wie bei unserem PACDI-Fall (Klinik + Pusula Akademik).</div>
+        <div class="p-num"><span data-lang="de">Prinzip 05</span><span data-lang="tr">İlke 05</span><span data-lang="en">Principle 05</span></div>
+        <h3 class="p-title"><span data-lang="de">Verifizieren</span><span data-lang="tr">Doğrula</span><span data-lang="en">Verify</span></h3>
+        <div class="p-formula"><span data-lang="de">KI sagt → Quelle prüfen → Mensch entscheidet</span><span data-lang="tr">YZ der ki → Kaynağı kontrol et → İnsan karar verir</span><span data-lang="en">AI says → check the source → human decides</span></div>
+        <p class="p-desc"><span data-lang="de">KI ist Denkpartner, nicht Wahrheitsrichter. Halluzinationen erkennen – so, wie wir es in der eigenen Praxis erlebt haben.</span><span data-lang="tr">Yapay zekâ bir düşünme ortağıdır, doğruluk hakemi değil. Halüsinasyonları fark etmek – kendi uygulamamızda yaşadığımız gibi.</span><span data-lang="en">AI is a thinking partner, not an arbiter of truth. Spotting hallucinations – as we experienced in our own practice.</span></p>
       </div>
+
       <div class="principle-card">
-        <div class="p-num">PRINZIP 06</div>
-        <div class="p-title">Sisteme Dönüştür / Systematisieren</div>
-        <div class="p-formula">Üretim ≠ İlerleme</div>
-        <div class="p-desc">Wiederholung → Standardisieren → Testen → Automatisieren → Kontrollieren. Aus einmaliger Produktion wird System.</div>
+        <div class="p-num"><span data-lang="de">Prinzip 06</span><span data-lang="tr">İlke 06</span><span data-lang="en">Principle 06</span></div>
+        <h3 class="p-title"><span data-lang="de">Systematisieren</span><span data-lang="tr">Sisteme dönüştür</span><span data-lang="en">Turn it into a system</span></h3>
+        <div class="p-formula"><span data-lang="de">Produktion ≠ Fortschritt</span><span data-lang="tr">Üretim ≠ İlerleme</span><span data-lang="en">Output ≠ progress</span></div>
+        <p class="p-desc"><span data-lang="de">Wiederholung → Standardisieren → Testen → Automatisieren → Kontrollieren. Aus einmaliger Produktion wird ein System.</span><span data-lang="tr">Tekrar → Standartlaştır → Test et → Otomatikleştir → Kontrol et. Tek seferlik üretim bir sisteme dönüşür.</span><span data-lang="en">Repetition → standardize → test → automate → control. One-off output becomes a system.</span></p>
       </div>
-      <div class="principle-card" style="border:2px solid #F0D080;">
-        <div class="p-num">PRINZIP 07</div>
-        <div class="p-title">Sorumluluğu Tut / Verantwortung</div>
-        <div class="p-formula">Workflow + Freigabe + Kosten</div>
-        <div class="p-desc">Wo bleibt die menschliche Freigabe? Was kostet das? Wie wird das dokumentiert für Art. 4 AI Act? Das ist AI Operating System.</div>
+
+      <div class="principle-card featured">
+        <div class="p-num"><span data-lang="de">Prinzip 07</span><span data-lang="tr">İlke 07</span><span data-lang="en">Principle 07</span></div>
+        <h3 class="p-title"><span data-lang="de">Verantwortung behalten</span><span data-lang="tr">Sorumluluğu tut</span><span data-lang="en">Keep the responsibility</span></h3>
+        <div class="p-formula"><span data-lang="de">Workflow + Freigabe + Kosten</span><span data-lang="tr">İş akışı + Onay + Maliyet</span><span data-lang="en">Workflow + approval + cost</span></div>
+        <p class="p-desc"><span data-lang="de">Wo bleibt die menschliche Freigabe? Was kostet das? Wie wird das dokumentiert – auch im Sinne von Art. 4 AI Act? Das ist das AI Operating System.</span><span data-lang="tr">İnsan onayı nerede kalıyor? Maliyeti ne? Bu nasıl belgeleniyor – AI Act Madde 4 anlamında da? İşte AI Operating System budur.</span><span data-lang="en">Where does the human approval stay? What does it cost? How is it documented – also in the sense of Art. 4 AI Act? That is the AI Operating System.</span></p>
       </div>
+
     </div>
   </div>
 </section>
@@ -1460,261 +407,133 @@
 <section class="section section-alt" id="pilot">
   <div class="container">
     <div class="offer-box">
-      <h3>🚀 Pilot-Angebot – Kein 9,5h Marathon</h3>
-      <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; margin-top:0.5rem;">Ziel: Verkaufsvalidierung, nicht LMS-Imperium. Deshalb schlank:</p>
+      <h3><span data-lang="de">🚀 Pilot-Angebot – Kein 9,5h Marathon</span><span data-lang="tr">🚀 Pilot teklif – 9,5 saatlik maraton yok</span><span data-lang="en">🚀 Pilot offer – no 9.5h marathon</span></h3>
+      <p><span data-lang="de">Ziel: Verkaufsvalidierung, nicht LMS-Imperium. Deshalb schlank:</span><span data-lang="tr">Amaç: satış doğrulaması, LMS imparatorluğu değil. Bu yüzden yalın:</span><span data-lang="en">Goal: sales validation, not an LMS empire. Hence lean:</span></p>
       <ul class="check-list">
-        <li>90 Min Core Training (DE) – live oder On-Demand</li>
-        <li>20 Deep-Dive Lektionen als Bibliothek (PDF + Shorts)</li>
-        <li>7 Cep Kartları – Mitarbeiter nehmen echte Karten mit</li>
-        <li>Quiz + Teilnahmenachweis (dokumentierbare KI-Kompetenz Art.4)</li>
-        <li>4x 10-Min Updates / Jahr (neue Risiken, Tools, Fälle)</li>
-        <li>Manager-Report: Wer hat abgeschlossen, Scores</li>
-        <li>12 Monate Zugriff</li>
+        <li><span data-lang="de">90 Min Core Training (DE) – live oder On-Demand</span><span data-lang="tr">90 dk çekirdek eğitim (DE) – canlı veya talep üzerine</span><span data-lang="en">90-min core training (DE) – live or on-demand</span></li>
+        <li><span data-lang="de">20 Deep-Dive Lektionen als Bibliothek (PDF + Shorts)</span><span data-lang="tr">Kütüphane olarak 20 derinlemesine ders (PDF + Shorts)</span><span data-lang="en">20 deep-dive lessons as a library (PDF + Shorts)</span></li>
+        <li><span data-lang="de">7 Taschenkarten – Mitarbeiter nehmen echte Karten mit</span><span data-lang="tr">7 cep kartı – çalışanlar gerçek kartları yanlarında taşır</span><span data-lang="en">7 pocket cards – employees take real cards with them</span></li>
+        <li><span data-lang="de">Quiz + Teilnahmenachweis (Baustein für Ihre Dokumentation der KI-Kompetenz, Art. 4 AI Act)</span><span data-lang="tr">Quiz + katılım belgesi (AI Act Madde 4 kapsamındaki yapay zekâ yetkinliği dokümantasyonunuz için bir bileşen)</span><span data-lang="en">Quiz + proof of participation (a building block for documenting AI competence under Art. 4 AI Act)</span></li>
+        <li><span data-lang="de">4x 10-Min Updates / Jahr (neue Risiken, Tools, Fälle)</span><span data-lang="tr">Yılda 4 × 10 dk güncelleme (yeni riskler, araçlar, vakalar)</span><span data-lang="en">4 × 10-min updates per year (new risks, tools, cases)</span></li>
+        <li><span data-lang="de">Manager-Report: Wer hat abgeschlossen, Scores</span><span data-lang="tr">Yönetici raporu: kim tamamladı, puanlar</span><span data-lang="en">Manager report: who completed, scores</span></li>
+        <li><span data-lang="de">12 Monate Zugriff</span><span data-lang="tr">12 ay erişim</span><span data-lang="en">12 months access</span></li>
       </ul>
-      <div style="margin-top:1.5rem; padding:1rem; background:rgba(240,208,128,0.1); border-radius:0.8rem; border:1px dashed rgba(240,208,128,0.3);">
-        <div style="font-size:0.8rem; color:#F0D080; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Pilot-Preis Test</div>
-        <div style="font-size:1.6rem; font-weight:800; color:white; margin-top:0.2rem;">10 Mitarbeiter Pilot: 490€ – 790€</div>
-        <div style="font-size:0.82rem; color:rgba(255,255,255,0.6); margin-top:0.3rem;">Kein Abo-Falle. Ein Jahr, dann entscheiden Sie ob Sie verlängern. Wir testen gemeinsam ob das Problem echtes Budget hat.</div>
+      <div class="price-box">
+        <div class="label"><span data-lang="de">Pilot-Preis Test</span><span data-lang="tr">Pilot fiyat testi</span><span data-lang="en">Pilot price test</span></div>
+        <div class="amount"><span data-lang="de">10 Mitarbeiter Pilot: 490€ – 790€</span><span data-lang="tr">10 çalışanlı pilot: 490€ – 790€</span><span data-lang="en">10-employee pilot: €490 – €790</span></div>
+        <div class="note"><span data-lang="de">Kein Abo-Falle. Ein Jahr, dann entscheiden Sie, ob Sie verlängern. Wir testen gemeinsam, ob das Problem echtes Budget hat.</span><span data-lang="tr">Abonelik tuzağı yok. Bir yıl, sonra yenileyip yenilemeyeceğinize siz karar verirsiniz. Sorunun gerçek bir bütçesi olup olmadığını birlikte test ediyoruz.</span><span data-lang="en">No subscription trap. One year, then you decide whether to renew. Together we test whether the problem has a real budget.</span></div>
       </div>
-      <div style="margin-top:1.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
-        <a href="mailto:info@pacdi.eu?subject=Pilot-Anfrage%20AI%20Work%20Essentials&body=Hallo%20PACDI%2C%0A%0AWir%20haben%20Interesse%20am%20Pilot%3A%0AAnzahl%20Mitarbeiter%3A%20%0AFirma%3A%20%0A%0AWas%20w%C3%BCrden%20Sie%20nach%2090%20Min%20als%20Ergebnis%20erwarten%3F%0A" class="btn-primary">📧 Pilot anfragen – info@pacdi.eu</a>
-        <a href="/index.html" class="btn-secondary">Kostenlosen Guide ansehen</a>
+      <div class="offer-actions">
+        <a data-lang="de" href="mailto:info@pacdi.eu?subject=Pilot-Anfrage%20AI%20Work%20Essentials&amp;body=Hallo%20PACDI%2C%0A%0AWir%20haben%20Interesse%20am%20Pilot%3A%0AAnzahl%20Mitarbeiter%3A%20%0AFirma%3A%20%0A%0AWas%20w%C3%BCrden%20Sie%20nach%2090%20Min%20als%20Ergebnis%20erwarten%3F%0A" class="btn-primary">📧 Pilot anfragen – info@pacdi.eu</a>
+        <a data-lang="tr" href="mailto:info@pacdi.eu?subject=Pilot%20talebi%20-%20AI%20Work%20Essentials&amp;body=Merhaba%20PACDI%2C%0A%0APilot%20ile%20ilgileniyoruz%3A%0A%C3%87al%C4%B1%C5%9Fan%20say%C4%B1s%C4%B1%3A%20%0A%C5%9Eirket%3A%20%0A%0A90%20dakika%20sonunda%20sonu%C3%A7%20olarak%20ne%20beklersiniz%3F%0A" class="btn-primary">📧 Pilot talep et – info@pacdi.eu</a>
+        <a data-lang="en" href="mailto:info@pacdi.eu?subject=Pilot%20request%20-%20AI%20Work%20Essentials&amp;body=Hello%20PACDI%2C%0A%0AWe%20are%20interested%20in%20the%20pilot%3A%0ANumber%20of%20employees%3A%20%0ACompany%3A%20%0A%0AWhat%20would%20you%20expect%20as%20a%20result%20after%2090%20minutes%3F%0A" class="btn-primary">📧 Request pilot – info@pacdi.eu</a>
+        <a href="/index.html" class="btn-secondary"><span data-lang="de">Kostenlosen Guide ansehen</span><span data-lang="tr">Ücretsiz rehberi gör</span><span data-lang="en">View the free guide</span></a>
       </div>
     </div>
 
     <div class="card-grid" style="margin-top:2rem;">
       <div class="card">
-        <span class="icon">❌</span>
-        <h3>Was wir NICHT sind</h3>
-        <p>60 Min "Was ist KI?" mit Beamer. Gibt es schon für 29€ überall. Braucht niemand.</p>
+        <span class="icon" aria-hidden="true">❌</span>
+        <h3><span data-lang="de">Was wir NICHT sind</span><span data-lang="tr">Ne DEĞİLİZ</span><span data-lang="en">What we are NOT</span></h3>
+        <p><span data-lang="de">60 Min „Was ist KI?“ mit Beamer. Gibt es schon überall. Braucht niemand.</span><span data-lang="tr">Projektörle 60 dk “Yapay zekâ nedir?”. Zaten her yerde var. Kimsenin ihtiyacı yok.</span><span data-lang="en">60 minutes of “What is AI?” with a projector. Already available everywhere. Nobody needs it.</span></p>
       </div>
       <div class="card">
-        <span class="icon">✅</span>
-        <h3>Was wir sind</h3>
-        <p>90 Min Core, wie Mitarbeiter sicher, effizient und nachweisbar mit KI arbeiten. Dokumentierbar für Art.4.</p>
+        <span class="icon" aria-hidden="true">✅</span>
+        <h3><span data-lang="de">Was wir sind</span><span data-lang="tr">Neyiz</span><span data-lang="en">What we are</span></h3>
+        <p><span data-lang="de">90 Min Core, wie Mitarbeiter sicher, effizient und nachweisbar mit KI arbeiten. Ein Baustein für Ihre Art.-4-Dokumentation.</span><span data-lang="tr">90 dk çekirdek eğitim: çalışanlar yapay zekâ ile güvenli, verimli ve kanıtlanabilir şekilde nasıl çalışır. Madde 4 dokümantasyonunuz için bir bileşen.</span><span data-lang="en">90-min core on how employees work with AI safely, efficiently and provably. A building block for your Art. 4 documentation.</span></p>
       </div>
       <div class="card" style="border:2px solid #F0D080;">
-        <span class="icon">🎯</span>
-        <h3>Pilot-Ziel</h3>
-        <p>1 Firma × 490-790€ beweist: Jemand zahlt echtes Geld für echtes Problem. Dann skalieren wir.</p>
+        <span class="icon" aria-hidden="true">🎯</span>
+        <h3><span data-lang="de">Pilot-Ziel</span><span data-lang="tr">Pilot hedefi</span><span data-lang="en">Pilot goal</span></h3>
+        <p><span data-lang="de">1 Firma × 490–790€ beweist: Jemand zahlt echtes Geld für ein echtes Problem. Dann skalieren wir.</span><span data-lang="tr">1 şirket × 490–790€ şunu kanıtlar: Biri gerçek bir sorun için gerçek para ödüyor. Sonra ölçekleriz.</span><span data-lang="en">1 company × €490–790 proves that someone pays real money for a real problem. Then we scale.</span></p>
       </div>
     </div>
   </div>
 </section>
+</main>
 
 <footer class="site-footer">
   <div class="container">
     <div style="margin-bottom:0.8rem;">
-      <a href="/index.html">Ücretsiz Rehber</a> · <a href="/corporate.html">Corporate Pilot</a> · <a href="mailto:info@pacdi.eu">info@pacdi.eu</a>
+      <a href="/index.html"><span data-lang="de">Kostenloser Guide</span><span data-lang="tr">Ücretsiz Rehber</span><span data-lang="en">Free guide</span></a> ·
+      <a href="/corporate.html">Corporate Pilot</a> ·
+      <a href="mailto:info@pacdi.eu">info@pacdi.eu</a> ·
+      <a href="/legal.html"><span data-lang="de">Impressum &amp; Datenschutz</span><span data-lang="tr">Impressum &amp; Gizlilik</span><span data-lang="en">Legal notice &amp; privacy</span></a>
     </div>
-    © 2026 PACDI Global Yazılım Ltd. Şti. · FSEK 2026/18897 · Alle Rechte vorbehalten<br>
-    Dokumentierbare KI-Kompetenz · Art.4 AI Act · Kein Beamer-Tourismus
+    © 2026 PACDI Global Yazılım Ltd. Şti. · <span data-lang="de">Alle Rechte vorbehalten</span><span data-lang="tr">Tüm hakları saklıdır</span><span data-lang="en">All rights reserved</span><br>
+    <span data-lang="de">Dokumentierbare KI-Kompetenz · Art. 4 AI Act · Kein Beamer-Tourismus</span><span data-lang="tr">Belgelenebilir yapay zekâ yetkinliği · AI Act Madde 4 · Projektör turizmi yok</span><span data-lang="en">Documentable AI competence · Art. 4 AI Act · No projector tourism</span>
   </div>
 </footer>
 
+<button type="button" id="back-to-top" aria-label="Back to top">↑</button>
+
 <script>
-// Progress bar
-window.addEventListener('scroll', function(){
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  var bar = document.getElementById('progress-bar');
-  if(bar) bar.style.width = scrolled + "%";
-});
-</script>
-<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script><script>
-(function() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(function(){});
+(function () {
+  var LANGS = ['de', 'tr', 'en'];
+  var TITLES = {
+    de: 'PACDI Corporate - AI Work Essentials | Kein Beamer-Training',
+    tr: 'PACDI Corporate - AI Work Essentials | Projektör Eğitimi Değil',
+    en: 'PACDI Corporate - AI Work Essentials | Not a Projector Training'
+  };
+  var root = document.documentElement;
+
+  /* Globale Funktion (nicht im IIFE gefangen): zeigt/versteckt nur vorhandene data-lang-Bloecke, schreibt keinen Text per JS */
+  window.setLanguage = function (lang) {
+    if (LANGS.indexOf(lang) < 0) lang = 'de';
+    root.setAttribute('data-ui-lang', lang);
+    root.setAttribute('lang', lang);
+    document.title = TITLES[lang];
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var i = 0; i < btns.length; i++) {
+      var on = btns[i].getAttribute('data-set-lang') === lang;
+      btns[i].classList.toggle('active', on);
+      btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    try { sessionStorage.setItem('autoLang', lang); } catch (e) {}
+  };
+
+  var start = 'de';
+  try {
+    var saved = sessionStorage.getItem('autoLang');
+    if (LANGS.indexOf(saved) > -1) start = saved;
+  } catch (e) {}
+  window.setLanguage(start);
+
+  var langBtns = document.querySelectorAll('.lang-btn');
+  for (var i = 0; i < langBtns.length; i++) {
+    langBtns[i].addEventListener('click', function () {
+      window.setLanguage(this.getAttribute('data-set-lang'));
+    });
   }
 
-  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  var isInStandalone = ('standalone' in navigator && navigator.standalone);
-  var shown = sessionStorage.getItem('pwa-banner-shown');
-  if (shown || isInStandalone) return;
-
-  if (isIOS) {
-    setTimeout(function() {
-      var bar = document.createElement('div');
-      bar.id = 'pwa-banner';
-      bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#04162E;border-top:2px solid #F6B45F;padding:14px 16px;z-index:9999;font-family:system-ui;';
-      bar.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
-          '<div>' +
-            '<div style="color:#F6B45F;font-size:0.82rem;font-weight:700;margin-bottom:4px;">📲 Ana ekrana ekle</div>' +
-            '<div style="color:#b0b5bf;font-size:0.75rem;line-height:1.5;">Safari\'de <strong style="color:#eaf2fb;">&#11015; Paylaş</strong> butonuna bas, ardından <strong style="color:#eaf2fb;">Ana Ekrana Ekle</strong> seçeneğini seç.</div>' +
-            '<div style="color:#4a6a88;font-size:0.68rem;margin-top:4px;">&#9432; iOS\'ta otomatik kurulum desteklenmiyor — bu adım gerekli.</div>' +
-          '</div>' +
-          '<button onclick="document.getElementById(\'pwa-banner\').remove();sessionStorage.setItem(\'pwa-banner-shown\',\'1\')" style="background:transparent;border:none;color:#7a9ab8;font-size:1.2rem;cursor:pointer;padding:0 4px;flex-shrink:0;">✕</button>' +
-        '</div>';
-      document.body.appendChild(bar);
-      sessionStorage.setItem('pwa-banner-shown', '1');
-    }, 3000);
-    return;
+  /* Theme */
+  var themeBtn = document.getElementById('theme-toggle');
+  function paintTheme() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    themeBtn.textContent = dark ? '☀️' : '🌙';
+    themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
-
-  var deferredPrompt = null;
-  window.addEventListener('beforeinstallprompt', function(e) {
-    e.preventDefault();
-    deferredPrompt = e;
-    setTimeout(function() {
-      if (!deferredPrompt) return;
-      var bar = document.createElement('div');
-      bar.id = 'pwa-banner';
-      bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#04162E;border-top:2px solid #F6B45F;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;z-index:9999;font-family:system-ui;';
-      bar.innerHTML =
-        '<span style="color:#eaf2fb;font-size:0.85rem;">📲 Ana ekrana ekle &mdash; daha hızlı aç!</span>' +
-        '<div style="display:flex;gap:8px;">' +
-          '<button onclick="installPWA()" style="background:#F6B45F;border:none;color:#04162E;padding:6px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:0.82rem;">Ekle</button>' +
-          '<button onclick="document.getElementById(\'pwa-banner\').remove();sessionStorage.setItem(\'pwa-banner-shown\',\'1\')" style="background:transparent;border:1px solid rgba(246,180,95,0.3);color:#7a9ab8;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:0.82rem;">Sonra</button>' +
-        '</div>';
-      document.body.appendChild(bar);
-    }, 3000);
+  themeBtn.addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'dark');
+    try { localStorage.setItem('pacdi-theme', dark ? 'light' : 'dark'); } catch (e) {}
+    paintTheme();
   });
+  paintTheme();
 
-  window.installPWA = function() {
-    if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(function(){ deferredPrompt=null; }); }
-    var b = document.getElementById('pwa-banner'); if (b) b.remove();
-    sessionStorage.setItem('pwa-banner-shown', '1');
-  };
+  /* Fortschrittsbalken & Nach-oben-Button */
+  var bar = document.getElementById('progress-bar');
+  var topBtn = document.getElementById('back-to-top');
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (bar) bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    if (topBtn) topBtn.style.display = y > 400 ? 'flex' : 'none';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  topBtn.addEventListener('click', function () { window.scrollTo({ top: 0 }); });
 })();
 </script>
-
-<div class="pacdi-share-bar" id="pacdiShareBar" style="clear:both;width:100%;flex-basis:100%;"></div>
-<script src="https://pacdi.store/assets/share-bar.js"></script>
-
-<div class="pacdi-sponsor-section" id="pacdiSponsorBar" style="clear:both;width:100%;flex-basis:100%;margin-top:24px;padding:16px;background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.2);border-radius:12px;box-sizing:border-box;"></div>
-<script src="https://pacdi.store/assets/sponsor-bar.js"></script>
-
-<div id="pacdi-fsek" style="clear:both;width:100%;flex-basis:100%;text-align:center;padding:28px 16px 20px;border-top:1px solid rgba(212,175,55,0.15);margin-top:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-sizing:border-box;">
-  <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.25);border-radius:24px;padding:8px 20px;margin-bottom:12px;flex-wrap:wrap;justify-content:center;">
-    <span style="font-size:1rem;">🛡️</span>
-    <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;color:#D4AF37;text-transform:uppercase;">FSEK Registered · PACDI Framework</span>
-  </div>
-  <div style="font-size:0.78rem;color:#8A8F9A;margin-bottom:4px;">Operated by AskMeAI Teknoloji Ltd. Şti. (TR: 23837)</div>
-  <div style="font-size:0.72rem;color:#6B7280;margin-bottom:10px;">Intellectual property owned by © 2026 PACDI Global Yazılım Ltd. Şti. &mdash; FSEK No: <a href="https://pacdi.store/legal.html" style="color:#D4AF37;text-decoration:none;">2026/18897</a></div>
-  <div style="font-size:0.78rem;margin-bottom:10px;"><a href="https://pacdi.store/legal.html" style="color:#D4AF37;text-decoration:none;border-bottom:1px solid rgba(212,175,55,0.3);">Impressum &amp; Datenschutz &amp; AGB</a></div>
-  <div style="font-size:0.82rem;font-style:italic;color:#6B7280;">&ldquo;Technology in the service of humanity.&rdquo;</div>
-</div>
-<button id="pacdi-feedback-btn" onclick="document.getElementById('pacdi-feedback-title').textContent='Oneri veya Hata Bildir';document.getElementById('pacdi-feedback-message').value='';var pslf=document.getElementById('pacdi-sponsor-logo-field');if(pslf)pslf.style.display='none';document.getElementById('pacdi-feedback-modal').style.display='flex'" style="position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:#F6B45F;border:none;font-size:1.4rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.3);z-index:9998;" title="Oneri veya hata bildir">💬</button>
-<div id="pacdi-feedback-modal" style="display:none;position:fixed;inset:0;background:rgba(4,22,46,0.75);z-index:9999;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:#0a2340;border:1px solid rgba(246,180,95,0.25);border-radius:12px;padding:24px;max-width:420px;width:100%;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-      <h3 id="pacdi-feedback-title" style="color:#F6B45F;font-size:1.05rem;margin:0;">Oneri veya Hata Bildir</h3>
-      <button onclick="document.getElementById('pacdi-feedback-modal').style.display='none'" style="background:transparent;border:none;color:#7a9ab8;font-size:1.3rem;cursor:pointer;">✕</button>
-    </div>
-    <textarea id="pacdi-feedback-message" placeholder="Ne dusunuyorsunuz? Bir hata mi buldunuz, yoksa oneriniz mi var?" style="width:100%;min-height:100px;background:rgba(255,255,255,0.03);border:1px solid rgba(246,180,95,0.15);border-radius:8px;padding:10px;color:#e8edf2;font-family:inherit;font-size:0.88rem;resize:vertical;margin-bottom:10px;box-sizing:border-box;"></textarea>
-    <input type="text" id="pacdi-feedback-contact" placeholder="E-posta (istege bagli - degerli onerilere tesekkur/hediye gonderebilmemiz icin birakmanizi oneririz)" style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(246,180,95,0.15);border-radius:8px;padding:10px;color:#e8edf2;font-family:inherit;font-size:0.85rem;margin-bottom:10px;box-sizing:border-box;">
-    <div id="pacdi-sponsor-logo-field" style="display:none;margin-bottom:10px;">
-      <label style="font-size:0.78rem;color:#7a9ab8;display:block;margin-bottom:6px;">Logo (istege bagli, otomatik kucultulur)</label>
-      <input type="file" id="pacdi-sponsor-logo-input" accept="image/*" style="width:100%;font-size:0.8rem;color:#c8cdd5;">
-      <div id="pacdi-sponsor-logo-status" style="font-size:0.72rem;color:#6fcf97;margin-top:4px;"></div>
-    </div>
-    <input type="text" id="pacdi-feedback-website" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
-    <div id="pacdi-feedback-status" style="font-size:0.8rem;margin-bottom:10px;display:none;"></div>
-    <button id="pacdi-feedback-submit" onclick="pacdiSubmitFeedback()" style="width:100%;background:#F6B45F;color:#04162E;border:none;border-radius:8px;padding:11px;font-weight:700;font-size:0.9rem;cursor:pointer;font-family:inherit;">Gonder</button>
-  </div>
-</div>
-<script>
-(function() {
-  var pacdiFeedbackOpenTime = Date.now();
-  var pacdiSponsorLogoData = '';
-
-  function pacdiCompressImage(file, maxSize, quality, callback) {
-    var reader = new FileReader();
-    reader.onload = function(ev) {
-      var img = new Image();
-      img.onload = function() {
-        var w = img.width, h = img.height;
-        if (w > h) { if (w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; } }
-        else { if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; } }
-        var canvas = document.createElement('canvas');
-        canvas.width = w; canvas.height = h;
-        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-        callback(canvas.toDataURL('image/jpeg', quality));
-      };
-      img.src = ev.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  var pacdiLogoInputEl = document.getElementById('pacdi-sponsor-logo-input');
-  if (pacdiLogoInputEl) {
-    pacdiLogoInputEl.addEventListener('change', function() {
-      var file = pacdiLogoInputEl.files[0];
-      var statusEl = document.getElementById('pacdi-sponsor-logo-status');
-      if (!file) { pacdiSponsorLogoData = ''; if (statusEl) statusEl.textContent = ''; return; }
-      pacdiCompressImage(file, 200, 0.7, function(dataUrl) {
-        pacdiSponsorLogoData = dataUrl;
-        if (statusEl) statusEl.textContent = '✓ Logo hazir (' + Math.round(dataUrl.length / 1024) + ' KB)';
-      });
-    });
-  }
-
-  window.pacdiSubmitFeedback = function() {
-    var honeypot = document.getElementById('pacdi-feedback-website').value;
-    var elapsed = Date.now() - pacdiFeedbackOpenTime;
-    var statusEl = document.getElementById('pacdi-feedback-status');
-    var message = document.getElementById('pacdi-feedback-message').value.trim();
-    var contact = document.getElementById('pacdi-feedback-contact').value.trim();
-
-    if (!message) {
-      statusEl.style.display = 'block';
-      statusEl.style.color = '#e8604c';
-      statusEl.textContent = 'Lutfen bir mesaj yazin.';
-      return;
-    }
-
-    if (honeypot || elapsed < 2000) {
-      statusEl.style.display = 'block';
-      statusEl.style.color = '#6fcf97';
-      statusEl.textContent = 'Tesekkurler! Mesajiniz iletildi.';
-      document.getElementById('pacdi-feedback-message').value = '';
-      document.getElementById('pacdi-feedback-contact').value = '';
-      setTimeout(function() { document.getElementById('pacdi-feedback-modal').style.display = 'none'; statusEl.style.display = 'none'; }, 1500);
-      return;
-    }
-
-    var submitBtn = document.getElementById('pacdi-feedback-submit');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Gonderiliyor...';
-
-    var fullMessage = message;
-    if (pacdiSponsorLogoData) {
-      fullMessage += '
-
-[SPONSOR LOGO - base64]:
-' + pacdiSponsorLogoData;
-    }
-
-    fetch('/api/v1/feedback/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tool: document.title, name: '', contact: contact, message: fullMessage })
-    }).then(function(res) { return res.json(); }).then(function(data) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Gonder';
-      statusEl.style.display = 'block';
-      if (data.ok) {
-        statusEl.style.color = '#6fcf97';
-        statusEl.textContent = 'Tesekkurler! Mesajiniz iletildi.';
-        document.getElementById('pacdi-feedback-message').value = '';
-        document.getElementById('pacdi-feedback-contact').value = '';
-        setTimeout(function() { document.getElementById('pacdi-feedback-modal').style.display = 'none'; statusEl.style.display = 'none'; }, 1500);
-      } else {
-        statusEl.style.color = '#e8604c';
-        statusEl.textContent = 'Bir hata olustu, lutfen tekrar deneyin.';
-      }
-    }).catch(function() {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Gonder';
-      statusEl.style.display = 'block';
-      statusEl.style.color = '#e8604c';
-      statusEl.textContent = 'Baglanti hatasi, lutfen tekrar deneyin.';
-    });
-  };
-})();
-</script>
-
 </body>
 </html>
